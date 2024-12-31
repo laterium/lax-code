@@ -25,10 +25,10 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 
 #define float               Float:
 
-// #pragma tabsize 4
 // #pragma ctrlchar '@'
 // #pragma dynamic 1000000
 // #pragma semicolon 0
+#pragma tabsize 4
 
 stock HelloWorld() {
     printf "\nHello, World!\n";
@@ -56,9 +56,11 @@ stock GetPlayerClientVersion(playerid) {
   return version;
 }
 
-stock randomEx(min, max) {
-    return random(max - min) + min;
-}
+#if !defined randomEx
+    stock randomEx(min, max) {
+        return random(max - min) + min;
+    }
+#endif
 
 #if !defined GetName
   #define GetName GetPlayerNameF
@@ -70,97 +72,39 @@ stock GetPlayerNameF(playerid) {
    return _name;
 }
 
-stock IsValidName(const name[])
-{
-    new len = strlen(name);
-
-    for(new ch = 0; ch != len; ch++)
+#if !defined IsValidName
+    stock IsValidName(const name[])
     {
-        switch(name[ch])
+        new len = strlen(name);
+
+        for(new ch = 0; ch != len; ch++)
         {
-            case 'A' .. 'Z', 'a' .. 'z', '0' .. '9', ']', '[', '(', ')', '_', '.': continue;
-            default: return false;
+            switch(name[ch])
+            {
+                case 'A' .. 'Z', 'a' .. 'z', '0' .. '9', ']', '[', '(', ')', '_', '.': continue;
+                default: return false;
+            }
         }
+        return true;
     }
-    return true;
-}
+#endif
 
-stock IsValidPassword(const name[])
-{
-    new len = strlen(name);
-
-    for(new ch = 0; ch != len; ch++)
+#if !defined IsValidPassword
+    stock IsValidPassword(const name[])
     {
-        switch(name[ch])
+        new len = strlen(name);
+
+        for(new ch = 0; ch != len; ch++)
         {
-            case 'A' .. 'Z', 'a' .. 'z', '0' .. '9', ']', '[', '(', ')', '_', '.', '@', '#': continue;
-            default: return false;
+            switch(name[ch])
+            {
+                case 'A' .. 'Z', 'a' .. 'z', '0' .. '9', ']', '[', '(', ')', '_', '.', '@', '#': continue;
+                default: return false;
+            }
         }
+        return true;
     }
-    return true;
-}
-
-stock SendClientMessageF(playerid, color, const str[], {Float,_}:...)
-{
-    static args, start, end, string[144];
-    #emit LOAD.S.pri 8
-    #emit STOR.pri args
-
-    if (args > 12)
-    {
-        #emit ADDR.pri str
-        #emit STOR.pri start
-
-        for (end = start + (args - 12); end > start; end -= 4)
-        {
-            #emit LREF.pri end
-            #emit PUSH.pri
-        }
-        #emit PUSH.S str
-        #emit PUSH.C 144
-        #emit PUSH.C string
-        #emit PUSH.C args
-        #emit SYSREQ.C format
-
-        SendClientMessage(playerid, color, string);
-
-        #emit LCTRL 5
-        #emit SCTRL 4
-        #emit RETN
-    }
-    return SendClientMessage(playerid, color, str);
-}
-
-stock SendClientMessageToAllF(color, const str[], {Float,_}:...)
-{
-    static args, start, end, string[144];
-    #emit LOAD.S.pri 8
-    #emit STOR.pri args
-
-    if (args > 12)
-    {
-        #emit ADDR.pri str
-        #emit STOR.pri start
-
-        for (end = start + (args - 12); end > start; end -= 4)
-        {
-            #emit LREF.pri end
-            #emit PUSH.pri
-        }
-        #emit PUSH.S str
-        #emit PUSH.C 144
-        #emit PUSH.C string
-        #emit PUSH.C args
-        #emit SYSREQ.C format
-
-        SendClientMessageToAll(color, string);
-
-        #emit LCTRL 5
-        #emit SCTRL 4
-        #emit RETN
-    }
-    return SendClientMessageToAll(color, str);
-}
+#endif
 
 stock SetPlayerPosEx(playerid, float x, float y, float z, float r, int=-1, virtualworld=-1) {
     SetPlayerPos(playerid, x, y, z);
