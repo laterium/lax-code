@@ -1,22 +1,27 @@
-:: copyright (c) Laterium Contributors.
 @ECHO OFF
+
+:: << Compiler Tool intended for Pawn Code.
+:: Copyright (c) Laterium Contributors. All Rights Reserved. >>
 
 setlocal EnableDelayedExpansion
 
 color 0F
 
+:: variables ~>
 SET "SOURCEDIR=%~dp0"
 SET "NULLSTATIC=false"
 SET "LOCALTITLE=null"
-SET "VAR_PAWNCC=null"
+SET "_PAWNCC_=null"
 SET "LIB_INLOC=lax-code.bat"
 
+:: HH/MM/SS format.
 FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
     SET HH=%%A
     SET MM=%%B
     SET SS=%%C
 )
 
+:: binary combination (optional using).
 SET "0x01000001=A"
 SET "0x01000010=B"
 SET "0x01000011=C"
@@ -43,7 +48,7 @@ SET "0x01010111=W"
 SET "0x01011000=X"
 SET "0x01011001=Y"
 SET "0x01011010=Z"
-
+:: lower
 SET "1x01100001=a"
 SET "1x01100010=b"
 SET "1x01100011=c"
@@ -70,7 +75,7 @@ SET "1x01110111=w"
 SET "1x01111000=x"
 SET "1x01111001=y"
 SET "1x01111010=z"
-
+:: integar
 SET "2x00000000=0"
 SET "2x00000001=1"
 SET "2x00000010=2"
@@ -85,8 +90,8 @@ SET "2x00001010=10"
 
 REM             <filename> [filename...] [option]
 REM -A<num>  alignment in bytes of the data segment and the stack
-REM -a       output assembler code
-REM -C[+/-]  compact encoding for output file (default=+)
+REM -a       AMX_O assembler code
+REM -C[+/-]  compact encoding for AMX_O file (default=+)
 REM -c<name> codepage name or number; e.g. 1252 for Windows Latin-1
 REM -Dpath   active directory path
 REM -d<num>  debugging level (default=-d1)
@@ -98,7 +103,7 @@ REM -e<name> SET name of error file (quiet compile)
 REM -H<hwnd> window handle to send a notification message on finish
 REM -i<name> path for include files
 REM -l       create list file (preprocess only)
-REM -o<name> SET base name of (P-code) output file
+REM -o<name> SET base name of (P-code) AMX_O file
 REM -O<num>  optimization level (default=-O1)
 REM     0    no optimization
 REM     1    JIT-compatible optimizations only
@@ -126,7 +131,7 @@ REM Options with a value may optionally separate the value from the option lette
 REM with a colon (":") or an equal sign ("="). That is, the options "-d0", "-d=0"
 REM and "-d:0" are all equivalent.
 
-:: JIT-compatible optimizations 
+:: JIT-compatible optimizations
 SET "ASM_OPTION_M=-!1x01101111!"
 SET "ASM_OPTION_P=-!0x01001111!!2x00000001!"
 
@@ -143,6 +148,7 @@ SET /p TYPEOF=" "
 
 goto :end
 
+:: colour handle in batch
 :COLOURTEXT
 <nul set /p "=%DEL%" > "%~2"
 findstr /v /a:%1 /R "+" "%~2" nul
@@ -194,7 +200,6 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 
 :GO_START
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
-    ECHO.
     ECHO # Press any key to Start Server's . . .
     PAUSE >nul
 
@@ -530,14 +535,14 @@ GOTO COMMAND_TYPEOF
     ECHO # Starting at %time% ...
     FOR /r "%SOURCEDIR%" %%P in (pawncc.exe) DO (
         IF EXIST "%%P" (
-            SET "VAR_PAWNCC=%%P"
+            SET "_PAWNCC_=%%P"
             GOTO PAWNCC
         )
     )
     :PAWNCC
-    IF not DEFINED VAR_PAWNCC (
+    IF not DEFINED _PAWNCC_ (
         ECHO.
-        ECHO # [%HH%:%MM%:%SS%] pawncc not found in any subdirectories.
+            ECHO # [%HH%:%MM%:%SS%] pawncc not found in any subdirectories.
         ECHO.
         TIMEOUT /t 1 >nul
         START "" "https://github.com/pawn-lang/compiler/releases"
@@ -551,22 +556,22 @@ GOTO COMMAND_TYPEOF
         ECHO *^(%%F^)
         ECHO.
         
-        SET "OUTPUT=%%~dpnF"
-        SET "OUTPUT=!OUTPUT:.lax=!%.amx"
-        
-        "!VAR_PAWNCC!" "%%F" %ASM_OPTION_M%"!OUTPUT!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
+        SET "AMX_O=%%~dpnF"
+        SET "AMX_O=!AMX_O:.lax=!%.amx"
+
+        "!_PAWNCC_!" "%%F" %ASM_OPTION_M%"!AMX_O!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
         TYPE %METADAT_FILE%
 
-        IF EXIST "!OUTPUT!" (
-            FOR %%A IN ("!OUTPUT!") DO (
+        IF EXIST "!AMX_O!" (
+            FOR %%A IN ("!AMX_O!") DO (
                 <nul set /p=""
                 call :COLOURTEXT a "[#]~"
-                echo Compilation finished at [%HH%:%MM%:%SS%]...
+                echo Compilation finished at %time%..
                 call :COLOURTEXT a "[#]~"
-                echo Total Size [%%~zA / bytes] ^| "!OUTPUT!" ^| "%ASM_OPTION_M% %ASM_OPTION_P%" 
+                echo Total Size [%%~zA / bytes] ^| "!AMX_O!" ^| "%ASM_OPTION_M% %ASM_OPTION_P%" 
             )
         ) ELSE (
-                setlocal DISABLEDELAYEDEXPANSION 
+                setlocal DisableDelayedExpansion 
                 <nul set /p=""
                     call :COLOURTEXT 4X "[#]~"
                     echo Compilation failed!. ERR? .. Yes
@@ -577,11 +582,12 @@ GOTO COMMAND_TYPEOF
         )
     )
     IF not "%SOURCEFILE%"=="true" (
-       setlocal DISABLEDELAYEDEXPANSION 
+       setlocal DisableDelayedExpansion 
         <nul set /p=""
-            call :COLOURTEXT E6 "# Compilation failed!."
-            endlocal
-        ECHO  "!SOURCEDIR!.lax" no files found.
+                call :COLOURTEXT 4X "[#]~"
+                echo Compilation failed!.
+        endlocal
+        ECHO    ~ "!SOURCEDIR!.lax" no files found.
     )
     IF "%NULLSTATIC%"=="true" (
         GOTO ENDOFALL
