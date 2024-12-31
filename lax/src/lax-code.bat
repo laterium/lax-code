@@ -9,7 +9,7 @@ SET "SOURCEDIR=%~dp0"
 SET "NULLSTATIC=false"
 SET "LOCALTITLE=null"
 SET "VAR_PAWNCC=null"
-SET "LIB_INLOC=Lax.exe"
+SET "LIB_INLOC=lax-code.bat"
 
 FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
     SET HH=%%A
