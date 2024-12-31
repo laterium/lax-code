@@ -160,7 +160,7 @@ goto :eof
 SET "OPTIONTYPEOF=cat"
 
 IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
-    SET "LOCALTITLE=compilers (BETA)"
+    SET "LOCALTITLE=compilers"
     TITLE %username%@%computername%:~/!LOCALTITLE!
     ECHO.
 
@@ -168,7 +168,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     GOTO COMPILERS
 
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -r" (
-    SET "LOCALTITLE=running (BETA)"
+    SET "LOCALTITLE=running"
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
@@ -287,7 +287,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     START explorer ".vscode\"
     GOTO ENDOFALL
 
-)  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ct" (
+)  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dg" (
     SET "LOCALTITLE=create simple pack"
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
@@ -462,7 +462,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         goto ENDOFALL
     )
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -gitc" (
-    SET "LOCALTITLE=git clone (BETA)"
+    SET "LOCALTITLE=git clone"
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
     set /p URL="# [%HH%:%MM%:%SS%] Enter Repo URL: "
@@ -491,7 +491,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-ci compile-running] [-vsc vscode tasks]
-    ECHO       [-ct create lax simple pack] [-cls clear screen] [-gitc git clone] [-inc lax include+]
+    ECHO       [-dg create gamemode pack ^& debugging gamemode] [-cls clear screen] [-gitc git clone] [-inc lax include+]
     ECHO       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download]
     ECHO       [-dlax discord lax development support]
     GOTO COMMAND_TYPEOF
