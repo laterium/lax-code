@@ -30,6 +30,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 // #pragma dynamic 1000000
 // #pragma semicolon 0
 
+stock HelloWorld() {
+    printf "\nHello, World!\n";
+}
+
+/*
+
 static const rc[20] = {
     0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
     0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
@@ -38,7 +44,7 @@ static const rc[20] = {
     0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0
 };
 
-#pragma unused rc
+*/
 
 forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
