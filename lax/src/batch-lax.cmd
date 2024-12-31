@@ -12,7 +12,7 @@ SET "SOURCEDIR=%~dp0"
 SET "NULLSTATIC=false"
 SET "LOCALTITLE=null"
 SET "_PAWNCC_=null"
-SET "LIB_INLOC=lax-code.bat"
+SET "LIB_INLOC=batch-lax.cmd"
 
 :: HH/MM/SS format.
 FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
