@@ -23,6 +23,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsPC(%0)            GetPVarInt(%0, "isPC") == 1
 #define IsMobile(%0)        GetPVarInt(%0, "isMobile") == 1
 
+#define let                 new
 #define float               Float:
 
 // #pragma ctrlchar '@'
