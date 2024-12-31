@@ -21,7 +21,7 @@ FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
     SET SS=%%C
 )
 
-:: binary combination (optional using).
+:: binary combination.
 SET "0x01000001=A"
 SET "0x01000010=B"
 SET "0x01000011=C"
@@ -184,19 +184,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     DEL "%SOURCEDIR%server_log.txt" /q >nul
     
     CALL :COMPILERS
-    FINDSTR /i "error" %METADAT_FILE% >nul && CALL :FACE_TRUE || CALL :FACE_FALSE
-    :FACE_TRUE
-    echo.
-        setlocal DISABLEDELAYEDEXPANSION 
-                <nul set /p=""
-                    call :COLOURTEXT 4X "[#]~"
-                    echo Compilation failed!. ERR? .. Yes
-                    endlocal
-                echo.
-    goto :eof
-
-    :FACE_FALSE
-    goto GO_START
+    FINDSTR /i "error" %METADAT_FILE% >nul && echo. || CALL :GO_START
 
 :GO_START
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
@@ -493,7 +481,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     START "" "https://github.com/pawn-lang/compiler/releases"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -mpg" (
     START "" "https://sa-mp.app/"
-) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -md" (
+) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -inc" (
     START "" "https://github.com/laterium/lax-code/blob/main/include/a_addon.inc"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dlax" (
     START "" "https://dsc.gg/evercool/"
@@ -503,7 +491,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-ci compile-running] [-vsc vscode tasks]
-    ECHO       [-ct create lax simple pack] [-cls clear screen] [-gitc git clone] [-md lax module +]
+    ECHO       [-ct create lax simple pack] [-cls clear screen] [-gitc git clone] [-inc lax include+]
     ECHO       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download]
     ECHO       [-dlax discord lax development support]
     GOTO COMMAND_TYPEOF
@@ -576,6 +564,9 @@ GOTO COMMAND_TYPEOF
                     call :COLOURTEXT 4X "[#]~"
                     echo Compilation failed!. ERR? .. Yes
                     endlocal
+                    IF "%NULLSTATIC%"=="false" (
+                        goto ENDOFALL
+                    )
                 echo.
             )
             ECHO.
