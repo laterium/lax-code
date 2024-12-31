@@ -56,6 +56,129 @@ stock GetPlayerClientVersion(playerid) {
   return version;
 }
 
+
+stock randomEx(min, max) {
+    return random(max - min) + min;
+}
+
+#if !defined GetName
+  #define GetName GetPlayerNameF
+#endif
+
+stock GetPlayerNameF(playerid) {
+   new _name[MAX_PLAYER_NAME+1];
+   GetPlayerName(playerid, _name, sizeof(_name));
+   return _name;
+}
+
+stock IsValidName(const name[])
+{
+    new len = strlen(name);
+
+    for(new ch = 0; ch != len; ch++)
+    {
+        switch(name[ch])
+        {
+            case 'A' .. 'Z', 'a' .. 'z', '0' .. '9', ']', '[', '(', ')', '_', '.': continue;
+            default: return false;
+        }
+    }
+    return true;
+}
+
+stock IsValidPassword(const name[])
+{
+    new len = strlen(name);
+
+    for(new ch = 0; ch != len; ch++)
+    {
+        switch(name[ch])
+        {
+            case 'A' .. 'Z', 'a' .. 'z', '0' .. '9', ']', '[', '(', ')', '_', '.', '@', '#': continue;
+            default: return false;
+        }
+    }
+    return true;
+}
+
+stock SendClientMessageF(playerid, color, const str[], {Float,_}:...)
+{
+    static args, start, end, string[144];
+    #emit LOAD.S.pri 8
+    #emit STOR.pri args
+
+    if (args > 12)
+    {
+        #emit ADDR.pri str
+        #emit STOR.pri start
+
+        for (end = start + (args - 12); end > start; end -= 4)
+        {
+            #emit LREF.pri end
+            #emit PUSH.pri
+        }
+        #emit PUSH.S str
+        #emit PUSH.C 144
+        #emit PUSH.C string
+        #emit PUSH.C args
+        #emit SYSREQ.C format
+
+        SendClientMessage(playerid, color, string);
+
+        #emit LCTRL 5
+        #emit SCTRL 4
+        #emit RETN
+    }
+    return SendClientMessage(playerid, color, str);
+}
+
+stock SendClientMessageToAllF(color, const str[], {Float,_}:...)
+{
+    static args, start, end, string[144];
+    #emit LOAD.S.pri 8
+    #emit STOR.pri args
+
+    if (args > 12)
+    {
+        #emit ADDR.pri str
+        #emit STOR.pri start
+
+        for (end = start + (args - 12); end > start; end -= 4)
+        {
+            #emit LREF.pri end
+            #emit PUSH.pri
+        }
+        #emit PUSH.S str
+        #emit PUSH.C 144
+        #emit PUSH.C string
+        #emit PUSH.C args
+        #emit SYSREQ.C format
+
+        SendClientMessageToAll(color, string);
+
+        #emit LCTRL 5
+        #emit SCTRL 4
+        #emit RETN
+    }
+    return SendClientMessageToAll(color, str);
+}
+
+stock SetPlayerPosEx(playerid, float x, float y, float z, float r, int=-1, virtualworld=-1) {
+  SetPlayerPos(playerid, x, y, z);
+  SetPlayerFacingAngle(playerid, r);
+  SetPlayerInterior(playerid, int);
+  SetPlayerVirtualWorld(playerid, virtualworld);
+  return 1;
+}
+
+stock SetVehiclePosEx(vehicleid, float x, float y, float z, float r, int=-1, virtualworld=-1) {
+  SetVehiclePos(vehicleid, x, y, z);
+  SetVehicleZAngle(vehicleid, r);
+  LinkVehicleToInterior(vehicleid, int);
+  SetVehicleVirtualWorld(vehicleid, virtualworld);
+  return 1;
+}
+
 public OnPlayerConnect(playerid)
 {
     SendClientCheck(playerid, 0x48, 0, 0, 2);
