@@ -164,19 +164,19 @@ stock SendClientMessageToAllF(color, const str[], {Float,_}:...)
 }
 
 stock SetPlayerPosEx(playerid, float x, float y, float z, float r, int=-1, virtualworld=-1) {
-  SetPlayerPos(playerid, x, y, z);
-  SetPlayerFacingAngle(playerid, r);
-  SetPlayerInterior(playerid, int);
-  SetPlayerVirtualWorld(playerid, virtualworld);
+    SetPlayerPos(playerid, x, y, z);
+    SetPlayerFacingAngle(playerid, r);
+    SetPlayerInterior(playerid, int);
+    SetPlayerVirtualWorld(playerid, virtualworld);
   return 1;
 }
 
 stock SetVehiclePosEx(vehicleid, float x, float y, float z, float r, int=-1, virtualworld=-1) {
-  SetVehiclePos(vehicleid, x, y, z);
-  SetVehicleZAngle(vehicleid, r);
-  LinkVehicleToInterior(vehicleid, int);
-  SetVehicleVirtualWorld(vehicleid, virtualworld);
-  return 1;
+    SetVehiclePos(vehicleid, x, y, z);
+    SetVehicleZAngle(vehicleid, r);
+    LinkVehicleToInterior(vehicleid, int);
+    SetVehicleVirtualWorld(vehicleid, virtualworld);
+    return 1;
 }
 
 public OnPlayerConnect(playerid)
