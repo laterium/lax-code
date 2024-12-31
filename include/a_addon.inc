@@ -168,7 +168,7 @@ stock SetPlayerPosEx(playerid, float x, float y, float z, float r, int=-1, virtu
     SetPlayerFacingAngle(playerid, r);
     SetPlayerInterior(playerid, int);
     SetPlayerVirtualWorld(playerid, virtualworld);
-  return 1;
+    return 1;
 }
 
 stock SetVehiclePosEx(vehicleid, float x, float y, float z, float r, int=-1, virtualworld=-1) {
