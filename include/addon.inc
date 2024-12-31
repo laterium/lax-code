@@ -140,6 +140,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                 SetPVarInt(playerid, "notWin32", 1);
                 SetPVarInt(playerid, "isPC", 0);
                 SetPVarInt(playerid, "isMobile", 1);
+
                 CallLocalFunction("OnAndroidDetected", "d", playerid);
             }
             if ( response == 1 )
@@ -156,6 +157,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                     SetPVarInt(playerid, "notAndroid", 1);
                     SetPVarInt(playerid, "notLinux", 1);
                     SetPVarInt(playerid, "notWin32", 0);
+
                     CallLocalFunction("OnWindowsDetected", "d", playerid);
                 }
                 case 0: 
@@ -163,6 +165,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                     SetPVarInt(playerid, "notAndroid", 1);
                     SetPVarInt(playerid, "notLinux", 0);
                     SetPVarInt(playerid, "notWin32", 1);
+
                     CallLocalFunction("OnLinuxDetected", "d", playerid);
                 }
             }   
