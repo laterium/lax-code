@@ -56,7 +56,6 @@ stock GetPlayerClientVersion(playerid) {
   return version;
 }
 
-
 stock randomEx(min, max) {
     return random(max - min) + min;
 }
