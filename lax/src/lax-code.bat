@@ -9,7 +9,7 @@ SET "SOURCEDIR=%~dp0"
 SET "NULLSTATIC=false"
 SET "LOCALTITLE=null"
 SET "VAR_PAWNCC=null"
-SET "LIB_INLOC=lax-code.bat"
+SET "LIB_INLOC=Lax.exe"
 
 FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
     SET HH=%%A
@@ -130,9 +130,7 @@ REM and "-d:0" are all equivalent.
 SET "ASM_OPTION_M=-!1x01101111!"
 SET "ASM_OPTION_P=-!0x01001111!!2x00000001!"
 
-SET "METADAT_FILE=en.log"
-SET "METADAT_ASM=asm.log"
-SET "ASM_BREAK=!ASM_OPTION_M!!ASM_OPTION_P!
+SET "METADAT_FILE=compile.log"
 
 TITLE %username%@%computername%:~
 
@@ -556,7 +554,6 @@ GOTO COMMAND_TYPEOF
         SET "OUTPUT=%%~dpnF"
         SET "OUTPUT=!OUTPUT:.lax=!%.amx"
         
-        ECHO !ASM_BREAK! > %METADAT_ASM%
         "!VAR_PAWNCC!" "%%F" %ASM_OPTION_M%"!OUTPUT!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
         TYPE %METADAT_FILE%
 
