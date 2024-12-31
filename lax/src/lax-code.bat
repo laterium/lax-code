@@ -488,13 +488,13 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         git clone !URL!
     )
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -lax" (
-    START "" "https://github.com/laterium/lax-code-compilers"
+    START "" "https://github.com/laterium/lax-code"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -pcc" (
     START "" "https://github.com/pawn-lang/compiler/releases"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -mpg" (
     START "" "https://sa-mp.app/"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -md" (
-    START "" "https://github.com/laterium/lax-code-compilers/blob/main/include/module.inc"
+    START "" "https://github.com/laterium/lax-code/blob/main/include/a_addon.inc"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dlax" (
     START "" "https://dsc.gg/evercool/"
 ) ELSE IF "%TYPEOF%"=="help" (
