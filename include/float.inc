@@ -7,21 +7,25 @@
  *
  * This file is provided as is (no warranties).
  */
+#if defined _Float_included
+  #endinput
+#endif
+#define _Float_included
 #pragma library Float
 
 /* Different methods of rounding */
-const floatround_method: {
-  floatround_round = 0,
+enum floatround_method {
+  floatround_round,
   floatround_floor,
   floatround_ceil,
   floatround_tozero,
   floatround_unbiased
-};
-const anglemode: {
-  radian = 0,
+}
+enum anglemode {
+  radian,
   degrees,
   grades
-};
+}
 
 /**************************************************/
 /* Convert an integer into a floating point value */
@@ -29,7 +33,7 @@ native Float:float(value);
 
 /**************************************************/
 /* Convert a string into a floating point value */
-native Float:strfloat(const string[]);
+native Float:floatstr(const string[]);
 
 /**************************************************/
 /* Multiple two floats together */
@@ -53,13 +57,13 @@ native Float:floatfract(Float:value);
 
 /**************************************************/
 /* Round a float into a integer value */
-native       floatround(Float:value, floatround_method:method=floatround_round);
+native floatround(Float:value, floatround_method:method=floatround_round);
 
 /**************************************************/
 /* Compare two integers. If the two elements are equal, return 0.
    If the first argument is greater than the second argument, return 1,
    If the first argument is less than the second argument, return -1. */
-native       floatcmp(Float:oper1, Float:oper2);
+native floatcmp(Float:oper1, Float:oper2);
 
 /**************************************************/
 /* Return the square root of the input value, same as floatpower(value, 0.5) */

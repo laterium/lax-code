@@ -1,8 +1,12 @@
 /* Core functions
  *
- * (c) Copyright 1998-2011, CompuPhase
+ * (c) Copyright 1998-2005, ITB CompuPhase
  * This file is provided as is (no warranties).
  */
+#if defined _core_included
+  #endinput
+#endif
+#define _core_included
 #pragma library Core
 
 native heapspace();
@@ -23,8 +27,8 @@ native min(value1, value2);
 native max(value1, value2);
 native clamp(value, min=cellmin, max=cellmax);
 
-native getproperty(id=0, const name[]=``'', value=cellmin, string[]=``'', size=sizeof string);
-native setproperty(id=0, const name[]=``'', value=cellmin, const string[]=``'');
-native deleteproperty(id=0, const name[]=``'', value=cellmin);
-native existproperty(id=0, const name[]=``'', value=cellmin);
+native getproperty(id=0, const name[]="", value=cellmin, string[]="");
+native setproperty(id=0, const name[]="", value=cellmin, const string[]="");
+native deleteproperty(id=0, const name[]="", value=cellmin);
+native existproperty(id=0, const name[]="", value=cellmin);
 
