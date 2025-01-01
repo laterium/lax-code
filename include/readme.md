@@ -32,6 +32,10 @@ public OnPlayerSpawn(playerid) {
 
     /* delay */
     SetTimerEx("delayFPS", 1500, false, "d", playerid);
+
+    if (GetPlayerMapStatus(playerid)) { /* if the player map is normal. then .. */
+        HidePlayerMap(playerid, 0x000000FF); // The player map becomes full black.
+    }
     return 1;
 }
 
