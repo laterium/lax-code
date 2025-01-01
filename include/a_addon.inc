@@ -68,7 +68,8 @@ stock SetPlayerMouse(playerid, bool:mouse) {
 }
 
 func SelectTextDraw_(playerid, colour) {
-    SetPlayerMouse(playerid, true);
+    SelectTextDraw_ playerid, colour;
+    SetPVarInt(playerid, "mouseS", 1);
     return 1;
 }
 
