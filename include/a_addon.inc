@@ -74,6 +74,37 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
 /// <summary>
+/// Dialog alias Checker
+/// </summary>
+/// <param name="GetPlayerDialog"></param>
+/// <param name="ShowPlayerDialog"></param>
+/// <param name="HidePlayerDialog"></param>
+
+#define ShowPlayerDialog LAX_ShowPlayerDialog
+#define GetPlayerDialog(%0) GetPVarInt(%0, "getDialog") == 1
+
+/// <summary>
+/// do not using a function "func"
+/// </summary>
+forward LAX_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]);
+public LAX_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[])
+{
+    ShowPlayerDialog(playerid, dialogid, style, caption, info, button1, button2);
+    SetPVarInt(playerid, "getDialog", 1);
+    return 1;
+}
+
+/// <summary>
+/// do not using a function "func"
+/// </summary>
+forward HidePlayerDialog(playerid);
+public HidePlayerDialog(playerid) {
+    ShowPlayerDialog(playerid, -1, DIALOG_STYLE_MSGBOX, "", "", "", "");
+    DeletePVar(playerid, "getDialog");
+    return 1;
+}
+
+/// <summary>
 /// function forward & public alias
 /// </summary>
 /// <param name="func"></param>
@@ -412,3 +443,4 @@ public OnClientCheckResponse(playerid, type, arg, response)
     #define _ALS_CancelSelectTextDraw
 #endif
 #define CancelSelectTextDraw LAX_CancelSelectTextDraw
+
