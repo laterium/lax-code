@@ -52,7 +52,7 @@ forward OnWindowsDetected(playerid);
 
 stock GetPlayerClientVersion(playerid) {
   new version[24];
-  GetPlayerVersion(playerid, version, sizeof(version));
+  GetPlayerVersion playerid, version, sizeof(version);
   return version;
 }
 
@@ -147,7 +147,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                 SetPVarInt(playerid, "isPC", 0);
                 SetPVarInt(playerid, "isMobile", 1);
 
-                CallLocalFunction("OnAndroidDetected", "d", playerid);
+                CallLocalFunction "OnAndroidDetected", "d", playerid;
             }
             if ( response == 1 )
             {
@@ -164,7 +164,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                     SetPVarInt(playerid, "notLinux", 1);
                     SetPVarInt(playerid, "notWin32", 0);
 
-                    CallLocalFunction("OnWindowsDetected", "d", playerid);
+                    CallLocalFunction "OnWindowsDetected", "d", playerid;
                 }
                 case 0: 
                 {
@@ -172,7 +172,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                     SetPVarInt(playerid, "notLinux", 0);
                     SetPVarInt(playerid, "notWin32", 1);
 
-                    CallLocalFunction("OnLinuxDetected", "d", playerid);
+                    CallLocalFunction "OnLinuxDetected", "d", playerid;
                 }
             }   
         }
