@@ -267,7 +267,7 @@ public OnPlayerSpawn(playerid) {
 /// </param>
 /// <param name="GetPlayerFPS"></param>
 /// <param name="GetPlayerFps"></param>
-/// <param name="Get_PlayerFrame"></param>
+/// <param name="GetPlayerFrame"></param>
 new _PlayerDrunk[MAX_PLAYERS];
 new _PlayerFrame[MAX_PLAYERS];
 
@@ -277,34 +277,50 @@ new _PlayerFrame[MAX_PLAYERS];
 #if !defined GetPlayerFps
     #define GetPlayerFps GetPlayerFPS
 #endif
-#if !defined Get_PlayerFrame
-    #define Get_PlayerFrame GetPlayerFPS
+#if !defined GetPlayerFrame
+    #define GetPlayerFrame GetPlayerFPS
 #endif
+#if !defined GetCurrentFPS
+    #define GetCurrentFPS GetPlayerFPS
+#endif
+
+/// <summary>
+/// Frame-Per-Second (FPS) Checker from Callbacks.
+/// </summary>
+/// <param name="target">
+/// <param name="old">
+/// <param name="new">
+/// </param>
+/// <param name="OnPlayerFPSUpdate"></param>
+forward OnPlayerFPSUpdate(playerid, oldfps, newfps);
 
 func @FRAMEPERSECOND_(playerid) {
     SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
     
+    new null = 0;
+
+    new int_drunk = 2000;
+
     if (GetPVarInt(playerid, "DrunkL") < 100)
     {
-        SetPlayerDrunkLevel(playerid, 2000);
+        SetPlayerDrunkLevel(playerid, int_drunk);
     }
     else {
-        if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
+        if (GetPVarInt(playerid, "Drunk_Level") != GetPVarInt(playerid, "DrunkL"))
         {
-            SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
-            SetPVarInt(playerid, "LDrunkL", GetPVarInt(playerid, "DrunkL"));
+            SetPVarInt(playerid, "FramePerSec", (GetPVarInt(playerid, "Drunk_Level") - GetPVarInt(playerid, "DrunkL")));
+            SetPVarInt(playerid, "Drunk_Level", GetPVarInt(playerid, "DrunkL"));
             
-            if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
+            if ((GetPVarInt(playerid, "FramePerSec") > null) && (GetPVarInt(playerid, "FramePerSec") < 256))
             {
-                return GetPVarInt(playerid, "FPS") - 1;
+                return GetPVarInt(playerid, "FramePerSec") - 1;
             }
         }
     }
     /// <summary>
     /// Frame-Per-Second (FPS) reset.
     /// </summary>
-    new rand = random(60) + 29;
-    return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
+    return GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 }
 
 public OnPlayerUpdate(playerid)
@@ -315,23 +331,34 @@ public OnPlayerUpdate(playerid)
     new PlayerDrunkNew;
     PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
-    if (PlayerDrunkNew < 100) {
-        SetPlayerDrunkLevel(playerid, 2000);
+    new null = 0;
+
+    new nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
+
+    new int_drunk = 2000;
+
+    if ( PlayerDrunkNew < 100 ) {
+        SetPlayerDrunkLevel(playerid, int_drunk);
     }
     else {
         if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
 
             new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
+            new pfps;
 
-            new cfps;
-
-            if (( wfps > 0) && (wfps < MAX_PLAYER_FPS )) {
+            if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
                 _PlayerFrame[playerid] = wfps;
-            	cfps = wfps;
+            	pfps = wfps;
             }
             if (( wfps >= MAX_PLAYER_FPS )) {
-            	_PlayerFrame[playerid] = cfps;
+            	_PlayerFrame[playerid] = pfps;
             }
+            if (( pfps <= null )) {
+                pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
+            }
+
+            CallLocalFunction "OnPlayerFPSUpdate", "ddd", playerid, pfps, nextTick;
+
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
   }
@@ -345,10 +372,8 @@ public OnPlayerUpdate(playerid)
 public OnClientCheckResponse(playerid, \
     type, arg, response)
 {
-    switch ( type ) 
-    {
-        case 0x48:
-        {
+    switch ( type ) {
+        case 0x48: {
             if ( response == MOBILE ) 
             {
                 SetPVarInt(playerid, "notAndroid", 0);
@@ -358,8 +383,7 @@ public OnClientCheckResponse(playerid, \
                 CallLocalFunction "OnAndroidDetected", "d", playerid;
             }
         }
-        case 0x49:
-        {
+        case 0x49: {
             if ( response == WIN32 ) {
                 SetPVarInt(playerid, "notAndroid", 1);
                 SetPVarInt(playerid, "notLinux", 1);
