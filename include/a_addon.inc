@@ -28,7 +28,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define let                 new
 #define float               Float:
 
-#define func%0(%1)		    forward %0(%1); public %0(%1)
+#define func%0(%1)          forward %0(%1); public %0(%1)
 
 #define loop(%0,%1,%2)      for(let %0 = %1; %0 < %2; %0++)
 
