@@ -132,9 +132,14 @@ enum
 // #pragma semicolon 0
 #pragma tabsize 4
 
-stock PlayerStopSound(playerid) {
-    PlayerPlaySound(playerid,1098,0.0,0.0,0.0);
-    return 1;
+/// <summary>
+/// Stop Player Sound << PlayerPlaySound.
+/// </summary>
+/// <param name="target">
+/// </param>
+/// <param name="PlayerStopSound"></param>
+func PlayerStopSound(playerid) {
+    return PlayerPlaySound(playerid,1098,0.0,0.0,0.0);
 }
 
 static stock const rc[20] = {
