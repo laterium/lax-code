@@ -45,6 +45,13 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
+enum
+{
+    PC = 1,
+    ANDROID = 0,
+    WIN32 = 1,
+    LINUX = 0
+}
 // #pragma ctrlchar '@'
 // #pragma dynamic 1000000
 // #pragma semicolon 0
@@ -166,7 +173,12 @@ public OnClientCheckResponse(playerid, type, arg, response)
     {
         case 0x48:
         {
-            if ( response == 0 ) 
+            if ( response == PC )
+            {
+                SetPVarInt(playerid, "isPC", 1);
+                SetPVarInt(playerid, "isMobile", 0);
+            }
+            if ( response == ANDROID ) 
             {
                 SetPVarInt(playerid, "notAndroid", 0);
                 SetPVarInt(playerid, "notLinux", 1);
@@ -177,22 +189,17 @@ public OnClientCheckResponse(playerid, type, arg, response)
 
                 CallLocalFunction "OnAndroidDetected", "d", playerid;
             }
-            if ( response == 1 )
-            {
-                SetPVarInt(playerid, "isPC", 1);
-                SetPVarInt(playerid, "isMobile", 0);
-            }
         }
         case 0x49:
         {
-            if ( response == 1 ) {
+            if ( response == WIN32 ) {
                 SetPVarInt(playerid, "notAndroid", 1);
                 SetPVarInt(playerid, "notLinux", 1);
                 SetPVarInt(playerid, "notWin32", 0);
 
                 CallLocalFunction "OnWindowsDetected", "d", playerid;
             }
-            if ( response == 0 ) {
+            if ( response == LINUX ) {
                 SetPVarInt(playerid, "notAndroid", 1);
                 SetPVarInt(playerid, "notLinux", 0);
                 SetPVarInt(playerid, "notWin32", 1);
