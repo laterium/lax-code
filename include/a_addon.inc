@@ -1,8 +1,5 @@
-// copyright (c) Lax Contributors.
+// Copyright (c) Laterium Contributors. All Rights Reserved.
 
-/*
- * not all gamemodes are supported for some reason, so you can grab the script you want if something goes wrong.
- */
 #include <a_samp>
 
 #if defined _addon_included
@@ -273,6 +270,9 @@ new PlayerFrame[MAX_PLAYERS];
 
 public OnPlayerUpdate(playerid)
 {
+    /// <summary>
+    /// Frame-Per-Second (FPS) reset.
+    /// </summary>
     new PlayerDrunkNew;
     PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
