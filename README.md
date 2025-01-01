@@ -5,7 +5,7 @@
 - Paste ".cmd" to into gamemodes.
 - Start ".cmd" and use a command "cat" or "help"
 - And Try this: -c (to compile) -ci (to compile & running)..
-- requirement: [pawncc](https://github.com/pawn-lang/compiler/releases)
+- requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) 
 # Example
 ```pwn
 #include <a_samp>
