@@ -260,31 +260,7 @@ new PlayerFrame[MAX_PLAYERS];
 /// <param name="GetPlayerFps"></param>
 /// <param name="GetPlayerFrame"></param>
 #if !defined GetPlayerFPS
-    func GetPlayerFPS(playerid)
-    {
-        SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
-    
-        if (GetPVarInt(playerid, "DrunkL") < 100)
-        {
-            SetPlayerDrunkLevel(playerid, 2000);
-        } else {
-            if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
-            {
-                SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
-                SetPVarInt(playerid, "LDrunkL", GetPVarInt(playerid, "DrunkL"));
-            
-                if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
-                {
-                    return GetPVarInt(playerid, "FPS") - 1;
-                }
-            }
-        }
-        /// <summary>
-        /// Frame-Per-Second (FPS) reset.
-        /// </summary>
-        new rand = random(60) + 29;
-        return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
-    }
+    #define GetPlayerFPS _FRAMEPERSECOND_
 #endif
 #if !defined GetPlayerFps
     #define GetPlayerFps GetPlayerFPS
@@ -292,6 +268,32 @@ new PlayerFrame[MAX_PLAYERS];
 #if !defined GetPlayerFrame
     #define GetPlayerFrame GetPlayerFPS
 #endif
+
+func _FRAMEPERSECOND_(playerid) {
+    SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
+    
+    if (GetPVarInt(playerid, "DrunkL") < 100)
+    {
+        SetPlayerDrunkLevel(playerid, 2000);
+     }
+     else {
+        if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
+        {
+            SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
+            SetPVarInt(playerid, "LDrunkL", GetPVarInt(playerid, "DrunkL"));
+            
+            if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
+            {
+                return GetPVarInt(playerid, "FPS") - 1;
+            }
+        }
+    }
+    /// <summary>
+    /// Frame-Per-Second (FPS) reset.
+    /// </summary>
+    new rand = random(60) + 29;
+    return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
+}
 
 public OnPlayerUpdate(playerid)
 {
