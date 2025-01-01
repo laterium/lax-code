@@ -29,6 +29,21 @@ public OnPlayerSpawn(playerid) {
     return 1;
 }
 
+public OnAndroidDetected(playerid) {
+    SendClientMessage playerid, -1, "Android!";
+    return 1;
+}
+
+public OnLinuxDetected(playerid) {
+    SendClientMessage playerid, -1, "Linux!";
+    return 1;
+}
+
+public OnWindowsDetected(playerid) {
+    SendClientMessage playerid, -1, "Windows!";
+    return 1;
+}
+
 public OnPlayerUpdate(playerid) {
     if (IsMouse(playerid)) {
         SendClientMessage playerid, -1, "Mouse On!";
