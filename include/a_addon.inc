@@ -408,7 +408,7 @@ public OnClientCheckResponse(playerid, \
         }
     }
     #if defined LAX_OnClientCheckResponse
-    return (LAX_OnClientCheckResponse(playerid, type, arg, response));
+        return (LAX_OnClientCheckResponse(playerid, type, arg, response));
     #else
         return (1);
     #endif
