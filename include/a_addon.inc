@@ -59,12 +59,15 @@ new TimerIDSprung;
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 #endif
 
+new antibunnyStatus;
+
 enum
 {
     UNKNOWN = -1, // 0xFFFF
     MOBILE = 0,
     WIN32 = 1,
-    LINUX = 0
+    LINUX = 0,
+    ANTI_BUNNY_HOP = 1 // active.
 }
 // #pragma ctrlchar '@'
 // #pragma dynamic 1000000
@@ -259,14 +262,17 @@ public OnClientCheckResponse(playerid, type, arg, response)
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
-	new Float:vx,Float:vy,Float:vz;
-	GetPlayerVelocity(playerid,vx,vy,vz);
-	if (PRESSED(KEY_JUMP) && (vy > 0.01 || vy <-0.01 || vx > 0.01 || vx <-0.01) && IsPlayerInAnyVehicle(playerid) == 0 && InSprung[playerid] == 0)
-	{
-		if(vz > 0.01 || vz < -0.01) return 1;
-		InSprung[playerid] = 1;
-		TimerIDSprung = SetTimerEx("FunktionInSprung",1,true,"i",playerid);
-	}
+    if (antibunnyStatus == ANTI_BUNNY_HOP)
+    {
+        new Float:vx,Float:vy,Float:vz;
+	    GetPlayerVelocity(playerid,vx,vy,vz);
+	    if (PRESSED(KEY_JUMP) && (vy > 0.01 || vy <-0.01 || vx > 0.01 || vx <-0.01) && IsPlayerInAnyVehicle(playerid) == 0 && InSprung[playerid] == 0)
+	    {
+		    if(vz > 0.01 || vz < -0.01) return 1;
+		    InSprung[playerid] = 1;
+		    TimerIDSprung = SetTimerEx("FunktionInSprung",1,true,"i",playerid);
+	    }
+    }
 	#if defined OnPlayerKeyStateChange
 	    return (OnPlayerKeyStateChange(playerid, newkeys, oldkeys));
 	    #else
