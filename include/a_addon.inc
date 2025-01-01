@@ -23,6 +23,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsPC(%0)            GetPVarInt(%0, "isPC") == 1
 #define IsMobile(%0)        GetPVarInt(%0, "isMobile") == 1
 
+#define GetPlayerMouse(%0)       GetPVarInt(%0, "mouseS") == 1
+
 #define let                 new
 #define float               Float:
 
@@ -33,6 +35,29 @@ new False = false, True = true, FALSE = false, TRUE = true
 // #pragma dynamic 1000000
 // #pragma semicolon 0
 #pragma tabsize 4
+
+stock SetPlayerMouse(playerid, bool:mouse) {
+    switch(mouse) {
+        case false: {
+            CancelSelectTextDraw(playerid);
+            SetPVarInt(playerid, "mouseS", 0);
+        }
+        case true: {
+            SelectTextDraw(playerid, 0xFFFFFFFF);
+            SetPVarInt(playerid, "mouseS", 1);
+        }
+    }
+}
+
+stock ShowMousePlayer(playerid) {
+    SetPlayerMouse(playerid, true);
+    return 1;
+}
+
+stock HideMousePlayer(playerid) {
+    SetPlayerMouse(playerid, false);
+    return 1;
+}
 
 stock HelloWorld() {
     printf "\nHello, World!\n";
