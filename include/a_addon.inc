@@ -51,6 +51,14 @@ new False = false, True = true, FALSE = false, TRUE = true
 new LAX_ADDON_MAP;
 #define GetPlayerMapStatus(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
+/* anti bunny-hop *(@Simba-gtaRL) */
+new InSprung[MAX_PLAYERS] = 0;
+new TimerIDSprung;
+
+#if !defined PRESSED
+#define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
+#endif
+
 enum
 {
     UNKNOWN = -1, // 0xFFFF
@@ -249,6 +257,53 @@ public OnClientCheckResponse(playerid, type, arg, response)
     #endif
 }
 
+public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+{
+	new Float:vx,Float:vy,Float:vz;
+	GetPlayerVelocity(playerid,vx,vy,vz);
+	if (PRESSED(KEY_JUMP) && (vy > 0.01 || vy <-0.01 || vx > 0.01 || vx <-0.01) && IsPlayerInAnyVehicle(playerid) == 0 && InSprung[playerid] == 0)
+	{
+		if(vz > 0.01 || vz < -0.01) return 1;
+		InSprung[playerid] = 1;
+		TimerIDSprung = SetTimerEx("FunktionInSprung",1,true,"i",playerid);
+	}
+	#if defined OnPlayerKeyStateChange
+	    return (OnPlayerKeyStateChange(playerid, newkeys, oldkeys));
+	    #else
+	    return (1);
+	    #endif
+	return 1;
+}
+
+func KillTimerSprung(playerid)
+{
+	InSprung[playerid] = 0;
+	return 1;
+}
+
+func FunktionInSprung(playerid)
+{
+	new animlib[32];
+	new animname[32];
+	new Float:vx,Float:vy,Float:vz;
+	GetPlayerVelocity(playerid,vx,vy,vz);
+	if(vz < -0.5)
+	{
+	    KillTimer(TimerIDSprung);
+	    SetTimerEx("KillTimerSprung",1000,false,"i",playerid);
+	    return 1;
+	}
+	GetAnimationName(GetPlayerAnimationIndex(playerid),animlib,32,animname,32);
+	if(!strcmp(animname,"JUMP_LAND") || !strcmp(animname,"FALL_LAND"))
+	{
+		KillTimer(TimerIDSprung);
+		ClearAnimations(playerid,1);
+		ApplyAnimation(playerid,"ped","FALL_COLLAPSE",4.1,0,1,1,0,0,1);
+		SetTimerEx("KillTimerSprung",1000,false,"i",playerid);
+	}
+	return 1;
+}
+
 #if defined _ALS_OnPlayerConnect
     #undef OnPlayerConnect
 #else
@@ -287,6 +342,16 @@ public OnClientCheckResponse(playerid, type, arg, response)
 #define OnClientCheckResponse LCC_OnClientCheckResponse
 #if defined LCC_OnClientCheckResponse
     forward LCC_OnClientCheckResponse(playerid, type, arg, response);
+#endif
+
+#if defined _ALS_OnPlayerKeyStateChange
+    #undef OnPlayerKeyStateChange
+#else
+    #define _ALS_OnPlayerKeyStateChange
+#endif
+#define OnPlayerKeyStateChange LCC_OnPlayerKeyStateChange
+#if defined LCC_OnPlayerKeyStateChange
+    forward LCC_OnPlayerKeyStateChange(OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 #endif
 
 #if defined _ALS_SelectTextDraw
