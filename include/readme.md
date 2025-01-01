@@ -9,6 +9,11 @@ main() {
     MyFunction();
 }
 
+func MyFunction() {
+    let name[] = "Lax";
+    printf "%s:%s", "My Name", name;
+}
+
 public OnPlayerSpawn(playerid) {
     if (IsAndroid(playerid)) {
         SendClientMessage playerid, -1, "Android!";
@@ -66,10 +71,5 @@ public OnPlayerUpdate(playerid) {
     else SendClientMessage playerid, -1, "Mouse Off!";
 
     return 1;
-}
-
-func MyFunction() {
-    let name[] = "Lax";
-    printf "%s:%s", "My Name", name;
 }
 ```
