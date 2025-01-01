@@ -35,8 +35,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
 #define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
 
-#define GetPlayerZAngle(%0) GetPlayerFacingAngle(%0)
-#define SetPlayerZAngle(%0) SetPlayerFacingAngle(%0)
+#define GetPlayerZAngle     GetPlayerFacingAngle
+#define SetPlayerZAngle     SetPlayerFacingAngle
 
 let False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
