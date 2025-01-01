@@ -89,7 +89,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// function forward & public alias
 /// </summary>
 /// <param name="func"></param>
+/// <param name="function"></param>
 #define func%0(%1)          forward %0(%1); public %0(%1)
+
+#if !defined function
+    #define function        func
+#endif
 
 /// <summary>
 /// looping alias
@@ -139,9 +144,12 @@ new LAX_ADDON_MAP;
 enum
 {
     UNKNOWN = -1, // 0xFFFF
+    NONE = 0, // none
     MOBILE = 0, // do not edit this.
     WIN32 = 1, // do not edit this.
-    LINUX = 0 // do not edit this.
+    LINUX = 0, // do not edit this.
+
+    ALL = MOBILE | WIN32 | LINUX
 }
 
 /// <summary>
