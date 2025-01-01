@@ -19,6 +19,12 @@ public OnPlayerSpawn(playerid) {
     if (IsWindows(playerid)) {
         SendClientMessage playerid, -1, "Windows!";
     }
+    if (IsPC(playerid)) {
+        SendClientMessage playerid, -1, "PC!";
+    }
+    if (IsMobile(playerid)) {
+        SendClientMessage playerid, -1, "Mobile!";
+    }
 
     let fmt[200];
     format fmt, sizeof(fmt), "%s", GetPlayerClientVersion(playerid); // example: 0.3.7
