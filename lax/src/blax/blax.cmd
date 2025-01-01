@@ -7,7 +7,7 @@ setlocal EnableDelayedExpansion
 
 color 0F
 
-:: variables ~>
+:: ~ variables ~
 SET "SOURCEDIR=%~dp0"
 SET "NULLSTATIC=false"
 SET "LOCALTITLE=null"
