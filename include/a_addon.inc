@@ -136,7 +136,7 @@ func _GetPlayerFrame_(playerid)
             }
         }
     }
-    let rand = random(57) + 28;
+    let rand = random(11) + 50;
     return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
 }
 
