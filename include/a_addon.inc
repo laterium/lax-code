@@ -43,23 +43,23 @@ let False = false, True = true, FALSE = false, TRUE = true
 stock SetPlayerMouse(playerid, bool:mouse) {
     switch(mouse) {
         case false: {
-            CancelSelectTextDraw(playerid);
+            CancelSelectTextDraw playerid;
             SetPVarInt(playerid, "mouseS", 0);
         }
         case true: {
-            SelectTextDraw(playerid, 0xFFFFFFFF);
+            SelectTextDraw playerid, 0xFFFFFFFF;
             SetPVarInt(playerid, "mouseS", 1);
         }
     }
 }
 
 stock ShowMousePlayer(playerid) {
-    SetPlayerMouse(playerid, true);
+    SetPlayerMouse playerid, true;
     return 1;
 }
 
 stock HideMousePlayer(playerid) {
-    SetPlayerMouse(playerid, false);
+    SetPlayerMouse playerid, false;
     return 1;
 }
 
@@ -80,9 +80,9 @@ forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
 stock GetPlayerClientVersion(playerid) {
-  let version[24];
-  GetPlayerVersion playerid, version, sizeof(version);
-  return version;
+    let version[24];
+    GetPlayerVersion playerid, version, sizeof(version);
+    return version;
 }
 
 public OnPlayerConnect(playerid)
@@ -105,17 +105,17 @@ public OnPlayerSpawn(playerid) {
     #endif
 }
 
-let FPS_LevelLast[MAX_PLAYERS];
-let FPS_GetData[MAX_PLAYERS];
+let Frame_LevelLast[MAX_PLAYERS];
+let Frame_GetData[MAX_PLAYERS];
 
-#if !defined GetPlayerFPS
-    #define GetPlayerFPS _GetPlayerFPS_
+#if !defined GetPlayerFrame
+    #define GetPlayerFrame _GetPlayerFrame_
 #endif
-#if !defined GetPlayerFps
-    #define GetPlayerFps _GetPlayerFPS_
+#if !defined GetPlayerFrame
+    #define GetPlayerFrame _GetPlayerFrame_
 #endif
 
-stock _GetPlayerFPS_(playerid)
+stock _GetPlayerFrame_(playerid) // frame-per-second. (FPS)
 {
     SetPVarInt(playerid, "DRUNK_L", GetPlayerDrunkLevel(playerid));
     
@@ -123,18 +123,18 @@ stock _GetPlayerFPS_(playerid)
     {
         SetPlayerDrunkLevel(playerid, 2000);
     } else {
-        if (GetPVarInt(playerid, "DRUNK_L") != GetPVarInt(playerid, "FPS"))
+        if (GetPVarInt(playerid, "DRUNK_L") != GetPVarInt(playerid, "Frame"))
         {
-            SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "DRUNK_L") - GetPVarInt(playerid, "DRUNK_L")));
+            SetPVarInt(playerid, "Frame", (GetPVarInt(playerid, "DRUNK_L") - GetPVarInt(playerid, "DRUNK_L")));
             SetPVarInt(playerid, "DRUNK_L", GetPVarInt(playerid, "DRUNK_L"));
             
-            if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
+            if ((GetPVarInt(playerid, "Frame") > 0) && (GetPVarInt(playerid, "Frame") < 256))
             {
-                return GetPVarInt(playerid, "FPS") - 1;
+                return GetPVarInt(playerid, "Frame") - 1;
             }
         }
     }
-   return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : 0;
+   return GetPVarInt(playerid, "Frame") > 0 ? GetPVarInt(playerid, "Frame") - 1 : 0;
 }
 
 public OnPlayerUpdate(playerid)
@@ -145,14 +145,14 @@ public OnPlayerUpdate(playerid)
     if (DRUNK_Now < 100) {
         SetPlayerDrunkLevel(playerid, 2000);
     } else {
-        if (FPS_LevelLast[playerid] != DRUNK_Now) {
+        if (Frame_LevelLast[playerid] != DRUNK_Now) {
 
-            let __FPS = FPS_LevelLast[playerid] - DRUNK_Now;
+            let __Frame = Frame_LevelLast[playerid] - DRUNK_Now;
 
-            if ((__FPS > 0) && (__FPS < 200)) {
-                FPS_GetData[playerid] = __FPS;
+            if ((__Frame > 0) && (__Frame < 200)) {
+                Frame_GetData[playerid] = __Frame;
             }
-            FPS_LevelLast[playerid] = DRUNK_Now;
+            Frame_LevelLast[playerid] = DRUNK_Now;
         }
   }
   #if defined LCC_OnPlayerUpdate
