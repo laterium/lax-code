@@ -128,7 +128,7 @@ new False = false, True = true, FALSE = false, TRUE = true
 /// maximum income from player fps
 /// default : 100 FPS
 /// </summary>
-#define MAX_PLAYER_FPS (100) // you can re-edit this.
+#define MAX_PLAYER_FPS (MAX_FPS)
 
 /// <summary>
 /// Addon Map Status
@@ -148,6 +148,7 @@ enum
     MOBILE = 0, // do not edit this.
     WIN32 = 1, // do not edit this.
     LINUX = 0, // do not edit this.
+    MAX_FPS = 100, // default: 100 FPS.
 
     ALL = MOBILE | WIN32 | LINUX
 }
@@ -283,8 +284,8 @@ func _FRAMEPERSECOND_(playerid) {
     if (GetPVarInt(playerid, "DrunkL") < 100)
     {
         SetPlayerDrunkLevel(playerid, 2000);
-     }
-     else {
+    }
+    else {
         if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
         {
             SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
@@ -313,7 +314,8 @@ public OnPlayerUpdate(playerid)
 
     if (PlayerDrunkNew < 100) {
         SetPlayerDrunkLevel(playerid, 2000);
-    } else {
+    }
+    else {
         if (PlayerDrunk[playerid] != PlayerDrunkNew) {
 
             new wfps = PlayerDrunk[playerid] - PlayerDrunkNew;
