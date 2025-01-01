@@ -5,5 +5,5 @@ Lax (PAWN/LAX) or BLax (Batch Lax) is a simple compilation tool made with only b
 - Paste ".cmd" to into gamemodes.
 - Start ".cmd" and use a command "cat" or "help"
 - And Try this: -c (to compile) -ci (to compile & running)..
-# What if Linux?
+# What if Linux/MacOS?
 You can use WineHQ Software https://www.winehq.org/
