@@ -150,7 +150,7 @@ enum
     LINUX = 0, // do not edit this.
     MAX_FPS = 100, // default: 100 FPS.
 
-    ALL = MOBILE | WIN32 | LINUX
+    ALL = MOBILE & WIN32 & LINUX
 }
 
 /// <summary>
@@ -257,9 +257,6 @@ public OnPlayerSpawn(playerid) {
       #endif
 }
 
-new PlayerDrunk[MAX_PLAYERS];
-new PlayerFrame[MAX_PLAYERS];
-
 /// <summary>
 /// Frame-Per-Second (FPS) Checker.
 /// </summary>
@@ -267,18 +264,21 @@ new PlayerFrame[MAX_PLAYERS];
 /// </param>
 /// <param name="GetPlayerFPS"></param>
 /// <param name="GetPlayerFps"></param>
-/// <param name="GetPlayerFrame"></param>
+/// <param name="Get_PlayerFrame"></param>
+new _PlayerDrunk[MAX_PLAYERS];
+new _PlayerFrame[MAX_PLAYERS];
+
 #if !defined GetPlayerFPS
-    #define GetPlayerFPS _FRAMEPERSECOND_
+    #define GetPlayerFPS @FRAMEPERSECOND_
 #endif
 #if !defined GetPlayerFps
     #define GetPlayerFps GetPlayerFPS
 #endif
-#if !defined GetPlayerFrame
-    #define GetPlayerFrame GetPlayerFPS
+#if !defined Get_PlayerFrame
+    #define Get_PlayerFrame GetPlayerFPS
 #endif
 
-func _FRAMEPERSECOND_(playerid) {
+func @FRAMEPERSECOND_(playerid) {
     SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
     
     if (GetPVarInt(playerid, "DrunkL") < 100)
@@ -316,20 +316,20 @@ public OnPlayerUpdate(playerid)
         SetPlayerDrunkLevel(playerid, 2000);
     }
     else {
-        if (PlayerDrunk[playerid] != PlayerDrunkNew) {
+        if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
 
-            new wfps = PlayerDrunk[playerid] - PlayerDrunkNew;
+            new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
 
             new cfps;
 
             if ((wfps > 0) && (wfps < 200)) {
-                PlayerFrame[playerid] = wfps;
+                _PlayerFrame[playerid] = wfps;
             	cfps = wfps;
             }
             if ((wfps >= MAX_PLAYER_FPS)) {
-            	PlayerFrame[playerid] = cfps;
+            	_PlayerFrame[playerid] = cfps;
             }
-            PlayerDrunk[playerid] = PlayerDrunkNew;
+            _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
   }
   #if defined LAX_OnPlayerUpdate
