@@ -104,9 +104,6 @@ public OnPlayerSpawn(playerid) {
     #endif
 }
 
-let Frame_LevelLast[MAX_PLAYERS];
-let Frame_GetData[MAX_PLAYERS];
-
 #if !defined GetPlayerFPS
     #define GetPlayerFPS _GetPlayerFrame_
 #endif
@@ -117,44 +114,48 @@ let Frame_GetData[MAX_PLAYERS];
     #define GetPlayerFrame _GetPlayerFrame_
 #endif
 
-stock _GetPlayerFrame_(playerid) // frame-per-second. (FPS)
+let pDrunkLevelLast[MAX_PLAYERS];
+let pFPS[MAX_PLAYERS];
+
+func _GetPlayerFrame_(playerid)
 {
-    SetPVarInt(playerid, "DRUNK_L", GetPlayerDrunkLevel(playerid));
+    SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
     
-    if (GetPVarInt(playerid, "DRUNK_L") < 100)
+    if (GetPVarInt(playerid, "DrunkL") < 100)
     {
         SetPlayerDrunkLevel(playerid, 2000);
     } else {
-        if (GetPVarInt(playerid, "DRUNK_L") != GetPVarInt(playerid, "Frame"))
+        if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
         {
-            SetPVarInt(playerid, "Frame", (GetPVarInt(playerid, "DRUNK_L") - GetPVarInt(playerid, "DRUNK_L")));
-            SetPVarInt(playerid, "DRUNK_L", GetPVarInt(playerid, "DRUNK_L"));
+            SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
+            SetPVarInt(playerid, "LDrunkL", GetPVarInt(playerid, "DrunkL"));
             
-            if ((GetPVarInt(playerid, "Frame") > 0) && (GetPVarInt(playerid, "Frame") < 256))
+            if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
             {
-                return GetPVarInt(playerid, "Frame") - 1;
+                return GetPVarInt(playerid, "FPS") - 1;
             }
         }
     }
-   return GetPVarInt(playerid, "Frame") > 0 ? GetPVarInt(playerid, "Frame") - 1 : 0;
+    let rand = random(57) + 28;
+    return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
 }
 
 public OnPlayerUpdate(playerid)
 {
-    let DRUNK_Now;
-    DRUNK_Now = GetPlayerDrunkLevel(playerid);
+    let drunklet;
+    drunklet = GetPlayerDrunkLevel(playerid);
 
-    if (DRUNK_Now < 100) {
+    if (drunklet < 100) {
         SetPlayerDrunkLevel(playerid, 2000);
     } else {
-        if (Frame_LevelLast[playerid] != DRUNK_Now) {
+        if (pDrunkLevelLast[playerid] != drunklet) {
 
-            let __Frame = Frame_LevelLast[playerid] - DRUNK_Now;
+            let wfps = pDrunkLevelLast[playerid] - drunklet;
 
-            if ((__Frame > 0) && (__Frame < 200)) {
-                Frame_GetData[playerid] = __Frame;
+            if ((wfps > 0) && (wfps < 200)) {
+                pFPS[playerid] = wfps;
             }
-            Frame_LevelLast[playerid] = DRUNK_Now;
+            pDrunkLevelLast[playerid] = drunklet;
         }
   }
   #if defined LCC_OnPlayerUpdate
