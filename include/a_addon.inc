@@ -183,7 +183,9 @@ forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
-func LAX_SelectTextDraw(playerid, colour) {
+func LAX_SelectTextDraw(playerid, \
+    colour)
+{
     SelectTextDraw playerid, colour;
     SetPVarInt(playerid, "isMouse", 1);
     return 1;
@@ -221,7 +223,8 @@ func IsMobile(playerid) {
     return 0;
 }
 
-func HidePlayerMap(playerid, colour)
+func HidePlayerMap(playerid, \
+    colour)
 {
     LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
@@ -322,11 +325,11 @@ public OnPlayerUpdate(playerid)
 
             new cfps;
 
-            if ((wfps > 0) && (wfps < 200)) {
+            if (( wfps > 0) && (wfps < MAX_PLAYER_FPS )) {
                 _PlayerFrame[playerid] = wfps;
             	cfps = wfps;
             }
-            if ((wfps >= MAX_PLAYER_FPS)) {
+            if (( wfps >= MAX_PLAYER_FPS )) {
             	_PlayerFrame[playerid] = cfps;
             }
             _PlayerDrunk[playerid] = PlayerDrunkNew;
@@ -339,7 +342,8 @@ public OnPlayerUpdate(playerid)
       #endif
 }
 
-public OnClientCheckResponse(playerid, type, arg, response)
+public OnClientCheckResponse(playerid, \
+    type, arg, response)
 {
     switch ( type ) 
     {
