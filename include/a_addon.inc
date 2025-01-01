@@ -7,13 +7,13 @@
 // It's tab size is 4 and often uses 4 spaces instead, PAWNCC's is 8
 
 #if defined _addon_included
-	#endinput
+    #endinput
 #endif
 #define _addon_included
 #pragma library addon
 
 #if !defined SendClientCheck
-	native SendClientCheck(playerid, type, arg, offset, size);
+    native SendClientCheck(playerid, type, arg, offset, size);
 #endif
 forward OnClientCheckResponse(playerid, type, arg, response);
 
@@ -25,7 +25,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsAndroid"></param>
 #if !defined IsAndroid
-	#define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
+    #define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
 #endif
 
 /// <summary>
@@ -35,7 +35,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsLinux"></param>
 #if !defined IsLinux
-	#define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
+    #define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
 #endif
 
 /// <summary>
@@ -45,7 +45,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsWindows"></param>
 #if !defined IsWindows
-	#define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
+    #define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
 #endif
 
 /// <summary>
@@ -92,7 +92,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define func%0(%1)          forward %0(%1); public %0(%1)
 
 #if !defined function
-	#define function        func
+    #define function        func
 #endif
 
 /// <summary>
@@ -193,14 +193,14 @@ func LAX_SelectTextDraw(playerid, \
 {
     SelectTextDraw playerid, colour;
     SetPVarInt(playerid, "isMouse", 1);
-	CallLocalFunction "OnPlayerMouse", "d", playerid;
+    CallLocalFunction "OnPlayerMouse", "d", playerid;
     return 1;
 }
 
 func LAX_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
     SetPVarInt(playerid, "isMouse", 0);
-	CallLocalFunction "OnPlayerOffMouse", "d", playerid;
+    CallLocalFunction "OnPlayerOffMouse", "d", playerid;
     return 1;
 }
 
@@ -254,17 +254,17 @@ public OnPlayerConnect(playerid)
 
     #if defined LAX_OnPlayerConnect
       return (LAX_OnPlayerConnect(playerid));
-	#else
+    #else
       return (1);
-	#endif
+    #endif
 }
 
 public OnPlayerSpawn(playerid) {
     #if defined LAX_OnPlayerSpawn
       return (LAX_OnPlayerSpawn(playerid));
-	#else
+    #else
       return (1);
-	#endif
+    #endif
 }
 
 /// <summary>
@@ -332,33 +332,33 @@ func @FRAMEPERSECOND_(playerid) {
 
 public OnPlayerUpdate(playerid)
 {
-	/// <summary>
-	/// Frame-Per-Second (FPS) reset.
-	/// </summary>
-	new PlayerDrunkNew;
-	PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
+    /// <summary>
+    /// Frame-Per-Second (FPS) reset.
+    /// </summary>
+    new PlayerDrunkNew;
+    PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
-	new null = 0;
+    new null = 0;
 
-	new nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
+    new nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
-	new int_drunk = 2000;
+    new int_drunk = 2000;
 
-	if ( PlayerDrunkNew < 100 ) {
+    if ( PlayerDrunkNew < 100 ) {
         SetPlayerDrunkLevel(playerid, int_drunk);
-	}
-	else {
-		if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
+    }
+    else {
+        if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
 
-			new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
-			new pfps;
+            new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
+            new pfps;
 
-			if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
+            if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
                 _PlayerFrame[playerid] = wfps;
-            	pfps = wfps;
+                pfps = wfps;
             }
             if (( wfps >= MAX_PLAYER_FPS )) {
-            	_PlayerFrame[playerid] = pfps;
+                _PlayerFrame[playerid] = pfps;
             }
             if (( pfps <= null )) {
                 pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
@@ -368,12 +368,12 @@ public OnPlayerUpdate(playerid)
 
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
-	}
+    }
     #if defined LAX_OnPlayerUpdate
       return (LAX_OnPlayerUpdate(playerid));
-	#else
+    #else
       return (1);
-	#endif
+    #endif
 }
 
 public OnClientCheckResponse(playerid, \
@@ -408,7 +408,7 @@ public OnClientCheckResponse(playerid, \
         }
     }
     #if defined LAX_OnClientCheckResponse
-		return (LAX_OnClientCheckResponse(playerid, type, arg, response));
+    return (LAX_OnClientCheckResponse(playerid, type, arg, response));
     #else
         return (1);
     #endif
