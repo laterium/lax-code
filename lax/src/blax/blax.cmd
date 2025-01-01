@@ -1,4 +1,4 @@
-:: 247b012b2abc5b583471994ae1dd5c14d5855b2c0933ec097afc454d8d52d5d7
+:: 245382bcaed53d804d6785f1e19cf3ed6cee2af324135fbf69c4c2cb4c117e46
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -141,20 +141,20 @@ SET "METADAT_FILE=compile.log"
 TITLE %username%@%computername%:~
 
 :COMMAND_TYPEOF
-for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a")
+for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & ECHO on & for %%b in (1) do rem"') do (set "DEL=%%a")
 
 <nul set /p=""
-call :COLOURTEXT a "%SOURCEDIR%~#"
+call :COLOURTEXT 0A "%SOURCEDIR%~#"
 SET /p TYPEOF=" "
 
-goto :end
+GOTO :end
 
 :: colour handle in batch
 :COLOURTEXT
 <nul set /p "=%DEL%" > "%~2"
 findstr /v /a:%1 /R "+" "%~2" nul
 del "%~2" > nul
-goto :eof
+GOTO :eof
 
 :end
 
@@ -184,11 +184,13 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 
     DEL "%SOURCEDIR%server_log.txt" /q >nul
     
+    :: do not edit .. !fix the warning ::
+    TASKKILL /f /im "samp-server.exe" >nul 2>&1
+
     CALL :COMPILERS
-    FINDSTR /i "error" %METADAT_FILE% >nul && echo. || CALL :GO_START
+    FINDSTR /i "error" %METADAT_FILE% >nul && ECHO. || CALL :GO_START
 
 :GO_START
-    TASKKILL /f /im "samp-server.exe" >nul 2>&1
     ECHO # Press any key to Start Server's . . .
     PAUSE >nul
 
@@ -216,7 +218,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO.
         <nul set /p=""
                     call :COLOURTEXT a "# End."
-                    echo.
+                    ECHO.
         GOTO COMMAND_TYPEOF
     ) ELSE (
         ECHO # [%HH%:%MM%:%SS%] Starting.. Done
@@ -226,8 +228,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         :lax_TRUE
         <nul set /p=""
                     call :COLOURTEXT 4X "~"
-                    echo    Failed? .. Yes .. True
-                echo.
+                    ECHO    Failed? .. Yes .. True
+                ECHO.
         CALL :FAIL_SERVERLOG
         
         GOTO :eof
@@ -235,8 +237,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         :lax_FALSE
                 <nul set /p=""
                     call :COLOURTEXT a "~"
-                    echo    Failed? .. No .. False
-                echo.
+                    ECHO    Failed? .. No .. False
+                ECHO.
         GOTO ENDOFALL
     )
 
@@ -247,7 +249,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     ECHO.
     <nul set /p=""
             call :COLOURTEXT E6 "# End."
-            echo.
+            ECHO.
     GOTO COMMAND_TYPEOF
 
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -cls" (
@@ -264,7 +266,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO # [%HH%:%MM%:%SS%] A subdirectory or file .vscode already exists.
         GOTO ENDOFALL
     )
-    MKDIR ".vscode"
+    mkdir ".vscode"
     (
         ECHO {
         ECHO   "version": "2.0.0",
@@ -292,11 +294,11 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
     IF exist filterscripts (
-        echo.
+        ECHO.
         <nul set /p=""
             call :COLOURTEXT a "# filterscripts is .. Ok .."
-            echo  [A subdirectory or file server.cfg already exists.]
-            echo -
+            ECHO  [A subdirectory or file server.cfg already exists.]
+            ECHO -
         timeout /t 2 >nul
     ) else (
         mkdir filterscripts
@@ -306,8 +308,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     IF exist gamemodes (
         <nul set /p=""
             call :COLOURTEXT a "# gamemodes is .. Ok .."
-            echo  [A subdirectory or file server.cfg already exists.]
-            echo -
+            ECHO  [A subdirectory or file server.cfg already exists.]
+            ECHO -
         timeout /t 2 >nul
     ) else (
         setlocal EnableDelayedExpansion
@@ -321,16 +323,16 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
             ECHO }
         ) > "gamemodes\main.lax.pwn"
         endlocal
-        echo.
+        ECHO.
         ECHO # [%HH%:%MM%:%SS%] Creating '%SOURCEDIR%gamemodes'...: [yes]
-        echo.
+        ECHO.
         timeout /t 2 >nul
     )
     IF exist scriptfiles (
         <nul set /p=""
             call :COLOURTEXT a "# scriptfiles is .. Ok .."
-            echo  [A subdirectory or file server.cfg already exists.]
-            echo -
+            ECHO  [A subdirectory or file server.cfg already exists.]
+            ECHO -
         timeout /t 2 >nul
     ) else (
         mkdir scriptfiles
@@ -340,8 +342,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     IF exist server-readme.txt (
         <nul set /p=""
             call :COLOURTEXT a "# server readme is .. Ok .."
-            echo  [A subdirectory or file server.cfg already exists.]
-            echo -
+            ECHO  [A subdirectory or file server.cfg already exists.]
+            ECHO -
         timeout /t 2 >nul
     ) else (
         (
@@ -354,7 +356,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
             ECHO CONFIGURATION:
             ECHO.
             ECHO Example server.cfg:
-            ECHO     echo Executing Server Config...
+            ECHO     ECHO Executing Server Config...
             ECHO     maxplayers 32
             ECHO     port 7777
             ECHO     hostname Lax Server
@@ -425,18 +427,18 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
             ECHO         Specifies the rotation settings. The first parameter sets the game mode name. The second is the number of times it will repeat.
             ECHO         You can use gamemode0 to specify the first gamemode, gamemode1 to specify the second, etc.
         ) > "server-readme.txt"
-        echo.
+        ECHO.
         ECHO # [%HH%:%MM%:%SS%] Creating '%SOURCEDIR%server-readme.txt'...: [yes]
-        echo.
+        ECHO.
     )
     IF exist server.cfg (
         <nul set /p=""
             call :COLOURTEXT a "# server.cfg is .. Ok .."
-            echo  [A subdirectory or file server.cfg already exists.]
-            echo.
+            ECHO  [A subdirectory or file server.cfg already exists.]
+            ECHO.
     ) else (
         (
-            ECHO echo Executing Server Config...
+            ECHO ECHO Executing Server Config...
             ECHO lanmode 0
             ECHO rcon_password changename
             ECHO maxplayers 150
@@ -457,9 +459,9 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
             ECHO language English
         ) > "server.cfg"
         ECHO # [%HH%:%MM%:%SS%] Creating '%SOURCEDIR%server.cfg'...: [yes]
-        echo.
+        ECHO.
         type server.cfg
-        goto ENDOFALL
+        GOTO ENDOFALL
     )
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -gitc" (
     SET "LOCALTITLE=git clone"
@@ -469,10 +471,10 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     if "!URL!"=="" (
         <nul set /p=""
             call :COLOURTEXT 4X "[#]~"
-            echo ERR? .. Yes .. Url Required..
-            echo.
+            ECHO ERR? .. Yes .. Url Required..
+            ECHO.
     ) else (
-        echo # Cloning repository from !URL!
+        ECHO # Cloning repository from !URL!
         git clone !URL!
     )
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -lax" (
@@ -507,10 +509,10 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% " (
     GOTO _HELP
 ) ELSE (
-    echo '!TYPEOF!' is not recognized as an internal or external command,
-    echo operable program or batch file.
-    echo.
-    goto _HELP
+    ECHO '!TYPEOF!' is not recognized as an internal or external command,
+    ECHO operable program or batch file.
+    ECHO.
+    GOTO _HELP
     GOTO COMMAND_TYPEOF
 )
 
@@ -554,20 +556,20 @@ GOTO COMMAND_TYPEOF
             FOR %%A IN ("!AMX_O!") DO (
                 <nul set /p=""
                 call :COLOURTEXT a "[#]~"
-                echo Compilation finished at %time%..
+                ECHO Compilation finished at %time%..
                 call :COLOURTEXT a "[#]~"
-                echo Total Size [%%~zA / bytes] ^| "!AMX_O!" ^| "%ASM_OPTION_M% %ASM_OPTION_P%" 
+                ECHO Total Size [%%~zA / bytes] ^| "!AMX_O!" ^| "%ASM_OPTION_M% %ASM_OPTION_P%" 
             )
         ) ELSE (
                 setlocal DisableDelayedExpansion 
                 <nul set /p=""
                     call :COLOURTEXT 4X "[#]~"
-                    echo Compilation failed!. ERR? .. Yes
+                    ECHO Compilation failed!. ERR? .. Yes
                     endlocal
                     IF "%NULLSTATIC%"=="false" (
-                        goto ENDOFALL
+                        GOTO ENDOFALL
                     )
-                echo.
+                ECHO.
             )
             ECHO.
         )
@@ -576,7 +578,7 @@ GOTO COMMAND_TYPEOF
        setlocal DisableDelayedExpansion 
         <nul set /p=""
                 call :COLOURTEXT 4X "[#]~"
-                echo Compilation failed!.
+                ECHO Compilation failed!.
         endlocal
         ECHO    ~ "!SOURCEDIR!.lax" no files found.
     )
