@@ -135,10 +135,10 @@ new False = false, True = true, FALSE = false, TRUE = true
 /// <param name="target">
 /// </param>
 /// <param name="GetPlayerMapStatus"></param>
-/// <param name="HidePlayerMap"></param>
 /// <param name="ShowPlayerMap"></param>
+/// <param name="HidePlayerMap"></param>
 new LAX_ADDON_MAP;
-#define GetPlayerMapStatus(%0) GetPVarInt(%0, "isPlayerMap") == 1
+#define GetPlayerMap(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
 enum
 {
@@ -188,6 +188,9 @@ forward OnWindowsDetected(playerid);
 /// </summary>
 /// <param name="OnPlayerMouse"></param>
 /// <param name="OnPlayerOffMouse"></param>
+forward OnPlayerMouse(playerid);
+forward OnPlayerOffMouse(playerid);
+
 func LAX_SelectTextDraw(playerid, \
     colour)
 {
@@ -230,18 +233,25 @@ func IsMobile(playerid) {
     return 0;
 }
 
+/// <summary>
+/// Mouse Checker.
+/// </summary>
+/// <param name="OnPlayerMap"></param>
+/// <param name="OnPlayerOffMap"></param>
+func ShowPlayerMap(playerid) {
+    GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
+    SetPVarInt(playerid, "isPlayerMap", 1);
+	CallLocalFunction "OnPlayerMap", "d", playerid;
+    return 1;
+}
+
 func HidePlayerMap(playerid, \
     colour)
 {
     LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
-    return 1;
-}
-
-func ShowPlayerMap(playerid) {
-    GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
-    SetPVarInt(playerid, "isPlayerMap", 1);
+	CallLocalFunction "OnPlayerOffMap", "d", playerid;
     return 1;
 }
 
@@ -253,17 +263,17 @@ public OnPlayerConnect(playerid)
     SendClientCheck(playerid, 0x49, 0, 0, 2);
 
     #if defined LAX_OnPlayerConnect
-      return (LAX_OnPlayerConnect(playerid));
+        return (LAX_OnPlayerConnect(playerid));
     #else
-      return (1);
+        return (1);
     #endif
 }
 
 public OnPlayerSpawn(playerid) {
     #if defined LAX_OnPlayerSpawn
-      return (LAX_OnPlayerSpawn(playerid));
+        return (LAX_OnPlayerSpawn(playerid));
     #else
-      return (1);
+        return (1);
     #endif
 }
 
