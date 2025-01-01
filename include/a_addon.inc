@@ -26,6 +26,9 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define let                 new
 #define float               Float:
 
+new False = false, True = true, FALSE = false, TRUE = true
+#pragma unused False, True, FALSE, TRUE
+
 // #pragma ctrlchar '@'
 // #pragma dynamic 1000000
 // #pragma semicolon 0
