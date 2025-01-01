@@ -1,4 +1,3 @@
-
 ```pwn
 #include <a_samp>
 
@@ -47,6 +46,13 @@ func delayFPS(playerid) {
         SendClientMessage playerid, -1, fmt;
     }
     return 1;
+}
+
+public OnPlayerFPSUpdate(playerid, oldfps, newfps) {
+	new fmt[200];
+	format fmt, sizeof(fmt), "OLD FPS: %d NEW FPS: %d", oldfps, newfps;
+	SendClientMessage(playerid, -1, fmt);
+	return 1;
 }
 
 public OnAndroidDetected(playerid) {
