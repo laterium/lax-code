@@ -17,57 +17,106 @@
 
 forward OnClientCheckResponse(playerid, type, arg, response);
 
-// credit *(@fairuz)
+/// <summary>
+/// Android Checker
+/// Original Android Checker @fairuz.
+/// </summary>
+/// <param name="IsAndroid"></param>
 #if !defined IsAndroid
 #define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
 #endif
 
+/// <summary>
+/// Linux Checker
+/// </summary>
+/// <param name="IsLinux"></param>
 #if !defined IsLinux
 #define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
 #endif
 
+/// <summary>
+/// Windows Checker
+/// </summary>
+/// <param name="IsWindows"></param>
 #if !defined IsWindows
 #define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
 #endif
 
+/// <summary>
+/// Mouse Checker
+/// </summary>
+/// <param name="IsMouse"></param>
 #define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 
+/// <summary>
+/// Connect alias Checker
+/// </summary>
+/// <param name="IsConnect"></param>
 #define IsConnect(%0)       IsPlayerConnected(%0)
+
+/// <summary>
+/// Spawn alias Checker
+/// </summary>
+/// <param name="IsSpawn"></param>
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
+/// <summary>
+/// function forward & public alias
+/// </summary>
+/// <param name="func"></param>
 #define func%0(%1)          forward %0(%1); public %0(%1)
+
+/// <summary>
+/// looping alias
+/// </summary>
+/// <param name="loop"></param>
 #define loop(%0,%1,%2)      for(new %0 = %1; %0 < %2; %0++)
 
+/// <summary>
+/// player & vehicle count alias
+/// </summary>
+/// <param name="GetPlayerCounts"></param>
+/// <param name="GetVehiclCounts"></param>
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
 #define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
 
+/// <summary>
+/// Float tags alias
+/// </summary>
+/// <param name="float"></param
 #define float               Float:
 
+/// <summary>
+/// Boolean
+/// </summary>
 new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
+/// <summary>
+/// maximum income from player fps
+/// default : 100 FPS
+/// </summary>
 #define MAX_PLAYER_FPS (100) // you can re-edit this.
 
+/// <summary>
+/// Addon Map Status
+/// </summary>
+/// <param name="GetPlayerMapStatus"></param>
+/// <param name="HidePlayerMap"></param>
+/// <param name="ShowPlayerMap"></param>
 new LAX_ADDON_MAP;
 #define GetPlayerMapStatus(%0) GetPVarInt(%0, "isPlayerMap") == 1
-
-/* anti bunny-hop *(@Simba-gtaRL) */
-new InSprung[MAX_PLAYERS] = 0;
-new TimerIDSprung;
 
 #if !defined PRESSED
 #define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 #endif
 
-new antibunnyStatus;
-
 enum
 {
     UNKNOWN = -1, // 0xFFFF
-    MOBILE = 0,
-    WIN32 = 1,
-    LINUX = 0,
-    ANTI_BUNNY_HOP = 1 // active.
+    MOBILE = 0, // do not edit this.
+    WIN32 = 1, // do not edit this.
+    LINUX = 0 // do not edit this.
 }
 // #pragma ctrlchar '@'
 // #pragma dynamic 1000000
@@ -103,6 +152,10 @@ func LCC_CancelSelectTextDraw(playerid) {
     return 1;
 }
 
+/// <summary>
+/// Is PC Checker
+/// </summary>
+/// <param name="IsPC"></param>
 func IsPC(playerid) {
     if (IsLinux(playerid) || IsWindows(playerid)) {
         return 1;
@@ -110,6 +163,10 @@ func IsPC(playerid) {
     return 0;
 }
 
+/// <summary>
+/// Is Android Checker
+/// </summary>
+/// <param name="IsMobile"></param>
 func IsMobile(playerid) {
     if (IsAndroid(playerid)) {
         return 1;
@@ -166,6 +223,12 @@ public OnPlayerSpawn(playerid) {
 new PlayerDrunk[MAX_PLAYERS];
 new PlayerFrame[MAX_PLAYERS];
 
+/// <summary>
+/// Frame-Per-Second (FPS) Checker.
+/// </summary>
+/// <param name="GetPlayerFPS"></param>
+/// <param name="GetPlayerFps"></param>
+/// <param name="GetPlayerFrame"></param>
 func _GetPlayerFrame_(playerid)
 {
     SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
@@ -260,55 +323,6 @@ public OnClientCheckResponse(playerid, type, arg, response)
         #endif
 }
 
-public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
-{
-    if (antibunnyStatus == ANTI_BUNNY_HOP)
-    {
-        new Float:vx,Float:vy,Float:vz;
-	    GetPlayerVelocity(playerid,vx,vy,vz);
-	    if (PRESSED(KEY_JUMP) && (vy > 0.01 || vy <-0.01 || vx > 0.01 || vx <-0.01) && IsPlayerInAnyVehicle(playerid) == 0 && InSprung[playerid] == 0)
-	    {
-		    if(vz > 0.01 || vz < -0.01) return 1;
-		    InSprung[playerid] = 1;
-		    TimerIDSprung = SetTimerEx("FunktionInSprung",1,true,"i",playerid);
-	    }
-    }
-	#if defined OnPlayerKeyStateChange
-	    return (OnPlayerKeyStateChange(playerid, newkeys, oldkeys));
-	    #else
-	    return (1);
-	    #endif
-}
-
-func KillTimerSprung(playerid)
-{
-	InSprung[playerid] = 0;
-	return 1;
-}
-
-func FunktionInSprung(playerid)
-{
-	new animlib[32];
-	new animname[32];
-	new Float:vx,Float:vy,Float:vz;
-	GetPlayerVelocity(playerid,vx,vy,vz);
-	if(vz < -0.5)
-	{
-	    KillTimer(TimerIDSprung);
-	    SetTimerEx("KillTimerSprung",1000,false,"i",playerid);
-	    return 1;
-	}
-	GetAnimationName(GetPlayerAnimationIndex(playerid),animlib,32,animname,32);
-	if(!strcmp(animname,"JUMP_LAND") || !strcmp(animname,"FALL_LAND"))
-	{
-		KillTimer(TimerIDSprung);
-		ClearAnimations(playerid,1);
-		ApplyAnimation(playerid,"ped","FALL_COLLAPSE",4.1,0,1,1,0,0,1);
-		SetTimerEx("KillTimerSprung",1000,false,"i",playerid);
-	}
-	return 1;
-}
-
 #if defined _ALS_OnPlayerConnect
     #undef OnPlayerConnect
 #else
@@ -347,16 +361,6 @@ func FunktionInSprung(playerid)
 #define OnClientCheckResponse LCC_OnClientCheckResponse
 #if defined LCC_OnClientCheckResponse
     forward LCC_OnClientCheckResponse(playerid, type, arg, response);
-#endif
-
-#if defined _ALS_OnPlayerKeyStateChange
-    #undef OnPlayerKeyStateChange
-#else
-    #define _ALS_OnPlayerKeyStateChange
-#endif
-#define OnPlayerKeyStateChange LCC_OnPlayerKeyStateChange
-#if defined LCC_OnPlayerKeyStateChange
-    forward LCC_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 #endif
 
 #if defined _ALS_SelectTextDraw
