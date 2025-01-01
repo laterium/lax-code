@@ -152,13 +152,13 @@ forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
-func LCC_SelectTextDraw(playerid, colour) {
+func LAX_SelectTextDraw(playerid, colour) {
     SelectTextDraw playerid, colour;
     SetPVarInt(playerid, "isMouse", 1);
     return 1;
 }
 
-func LCC_CancelSelectTextDraw(playerid) {
+func LAX_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
     SetPVarInt(playerid, "isMouse", 0);
     return 1;
@@ -211,16 +211,16 @@ public OnPlayerConnect(playerid)
     SendClientCheck(playerid, 0x48, 0, 0, 2);
     SendClientCheck(playerid, 0x49, 0, 0, 2);
 
-    #if defined LCC_OnPlayerConnect
-      return (LCC_OnPlayerConnect(playerid));
+    #if defined LAX_OnPlayerConnect
+      return (LAX_OnPlayerConnect(playerid));
       #else
       return (1);
       #endif
 }
 
 public OnPlayerSpawn(playerid) {
-    #if defined LCC_OnPlayerSpawn
-      return (LCC_OnPlayerSpawn(playerid));
+    #if defined LAX_OnPlayerSpawn
+      return (LAX_OnPlayerSpawn(playerid));
       #else
       return (1);
       #endif
@@ -295,8 +295,8 @@ public OnPlayerUpdate(playerid)
             PlayerDrunk[playerid] = PlayerDrunkNew;
         }
   }
-  #if defined LCC_OnPlayerUpdate
-      return (LCC_OnPlayerUpdate(playerid));
+  #if defined LAX_OnPlayerUpdate
+      return (LAX_OnPlayerUpdate(playerid));
       #else
       return (1);
       #endif
@@ -335,21 +335,25 @@ public OnClientCheckResponse(playerid, type, arg, response)
             }
         }
     }
-    #if defined LCC_OnClientCheckResponse
-        return (LCC_OnClientCheckResponse(playerid, type, arg, response));
+    #if defined LAX_OnClientCheckResponse
+        return (LAX_OnClientCheckResponse(playerid, type, arg, response));
         #else
         return (1);
         #endif
 }
 
+/// <summary>
+/// ALS Hook.
+/// please see https://sampforum.blast.hk/showthread.php?tid=574534
+/// </summary>
 #if defined _ALS_OnPlayerConnect
     #undef OnPlayerConnect
 #else
     #define _ALS_OnPlayerConnect
 #endif
-#define OnPlayerConnect LCC_OnPlayerConnect
-#if defined LCC_OnPlayerConnect
-    forward LCC_OnPlayerConnect(playerid);
+#define OnPlayerConnect LAX_OnPlayerConnect
+#if defined LAX_OnPlayerConnect
+    forward LAX_OnPlayerConnect(playerid);
 #endif
 
 #if defined _ALS_OnPlayerSpawn
@@ -357,9 +361,9 @@ public OnClientCheckResponse(playerid, type, arg, response)
 #else
     #define _ALS_OnPlayerSpawn
 #endif
-#define OnPlayerSpawn LCC_OnPlayerSpawn
-#if defined LCC_OnPlayerSpawn
-    forward LCC_OnPlayerSpawn(playerid);
+#define OnPlayerSpawn LAX_OnPlayerSpawn
+#if defined LAX_OnPlayerSpawn
+    forward LAX_OnPlayerSpawn(playerid);
 #endif
 
 #if defined _ALS_OnPlayerUpdate
@@ -367,9 +371,9 @@ public OnClientCheckResponse(playerid, type, arg, response)
 #else
     #define _ALS_OnPlayerUpdate
 #endif
-#define OnPlayerUpdate LCC_OnPlayerUpdate
-#if defined LCC_OnPlayerUpdate
-    forward LCC_OnPlayerUpdate(playerid);
+#define OnPlayerUpdate LAX_OnPlayerUpdate
+#if defined LAX_OnPlayerUpdate
+    forward LAX_OnPlayerUpdate(playerid);
 #endif
 
 #if defined _ALS_OnClientCheckResponse
@@ -377,9 +381,9 @@ public OnClientCheckResponse(playerid, type, arg, response)
 #else
     #define _ALS_OnClientCheckResponse
 #endif
-#define OnClientCheckResponse LCC_OnClientCheckResponse
-#if defined LCC_OnClientCheckResponse
-    forward LCC_OnClientCheckResponse(playerid, type, arg, response);
+#define OnClientCheckResponse LAX_OnClientCheckResponse
+#if defined LAX_OnClientCheckResponse
+    forward LAX_OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 #if defined _ALS_SelectTextDraw
@@ -387,11 +391,11 @@ public OnClientCheckResponse(playerid, type, arg, response)
 #else
     #define _ALS_SelectTextDraw
 #endif
-#define SelectTextDraw LCC_SelectTextDraw
+#define SelectTextDraw LAX_SelectTextDraw
 
 #if defined _ALS_CancelSelectTextDraw
     #undef CancelSelectTextDraw
 #else
     #define _ALS_CancelSelectTextDraw
 #endif
-#define CancelSelectTextDraw LCC_CancelSelectTextDraw
+#define CancelSelectTextDraw LAX_CancelSelectTextDraw
