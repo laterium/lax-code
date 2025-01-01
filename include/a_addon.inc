@@ -48,6 +48,8 @@ new False = false, True = true, FALSE = false, TRUE = true
 
 #define MAX_PLAYER_FPS (100) // you can re-edit this.
 
+new LAX_ADDON_MAP;
+
 enum
 {
     UNKNOWN = -1, // 0xFFFF
@@ -103,9 +105,20 @@ func IsMobile(playerid) {
     return 0;
 }
 
+func HidePlayerMap(playerid, colour)
+{
+    GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
+    return 1;
+}
+
+func ShowPlayerMap(playerid) {
+    GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
+    return 1;
+}
+
 public OnGameModeInit() {
-    printf "\n**[LAD by Laterium is Loaded!]"\n;
-    GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0);
+    printf "\n**[LAD by Laterium is Loaded!]\n";
+    LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0);
     #if defined LCC_OnGameModeInit
     return (OnGameModeInit());
     #else
