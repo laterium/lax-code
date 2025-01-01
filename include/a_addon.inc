@@ -42,6 +42,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
+#define MAX_PLAYER_FPS (100)
+
 enum
 {
     UNKNOWN = -1, // 0xFFFF
@@ -165,8 +167,14 @@ public OnPlayerUpdate(playerid)
 
             new wfps = PlayerDrunk[playerid] - PlayerDrunkNew;
 
+            new cfps;
+
             if ((wfps > 0) && (wfps < 200)) {
                 PlayerFrame[playerid] = wfps;
+            	cfps = wfps;
+            }
+            if ((wfps >= MAX_PLAYER_FPS)) {
+            	PlayerFrame[playerid] = cfps;
             }
             PlayerDrunk[playerid] = PlayerDrunkNew;
         }
