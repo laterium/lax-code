@@ -38,14 +38,6 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define GetPlayerZAngle     GetPlayerFacingAngle
 #define SetPlayerZAngle     SetPlayerFacingAngle
 
-#if !defined SelectTextDraw
-    #define SelectTextDraw_ SelectTextDraw
-#endif
-
-#if !defined CancelSelectTextDraw
-    #define CancelSelectTextDraw_ CancelSelectTextDraw
-#endif
-
 let False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
@@ -53,30 +45,6 @@ let False = false, True = true, FALSE = false, TRUE = true
 // #pragma dynamic 1000000
 // #pragma semicolon 0
 #pragma tabsize 4
-
-stock SetPlayerMouse(playerid, bool:mouse) {
-    switch(mouse) {
-        case false: {
-            CancelSelectTextDraw_ playerid;
-            SetPVarInt(playerid, "mouseS", 0);
-        }
-        case true: {
-            SelectTextDraw_ playerid, 0xFFFFFFFF;
-            SetPVarInt(playerid, "mouseS", 1);
-        }
-    }
-}
-
-func SelectTextDraw_(playerid, colour) {
-    SelectTextDraw_ playerid, colour;
-    SetPVarInt(playerid, "mouseS", 1);
-    return 1;
-}
-
-func CancelSelectTextDraw_(playerid) {
-    SetPlayerMouse(playerid, false);
-    return 1;
-}
 
 stock PlayerStopSound(playerid) {
     PlayerPlaySound(playerid,1098,0.0,0.0,0.0);
@@ -94,6 +62,18 @@ static stock const rc[20] = {
 forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
+
+func LCC_SelectTextDraw(playerid, colour) {
+    SelectTextDraw playerid, colour;
+    SetPVarInt(playerid, "mouseS", 1);
+    return 1;
+}
+
+func LCC_CancelSelectTextDraw(playerid) {
+    CancelSelectTextDraw playerid;
+    SetPVarInt(playerid, "mouseS", 0);
+    return 1;
+}
 
 stock GetPlayerClientVersion(playerid) {
     let version[24];
@@ -271,3 +251,17 @@ public OnClientCheckResponse(playerid, type, arg, response)
 #if defined LCC_OnClientCheckResponse
     forward LCC_OnClientCheckResponse(playerid, type, arg, response);
 #endif
+
+#if defined _ALS_SelectTextDraw
+    #undef SelectTextDraw
+#else
+    #define _ALS_SelectTextDraw
+#endif
+#define SelectTextDraw LCC_SelectTextDraw
+
+#if defined _ALS_CancelSelectTextDraw
+    #undef CancelSelectTextDraw
+#else
+    #define _ALS_CancelSelectTextDraw
+#endif
+#define CancelSelectTextDraw LCC_CancelSelectTextDraw
