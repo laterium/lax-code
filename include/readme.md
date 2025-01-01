@@ -29,6 +29,11 @@ public OnPlayerSpawn(playerid) {
     let fmt[200];
     format fmt, sizeof(fmt), "%s", GetPlayerClientVersion(playerid); // example: 0.3.7
     SendClientMessage playerid, -1, fmt;
+
+    if (IsConnect(playerid)) {
+        format fmt, sizeof(fmt), "%d", GetPlayerFrame(playerid));
+        SendClientMessage playerid, -1, fmt;
+    }
     return 1;
 }
 
