@@ -255,7 +255,6 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     SET "LOCALTITLE=clear screen"
     TITLE %username%@%computername%:~/!LOCALTITLE!
     CLS
-    GOTO MAINOFALL
     GOTO COMMAND_TYPEOF
 
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -vsc" (
