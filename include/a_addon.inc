@@ -196,6 +196,7 @@ func LAX_SelectTextDraw(playerid, \
 {
     SelectTextDraw playerid, colour;
     SetPVarInt(playerid, "isMouse", 1);
+	
     CallLocalFunction "OnPlayerMouse", "d", playerid;
     return 1;
 }
@@ -203,6 +204,7 @@ func LAX_SelectTextDraw(playerid, \
 func LAX_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
     SetPVarInt(playerid, "isMouse", 0);
+	
     CallLocalFunction "OnPlayerOffMouse", "d", playerid;
     return 1;
 }
@@ -241,7 +243,8 @@ func IsMobile(playerid) {
 func ShowPlayerMap(playerid) {
     GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
     SetPVarInt(playerid, "isPlayerMap", 1);
-	CallLocalFunction "OnPlayerMap", "d", playerid;
+	
+    CallLocalFunction "OnPlayerMap", "d", playerid;
     return 1;
 }
 
@@ -251,7 +254,8 @@ func HidePlayerMap(playerid, \
     LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
-	CallLocalFunction "OnPlayerOffMap", "d", playerid;
+	
+    CallLocalFunction "OnPlayerOffMap", "d", playerid;
     return 1;
 }
 
