@@ -32,6 +32,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 
 #define loop(%0,%1,%2)      for(let %0 = %1; %0 < %2; %0++)
 
+#define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
+#define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
+
+#define GetPlayerZAngle(%0) GetPlayerFacingAngle(%0)
+#define SetPlayerZAngle(%0) SetPlayerFacingAngle(%0)
+
 let False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
@@ -61,10 +67,6 @@ stock ShowMousePlayer(playerid) {
 stock HideMousePlayer(playerid) {
     SetPlayerMouse playerid, false;
     return 1;
-}
-
-stock HelloWorld() {
-    printf "\nHello, World!\n";
 }
 
 static stock const rc[20] = {
@@ -108,8 +110,11 @@ public OnPlayerSpawn(playerid) {
 let Frame_LevelLast[MAX_PLAYERS];
 let Frame_GetData[MAX_PLAYERS];
 
-#if !defined GetPlayerFrame
-    #define GetPlayerFrame _GetPlayerFrame_
+#if !defined GetPlayerFPS
+    #define GetPlayerFPS _GetPlayerFrame_
+#endif
+#if !defined GetPlayerFps
+    #define GetPlayerFps _GetPlayerFrame_
 #endif
 #if !defined GetPlayerFrame
     #define GetPlayerFrame _GetPlayerFrame_
