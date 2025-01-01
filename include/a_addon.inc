@@ -369,10 +369,10 @@ public OnPlayerUpdate(playerid)
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
     }
-    #if defined LAX_OnPlayerUpdate
-      return (LAX_OnPlayerUpdate(playerid));
+	#if defined LAX_OnPlayerUpdate
+        return (LAX_OnPlayerUpdate(playerid));
     #else
-      return (1);
+        return (1);
     #endif
 }
 
