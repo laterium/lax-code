@@ -369,7 +369,7 @@ public OnPlayerUpdate(playerid)
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
 	}
-	#if defined LAX_OnPlayerUpdate
+    #if defined LAX_OnPlayerUpdate
       return (LAX_OnPlayerUpdate(playerid));
 	#else
       return (1);
@@ -408,7 +408,7 @@ public OnClientCheckResponse(playerid, \
         }
     }
     #if defined LAX_OnClientCheckResponse
-        return (LAX_OnClientCheckResponse(playerid, type, arg, response));
+		return (LAX_OnClientCheckResponse(playerid, type, arg, response));
     #else
         return (1);
     #endif
