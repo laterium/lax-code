@@ -1,5 +1,5 @@
 # What is Lax?
-Lax is a Compiler Tool intended for Pawn Code.
+Lax (PAWN/LAX) or BLax (Batch Lax) is a simple compilation tool made with only batch and various perfect combinations of Pawn Code Compiler (PAWNCC).
 # Get Starting
 - Install from reposit "Download ZIP" or clone.
 - Paste ".cmd" to into gamemodes.
