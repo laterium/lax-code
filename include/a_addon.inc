@@ -83,6 +83,20 @@ func LCC_CancelSelectTextDraw(playerid) {
     return 1;
 }
 
+func IsPC(playerid) {
+    if (IsLinux(playerid) || IsWindows(playerid)) {
+        return 1;
+    }
+    return 0;
+}
+
+func IsMobile(playerid) {
+    if (IsAndroid(playerid)) {
+        return 1;
+    }
+    return 0;
+}
+
 public OnPlayerConnect(playerid)
 {
     SendClientCheck(playerid, 0x48, 0, 0, 2);
