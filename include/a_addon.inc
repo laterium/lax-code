@@ -78,12 +78,6 @@ func LCC_CancelSelectTextDraw(playerid) {
     return 1;
 }
 
-stock GetPlayerClientVersion(playerid) {
-    new version[24];
-    GetPlayerVersion playerid, version, sizeof(version);
-    return version;
-}
-
 public OnPlayerConnect(playerid)
 {
     SendClientCheck(playerid, 0x48, 0, 0, 2);
@@ -114,8 +108,8 @@ public OnPlayerSpawn(playerid) {
     #define GetPlayerFrame _GetPlayerFrame_
 #endif
 
-new pDrunkLevelLast[MAX_PLAYERS];
-new pFPS[MAX_PLAYERS];
+new PlayerDrunk[MAX_PLAYERS];
+new PlayerFrame[MAX_PLAYERS];
 
 func _GetPlayerFrame_(playerid)
 {
@@ -136,26 +130,26 @@ func _GetPlayerFrame_(playerid)
             }
         }
     }
-    new rand = random(11) + 50;
+    new rand = random(60) + 29;
     return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
 }
 
 public OnPlayerUpdate(playerid)
 {
-    new drunknew;
-    drunknew = GetPlayerDrunkLevel(playerid);
+    new PlayerDrunkNew;
+    PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
-    if (drunknew < 100) {
+    if (PlayerDrunkNew < 100) {
         SetPlayerDrunkLevel(playerid, 2000);
     } else {
-        if (pDrunkLevelLast[playerid] != drunknew) {
+        if (PlayerDrunk[playerid] != PlayerDrunkNew) {
 
-            new wfps = pDrunkLevelLast[playerid] - drunknew;
+            new wfps = PlayerDrunk[playerid] - PlayerDrunkNew;
 
             if ((wfps > 0) && (wfps < 200)) {
-                pFPS[playerid] = wfps;
+                PlayerFrame[playerid] = wfps;
             }
-            pDrunkLevelLast[playerid] = drunknew;
+            PlayerDrunk[playerid] = PlayerDrunkNew;
         }
   }
   #if defined LCC_OnPlayerUpdate
