@@ -1,5 +1,3 @@
-:: 0cf5c1dd36bd27336c8756a535615321149c8c50063bfed06e9b65f9145b7e17
-:: MGNmNWMxZGQzNmJkMjczMzZjODc1NmE1MzU2MTUzMjExNDljOGM1MDA2M2JmZWQwNmU5YjY1ZjkxNDViN2UxNw==
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -359,10 +357,10 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
             ECHO     echo Executing Server Config...
             ECHO     maxplayers 32
             ECHO     port 7777
-            ECHO     hostname Unnamed Server
+            ECHO     hostname Lax Server
             ECHO     announce 0
-            ECHO     gamemode0 lvdm 1
-            ECHO     gamemode1 rivershell 1
+            ECHO     gamemode0 main 1
+            ECHO     gamemode1 main2 1
             ECHO     weburl www.sa-mp.com
             ECHO     rcon_password mypassword
             ECHO.
@@ -483,9 +481,9 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     START "" "https://github.com/pawn-lang/compiler/releases"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -mpg" (
     START "" "https://sa-mp.app/"
-) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -inc" (
+) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -lad" (
     START "" "https://github.com/laterium/lax-code/blob/main/include/a_addon.inc"
-) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dlax" (
+) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dis" (
     START "" "https://dsc.gg/evercool/"
 ) ELSE IF "%TYPEOF%"=="help" (
     SET "LOCALTITLE=help"
@@ -493,9 +491,9 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-ci compile-running] [-vsc vscode tasks]
-    ECHO       [-dg create gamemode pack ^& debugging gamemode] [-cls clear screen] [-gitc git clone] [-inc lax include+]
+    ECHO       [-dg create gamemode pack ^& debugging gamemode] [-cls clear screen] [-gitc git clone] [-lad lax addon]
     ECHO       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download]
-    ECHO       [-dlax discord lax development support]
+    ECHO       [-dis discord lax development support]
     GOTO COMMAND_TYPEOF
 
 ) ELSE IF "%TYPEOF%"=="cat" (
