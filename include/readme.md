@@ -26,10 +26,6 @@ public OnPlayerSpawn(playerid) {
         SendClientMessage playerid, -1, "Mobile!";
     }
 
-    let fmt[200];
-    format fmt, sizeof(fmt), "%s", GetPlayerClientVersion(playerid); // example: 0.3.7
-    SendClientMessage playerid, -1, fmt;
-
     /* delay */
     SetTimerEx("delayFPS", 1500, false, "d", playerid);
 
