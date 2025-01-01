@@ -2,6 +2,10 @@
 
 #include <a_samp>
 
+#pragma tabsize 4
+// Ignores warning 217 for properly indented PAWNO code
+// It's tab size is 4 and often uses 4 spaces instead, PAWNCC's is 8
+
 #if defined _addon_included
 	#endinput
 #endif
@@ -127,13 +131,9 @@ enum
     WIN32 = 1, // do not edit this.
     LINUX = 0 // do not edit this.
 }
-// #pragma ctrlchar '@'
-// #pragma dynamic 1000000
-// #pragma semicolon 0
-#pragma tabsize 4
 
 /// <summary>
-/// Stop Player Sound << PlayerPlaySound.
+/// Stop Player Sound from PlayerPlaySound.
 /// </summary>
 /// <param name="target">
 /// </param>
@@ -150,6 +150,14 @@ static stock const rc[20] = {
     0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0
 };
 
+/// <summary>
+/// Android/Linux/Windows Checker from Callbacks.
+/// </summary>
+/// <param name="target">
+/// </param>
+/// <param name="OnAndroidDetected"></param>
+/// <param name="OnLinuxDetected"></param>
+/// <param name="OnWindowsDetected"></param>
 forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
