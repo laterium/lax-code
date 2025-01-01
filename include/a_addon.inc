@@ -1,4 +1,8 @@
 // copyright (c) Lax Contributors.
+
+/*
+ * not all gamemodes are supported for some reason, so you can grab the script you want if something goes wrong.
+ */
 #include <a_samp>
 
 #if defined _addon_included
