@@ -13,9 +13,8 @@
 #pragma library addon
 
 #if !defined SendClientCheck
-  native SendClientCheck(playerid, type, arg, offset, size);
+	native SendClientCheck(playerid, type, arg, offset, size);
 #endif
-
 forward OnClientCheckResponse(playerid, type, arg, response);
 
 /// <summary>
@@ -26,7 +25,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsAndroid"></param>
 #if !defined IsAndroid
-#define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
+	#define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
 #endif
 
 /// <summary>
@@ -36,7 +35,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsLinux"></param>
 #if !defined IsLinux
-#define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
+	#define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
 #endif
 
 /// <summary>
@@ -46,7 +45,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsWindows"></param>
 #if !defined IsWindows
-#define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
+	#define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
 #endif
 
 /// <summary>
@@ -93,7 +92,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define func%0(%1)          forward %0(%1); public %0(%1)
 
 #if !defined function
-    #define function        func
+	#define function        func
 #endif
 
 /// <summary>
@@ -184,17 +183,24 @@ forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
+/// <summary>
+/// Mouse Checker.
+/// </summary>
+/// <param name="OnPlayerMouse"></param>
+/// <param name="OnPlayerOffMouse"></param>
 func LAX_SelectTextDraw(playerid, \
     colour)
 {
     SelectTextDraw playerid, colour;
     SetPVarInt(playerid, "isMouse", 1);
+	CallLocalFunction "OnPlayerMouse", "d", playerid;
     return 1;
 }
 
 func LAX_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
     SetPVarInt(playerid, "isMouse", 0);
+	CallLocalFunction "OnPlayerOffMouse", "d", playerid;
     return 1;
 }
 
@@ -248,17 +254,17 @@ public OnPlayerConnect(playerid)
 
     #if defined LAX_OnPlayerConnect
       return (LAX_OnPlayerConnect(playerid));
-      #else
+	#else
       return (1);
-      #endif
+	#endif
 }
 
 public OnPlayerSpawn(playerid) {
     #if defined LAX_OnPlayerSpawn
       return (LAX_OnPlayerSpawn(playerid));
-      #else
+	#else
       return (1);
-      #endif
+	#endif
 }
 
 /// <summary>
@@ -326,7 +332,7 @@ func @FRAMEPERSECOND_(playerid) {
 
 public OnPlayerUpdate(playerid)
 {
-    /// <summary>
+	/// <summary>
     /// Frame-Per-Second (FPS) reset.
     /// </summary>
     new PlayerDrunkNew;
@@ -362,12 +368,12 @@ public OnPlayerUpdate(playerid)
 
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
-  }
-  #if defined LAX_OnPlayerUpdate
+	}
+	#if defined LAX_OnPlayerUpdate
       return (LAX_OnPlayerUpdate(playerid));
-      #else
+	#else
       return (1);
-      #endif
+	#endif
 }
 
 public OnClientCheckResponse(playerid, \
@@ -403,9 +409,9 @@ public OnClientCheckResponse(playerid, \
     }
     #if defined LAX_OnClientCheckResponse
         return (LAX_OnClientCheckResponse(playerid, type, arg, response));
-        #else
+    #else
         return (1);
-        #endif
+    #endif
 }
 
 /// <summary>
