@@ -46,7 +46,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
-#define MAX_PLAYER_FPS (100)
+#define MAX_PLAYER_FPS (100) // you can re-edit this.
 
 enum
 {
