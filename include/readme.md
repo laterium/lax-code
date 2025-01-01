@@ -30,8 +30,14 @@ public OnPlayerSpawn(playerid) {
     format fmt, sizeof(fmt), "%s", GetPlayerClientVersion(playerid); // example: 0.3.7
     SendClientMessage playerid, -1, fmt;
 
+    /* delay */
+    SetTimerEx("delayFPS", 1500, false, "d", playerid);
+    return 1;
+}
+
+func delayFPS(playerid) {
     if (IsConnect(playerid)) {
-        format fmt, sizeof(fmt), "%d", GetPlayerFrame(playerid));
+        format fmt, sizeof(fmt), "FPS: %d", GetPlayerFrame(playerid));
         SendClientMessage playerid, -1, fmt;
     }
     return 1;
