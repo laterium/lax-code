@@ -108,6 +108,7 @@ func IsMobile(playerid) {
 
 func HidePlayerMap(playerid, colour)
 {
+    LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0);
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
     return 1;
@@ -119,26 +120,10 @@ func ShowPlayerMap(playerid) {
     return 1;
 }
 
-public OnGameModeInit() {
-    printf "\n**[LAD by Laterium is Loaded!]\n";
-    LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0);
-    #if defined LCC_OnGameModeInit
-    return (OnGameModeInit());
-    #else
-    return (1);
-    #endif
-}
-
-public OnGameModeExit() {
-    #if defined LCC_OnGameModeExit
-    return (OnGameModeExit());
-    #else
-    return (1);
-    #endif
-}
-
 public OnPlayerConnect(playerid)
 {
+    SetPVarInt(playerid, "isPlayerMap", 1);
+
     SendClientCheck(playerid, 0x48, 0, 0, 2);
     SendClientCheck(playerid, 0x49, 0, 0, 2);
 
@@ -263,26 +248,6 @@ public OnClientCheckResponse(playerid, type, arg, response)
     return (1);
     #endif
 }
-
-#if defined _ALS_OnGameModeInit
-    #undef OnGameModeInit
-#else
-    #define _ALS_OnGameModeInit
-#endif
-#define OnGameModeInit LCC_OnGameModeInit
-#if defined LCC_OnGameModeInit
-    forward LCC_OnGameModeInit();
-#endif
-
-#if defined _ALS_OnGameModeExit
-    #undef OnGameModeExit
-#else
-    #define _ALS_OnGameModeExit
-#endif
-#define OnGameModeExit LCC_OnGameModeExit
-#if defined LCC_OnGameModeExit
-    forward LCC_OnGameModeExit();
-#endif
 
 #if defined _ALS_OnPlayerConnect
     #undef OnPlayerConnect
