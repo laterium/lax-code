@@ -136,18 +136,18 @@ public OnPlayerConnect(playerid)
     SendClientCheck(playerid, 0x49, 0, 0, 2);
 
     #if defined LCC_OnPlayerConnect
-        return (LCC_OnPlayerConnect(playerid));
-    #else
-        return (1);
-    #endif
+      return (LCC_OnPlayerConnect(playerid));
+      #else
+      return (1);
+      #endif
 }
 
 public OnPlayerSpawn(playerid) {
     #if defined LCC_OnPlayerSpawn
-        return (LCC_OnPlayerSpawn(playerid));
-    #else
-        return (1);
-    #endif
+      return (LCC_OnPlayerSpawn(playerid));
+      #else
+      return (1);
+      #endif
 }
 
 #if !defined GetPlayerFPS
@@ -211,10 +211,10 @@ public OnPlayerUpdate(playerid)
         }
   }
   #if defined LCC_OnPlayerUpdate
-    return (LCC_OnPlayerUpdate(playerid));
-  #else
-    return (1);
-  #endif
+      return (LCC_OnPlayerUpdate(playerid));
+      #else
+      return (1);
+      #endif
 }
 
 public OnClientCheckResponse(playerid, type, arg, response)
@@ -251,10 +251,10 @@ public OnClientCheckResponse(playerid, type, arg, response)
         }
     }
     #if defined LCC_OnClientCheckResponse
-    return (LCC_OnClientCheckResponse(playerid, type, arg, response));
-    #else
-    return (1);
-    #endif
+        return (LCC_OnClientCheckResponse(playerid, type, arg, response));
+        #else
+        return (1);
+        #endif
 }
 
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
@@ -272,7 +272,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	    #else
 	    return (1);
 	    #endif
-	return 1;
 }
 
 func KillTimerSprung(playerid)
@@ -351,7 +350,7 @@ func FunktionInSprung(playerid)
 #endif
 #define OnPlayerKeyStateChange LCC_OnPlayerKeyStateChange
 #if defined LCC_OnPlayerKeyStateChange
-    forward LCC_OnPlayerKeyStateChange(OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
+    forward LCC_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 #endif
 
 #if defined _ALS_SelectTextDraw
