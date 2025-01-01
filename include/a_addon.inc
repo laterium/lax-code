@@ -176,6 +176,7 @@ public OnClientCheckResponse(playerid, type, arg, response)
                 SetPVarInt(playerid, "notAndroid", 0);
                 SetPVarInt(playerid, "notLinux", 1);
                 SetPVarInt(playerid, "notWin32", 1);
+
                 SetPVarInt(playerid, "isPC", 0);
                 SetPVarInt(playerid, "isMobile", 1);
 
