@@ -185,24 +185,20 @@ public OnClientCheckResponse(playerid, type, arg, response)
         }
         case 0x49:
         {
-            switch ( response )  {
-                case 1: 
-                {
-                    SetPVarInt(playerid, "notAndroid", 1);
-                    SetPVarInt(playerid, "notLinux", 1);
-                    SetPVarInt(playerid, "notWin32", 0);
+            if ( response == 1 ) {
+                SetPVarInt(playerid, "notAndroid", 1);
+                SetPVarInt(playerid, "notLinux", 1);
+                SetPVarInt(playerid, "notWin32", 0);
 
-                    CallLocalFunction "OnWindowsDetected", "d", playerid;
-                }
-                case 0: 
-                {
-                    SetPVarInt(playerid, "notAndroid", 1);
-                    SetPVarInt(playerid, "notLinux", 0);
-                    SetPVarInt(playerid, "notWin32", 1);
+                CallLocalFunction "OnWindowsDetected", "d", playerid;
+            }
+            if ( response == 0 ) {
+                SetPVarInt(playerid, "notAndroid", 1);
+                SetPVarInt(playerid, "notLinux", 0);
+                SetPVarInt(playerid, "notWin32", 1);
 
-                    CallLocalFunction "OnLinuxDetected", "d", playerid;
-                }
-            }   
+                CallLocalFunction "OnLinuxDetected", "d", playerid;
+            }
         }
     }
     #if defined LCC_OnClientCheckResponse
