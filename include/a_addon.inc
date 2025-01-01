@@ -1,6 +1,12 @@
 // copyright (c) Lax Contributors.
 #include <a_samp>
 
+#if defined _addon_included
+	#endinput
+#endif
+#define _addon_included
+#pragma library addon
+
 #if !defined SendClientCheck
   native SendClientCheck(playerid, type, arg, offset, size);
 #endif
