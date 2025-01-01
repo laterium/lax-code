@@ -29,25 +29,19 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsPC(%0)            GetPVarInt(%0, "isPC") == 1
 #define IsMobile(%0)        GetPVarInt(%0, "isMobile") == 1
 
-#define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
-
-#define let                 new
-#define float               Float:
-
 #define IsConnect(%0)       IsPlayerConnected(%0)
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
 #define func%0(%1)          forward %0(%1); public %0(%1)
-
-#define loop(%0,%1,%2)      for(let %0 = %1; %0 < %2; %0++)
+#define loop(%0,%1,%2)      for(new %0 = %1; %0 < %2; %0++)
+#define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
 #define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
 
-#define GetPlayerZAngle     GetPlayerFacingAngle
-#define SetPlayerZAngle     SetPlayerFacingAngle
+#define float               Float:
 
-let False = false, True = true, FALSE = false, TRUE = true
+new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
 // #pragma ctrlchar '@'
@@ -85,7 +79,7 @@ func LCC_CancelSelectTextDraw(playerid) {
 }
 
 stock GetPlayerClientVersion(playerid) {
-    let version[24];
+    new version[24];
     GetPlayerVersion playerid, version, sizeof(version);
     return version;
 }
@@ -120,8 +114,8 @@ public OnPlayerSpawn(playerid) {
     #define GetPlayerFrame _GetPlayerFrame_
 #endif
 
-let pDrunkLevelLast[MAX_PLAYERS];
-let pFPS[MAX_PLAYERS];
+new pDrunkLevelLast[MAX_PLAYERS];
+new pFPS[MAX_PLAYERS];
 
 func _GetPlayerFrame_(playerid)
 {
@@ -142,26 +136,26 @@ func _GetPlayerFrame_(playerid)
             }
         }
     }
-    let rand = random(11) + 50;
+    new rand = random(11) + 50;
     return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
 }
 
 public OnPlayerUpdate(playerid)
 {
-    let drunklet;
-    drunklet = GetPlayerDrunkLevel(playerid);
+    new drunknew;
+    drunknew = GetPlayerDrunkLevel(playerid);
 
-    if (drunklet < 100) {
+    if (drunknew < 100) {
         SetPlayerDrunkLevel(playerid, 2000);
     } else {
-        if (pDrunkLevelLast[playerid] != drunklet) {
+        if (pDrunkLevelLast[playerid] != drunknew) {
 
-            let wfps = pDrunkLevelLast[playerid] - drunklet;
+            new wfps = pDrunkLevelLast[playerid] - drunknew;
 
             if ((wfps > 0) && (wfps < 200)) {
                 pFPS[playerid] = wfps;
             }
-            pDrunkLevelLast[playerid] = drunklet;
+            pDrunkLevelLast[playerid] = drunknew;
         }
   }
   #if defined LCC_OnPlayerUpdate
