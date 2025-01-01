@@ -333,27 +333,27 @@ func @FRAMEPERSECOND_(playerid) {
 public OnPlayerUpdate(playerid)
 {
 	/// <summary>
-    /// Frame-Per-Second (FPS) reset.
-    /// </summary>
-    new PlayerDrunkNew;
-    PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
+	/// Frame-Per-Second (FPS) reset.
+	/// </summary>
+	new PlayerDrunkNew;
+	PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
-    new null = 0;
+	new null = 0;
 
-    new nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
+	new nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
-    new int_drunk = 2000;
+	new int_drunk = 2000;
 
-    if ( PlayerDrunkNew < 100 ) {
+	if ( PlayerDrunkNew < 100 ) {
         SetPlayerDrunkLevel(playerid, int_drunk);
-    }
-    else {
-        if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
+	}
+	else {
+		if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
 
-            new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
-            new pfps;
+			new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
+			new pfps;
 
-            if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
+			if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
                 _PlayerFrame[playerid] = wfps;
             	pfps = wfps;
             }
