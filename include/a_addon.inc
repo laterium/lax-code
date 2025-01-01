@@ -49,6 +49,7 @@ new False = false, True = true, FALSE = false, TRUE = true
 #define MAX_PLAYER_FPS (100) // you can re-edit this.
 
 new LAX_ADDON_MAP;
+#define GetPlayerMapStatus(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
 enum
 {
@@ -108,11 +109,13 @@ func IsMobile(playerid) {
 func HidePlayerMap(playerid, colour)
 {
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
+    SetPVarInt(playerid, "isPlayerMap", 0);
     return 1;
 }
 
 func ShowPlayerMap(playerid) {
     GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
+    SetPVarInt(playerid, "isPlayerMap", 1);
     return 1;
 }
 
