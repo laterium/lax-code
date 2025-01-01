@@ -23,10 +23,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsPC(%0)            GetPVarInt(%0, "isPC") == 1
 #define IsMobile(%0)        GetPVarInt(%0, "isMobile") == 1
 
-#define IsMouse(%0)         GetPVarInt(%0, "mouseS") == 1
+#define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 
 #define let                 new
 #define float               Float:
+
+#define IsConnect(%0)       IsPlayerConnected(%0)
 
 #define func%0(%1)          forward %0(%1); public %0(%1)
 
@@ -65,13 +67,13 @@ forward OnWindowsDetected(playerid);
 
 func LCC_SelectTextDraw(playerid, colour) {
     SelectTextDraw playerid, colour;
-    SetPVarInt(playerid, "mouseS", 1);
+    SetPVarInt(playerid, "isMouse", 1);
     return 1;
 }
 
 func LCC_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
-    SetPVarInt(playerid, "mouseS", 0);
+    SetPVarInt(playerid, "isMouse", 0);
     return 1;
 }
 
