@@ -184,6 +184,32 @@ forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
 /// <summary>
+/// Is PC Checker.
+/// </summary>
+/// <param name="target">
+/// </param>
+/// <param name="IsPC"></param>
+func IsPC(playerid) {
+    if (IsLinux(playerid) || IsWindows(playerid)) {
+        return 1;
+    }
+    return 0;
+}
+
+/// <summary>
+/// Is Mobile Checker.
+/// </summary>
+/// <param name="target">
+/// </param>
+/// <param name="IsMobile"></param>
+func IsMobile(playerid) {
+    if (IsAndroid(playerid)) {
+        return 1;
+    }
+    return 0;
+}
+
+/// <summary>
 /// Mouse Checker.
 /// </summary>
 /// <param name="OnPlayerMouse"></param>
@@ -207,32 +233,6 @@ func LAX_CancelSelectTextDraw(playerid) {
 	
     CallLocalFunction "OnPlayerOffMouse", "d", playerid;
     return 1;
-}
-
-/// <summary>
-/// Is PC Checker
-/// </summary>
-/// <param name="target">
-/// </param>
-/// <param name="IsPC"></param>
-func IsPC(playerid) {
-    if (IsLinux(playerid) || IsWindows(playerid)) {
-        return 1;
-    }
-    return 0;
-}
-
-/// <summary>
-/// Is Android Checker
-/// </summary>
-/// <param name="target">
-/// </param>
-/// <param name="IsMobile"></param>
-func IsMobile(playerid) {
-    if (IsAndroid(playerid)) {
-        return 1;
-    }
-    return 0;
 }
 
 /// <summary>
