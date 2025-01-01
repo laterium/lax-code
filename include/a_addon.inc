@@ -38,6 +38,14 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define GetPlayerZAngle     GetPlayerFacingAngle
 #define SetPlayerZAngle     SetPlayerFacingAngle
 
+#if !defined SelectTextDraw
+    #define SelectTextDraw_ SelectTextDraw
+#endif
+
+#if !defined CancelSelectTextDraw
+    #define CancelSelectTextDraw_ CancelSelectTextDraw
+#endif
+
 let False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
@@ -49,23 +57,23 @@ let False = false, True = true, FALSE = false, TRUE = true
 stock SetPlayerMouse(playerid, bool:mouse) {
     switch(mouse) {
         case false: {
-            CancelSelectTextDraw playerid;
+            CancelSelectTextDraw_ playerid;
             SetPVarInt(playerid, "mouseS", 0);
         }
         case true: {
-            SelectTextDraw playerid, 0xFFFFFFFF;
+            SelectTextDraw_ playerid, 0xFFFFFFFF;
             SetPVarInt(playerid, "mouseS", 1);
         }
     }
 }
 
-stock ShowMousePlayer(playerid) {
-    SetPlayerMouse playerid, true;
+func SelectTextDraw_(playerid, colour) {
+    SetPlayerMouse(playerid, true);
     return 1;
 }
 
-stock HideMousePlayer(playerid) {
-    SetPlayerMouse playerid, false;
+func CancelSelectTextDraw_(playerid) {
+    SetPlayerMouse(playerid, false);
     return 1;
 }
 
