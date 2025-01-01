@@ -150,6 +150,7 @@ enum
     LINUX = 0, // do not edit this.
     MAX_FPS = 100, // default: 100 FPS.
 
+    IGNORE = UNKNOWN | NONE,
     ALL = MOBILE & WIN32 & LINUX
 }
 
