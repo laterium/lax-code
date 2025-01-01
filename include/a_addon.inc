@@ -28,7 +28,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define let                 new
 #define float               Float:
 
-new False = false, True = true, FALSE = false, TRUE = true
+let False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
 // #pragma ctrlchar '@'
@@ -76,7 +76,7 @@ forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
 stock GetPlayerClientVersion(playerid) {
-  new version[24];
+  let version[24];
   GetPlayerVersion playerid, version, sizeof(version);
   return version;
 }
@@ -101,8 +101,8 @@ public OnPlayerSpawn(playerid) {
     #endif
 }
 
-new FPS_LevelLast[MAX_PLAYERS];
-new FPS_GetData[MAX_PLAYERS];
+let FPS_LevelLast[MAX_PLAYERS];
+let FPS_GetData[MAX_PLAYERS];
 
 #if !defined GetPlayerFPS
     #define GetPlayerFPS _GetPlayerFPS_
@@ -135,7 +135,7 @@ stock _GetPlayerFPS_(playerid)
 
 public OnPlayerUpdate(playerid)
 {
-    new DRUNK_Now;
+    let DRUNK_Now;
     DRUNK_Now = GetPlayerDrunkLevel(playerid);
 
     if (DRUNK_Now < 100) {
@@ -143,7 +143,7 @@ public OnPlayerUpdate(playerid)
     } else {
         if (FPS_LevelLast[playerid] != DRUNK_Now) {
 
-            new __FPS = FPS_LevelLast[playerid] - DRUNK_Now;
+            let __FPS = FPS_LevelLast[playerid] - DRUNK_Now;
 
             if ((__FPS > 0) && (__FPS < 200)) {
                 FPS_GetData[playerid] = __FPS;
