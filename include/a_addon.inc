@@ -26,9 +26,6 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
 #endif
 
-#define IsPC(%0)            GetPVarInt(%0, "isPC") == 1
-#define IsMobile(%0)        GetPVarInt(%0, "isMobile") == 1
-
 #define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 
 #define IsConnect(%0)       IsPlayerConnected(%0)
@@ -48,7 +45,6 @@ new False = false, True = true, FALSE = false, TRUE = true
 enum
 {
     UNKNOWN = -1, // 0xFFFF
-    PC = 1,
     MOBILE = 0,
     WIN32 = 1,
     LINUX = 0
@@ -174,19 +170,11 @@ public OnClientCheckResponse(playerid, type, arg, response)
     {
         case 0x48:
         {
-            if ( response == PC )
-            {
-                SetPVarInt(playerid, "isPC", 1);
-                SetPVarInt(playerid, "isMobile", 0);
-            }
             if ( response == MOBILE ) 
             {
                 SetPVarInt(playerid, "notAndroid", 0);
                 SetPVarInt(playerid, "notLinux", 1);
                 SetPVarInt(playerid, "notWin32", 1);
-
-                SetPVarInt(playerid, "isPC", 0);
-                SetPVarInt(playerid, "isMobile", 1);
 
                 CallLocalFunction "OnAndroidDetected", "d", playerid;
             }
