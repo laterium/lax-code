@@ -21,6 +21,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// Android Checker
 /// Original Android Checker @fairuz.
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsAndroid"></param>
 #if !defined IsAndroid
 #define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
@@ -29,6 +31,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <summary>
 /// Linux Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsLinux"></param>
 #if !defined IsLinux
 #define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
@@ -37,6 +41,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <summary>
 /// Windows Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsWindows"></param>
 #if !defined IsWindows
 #define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
@@ -45,18 +51,24 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <summary>
 /// Mouse Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsMouse"></param>
 #define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 
 /// <summary>
 /// Connect alias Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsConnect"></param>
 #define IsConnect(%0)       IsPlayerConnected(%0)
 
 /// <summary>
 /// Spawn alias Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsSpawn"></param>
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
@@ -75,6 +87,8 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <summary>
 /// player & vehicle count alias
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="GetPlayerCounts"></param>
 /// <param name="GetVehiclCounts"></param>
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
@@ -101,15 +115,13 @@ new False = false, True = true, FALSE = false, TRUE = true
 /// <summary>
 /// Addon Map Status
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="GetPlayerMapStatus"></param>
 /// <param name="HidePlayerMap"></param>
 /// <param name="ShowPlayerMap"></param>
 new LAX_ADDON_MAP;
 #define GetPlayerMapStatus(%0) GetPVarInt(%0, "isPlayerMap") == 1
-
-#if !defined PRESSED
-#define PRESSED(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
-#endif
 
 enum
 {
@@ -155,6 +167,8 @@ func LCC_CancelSelectTextDraw(playerid) {
 /// <summary>
 /// Is PC Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsPC"></param>
 func IsPC(playerid) {
     if (IsLinux(playerid) || IsWindows(playerid)) {
@@ -166,6 +180,8 @@ func IsPC(playerid) {
 /// <summary>
 /// Is Android Checker
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="IsMobile"></param>
 func IsMobile(playerid) {
     if (IsAndroid(playerid)) {
@@ -210,47 +226,50 @@ public OnPlayerSpawn(playerid) {
       #endif
 }
 
-#if !defined GetPlayerFPS
-    #define GetPlayerFPS _GetPlayerFrame_
-#endif
-#if !defined GetPlayerFps
-    #define GetPlayerFps _GetPlayerFrame_
-#endif
-#if !defined GetPlayerFrame
-    #define GetPlayerFrame _GetPlayerFrame_
-#endif
-
 new PlayerDrunk[MAX_PLAYERS];
 new PlayerFrame[MAX_PLAYERS];
 
 /// <summary>
 /// Frame-Per-Second (FPS) Checker.
 /// </summary>
+/// <param name="target">
+/// </param>
 /// <param name="GetPlayerFPS"></param>
 /// <param name="GetPlayerFps"></param>
 /// <param name="GetPlayerFrame"></param>
-func _GetPlayerFrame_(playerid)
-{
-    SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
-    
-    if (GetPVarInt(playerid, "DrunkL") < 100)
+#if !defined GetPlayerFPS
+    func GetPlayerFPS(playerid)
     {
-        SetPlayerDrunkLevel(playerid, 2000);
-    } else {
-        if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
+        SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
+    
+        if (GetPVarInt(playerid, "DrunkL") < 100)
         {
-            SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
-            SetPVarInt(playerid, "LDrunkL", GetPVarInt(playerid, "DrunkL"));
-            
-            if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
+            SetPlayerDrunkLevel(playerid, 2000);
+        } else {
+            if (GetPVarInt(playerid, "LDrunkL") != GetPVarInt(playerid, "DrunkL"))
             {
-                return GetPVarInt(playerid, "FPS") - 1;
+                SetPVarInt(playerid, "FPS", (GetPVarInt(playerid, "LDrunkL") - GetPVarInt(playerid, "DrunkL")));
+                SetPVarInt(playerid, "LDrunkL", GetPVarInt(playerid, "DrunkL"));
+            
+                if ((GetPVarInt(playerid, "FPS") > 0) && (GetPVarInt(playerid, "FPS") < 256))
+                {
+                    return GetPVarInt(playerid, "FPS") - 1;
+                }
             }
         }
+        /// <summary>
+        /// Frame-Per-Second (FPS) reset.
+        /// </summary>
+        new rand = random(60) + 29;
+        return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
     }
-    new rand = random(60) + 29;
-    return GetPVarInt(playerid, "FPS") > 0 ? GetPVarInt(playerid, "FPS") - 1 : rand;
-}
+#endif
+#if !defined GetPlayerFps
+    #define GetPlayerFps GetPlayerFPS
+#endif
+#if !defined GetPlayerFrame
+    #define GetPlayerFrame GetPlayerFPS
+#endif
 
 public OnPlayerUpdate(playerid)
 {
