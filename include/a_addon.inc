@@ -29,12 +29,13 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsPC(%0)            GetPVarInt(%0, "isPC") == 1
 #define IsMobile(%0)        GetPVarInt(%0, "isMobile") == 1
 
+#define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
+
 #define IsConnect(%0)       IsPlayerConnected(%0)
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
 #define func%0(%1)          forward %0(%1); public %0(%1)
 #define loop(%0,%1,%2)      for(new %0 = %1; %0 < %2; %0++)
-#define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
 #define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
