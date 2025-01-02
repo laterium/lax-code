@@ -75,6 +75,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
 /// <summary>
+/// Death Checker
+/// </summary>
+/// <param name="IsDeath"></param>
+#define IsDeath(%0)	    GetPVarInt(%0, "isDeath") == 1
+
+/// <summary>
 /// Dialog alias
 /// </summary>
 /// <param name="HidePlayerDialog"></param>
@@ -424,6 +430,19 @@ public OnClientCheckResponse(playerid, \
     #endif
 }
 
+public OnPlayerStateChange(playerid, newstate, oldstate) {
+    if (newstate == PLAYER_STATE_WASTED && !IsDeath(playerid))
+	SetPVarInt(playerid, "isDeath", 1);
+    else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
+	DeletePVar(playerid, "isDeath");
+
+    #if defined OnPlayerStateChange
+        return (OnPlayerStateChange(playerid, newstate, oldstate));
+    #else
+        return (1);
+    #endif
+}
+
 /// <summary>
 /// ALS Hook.
 /// please see https://sampforum.blast.hk/showthread.php?tid=574534
@@ -466,6 +485,15 @@ public OnClientCheckResponse(playerid, \
 #define OnClientCheckResponse LAX_OnClientCheckResponse
 #if defined LAX_OnClientCheckResponse
     forward LAX_OnClientCheckResponse(playerid, type, arg, response);
+#endif
+
+#if defined _ALS_OnPlayerStateChange
+    #undef OnPlayerStateChange
+#else
+    #define _ALS_OnPlayerStateChange
+#endif
+#if defined LAX_OnPlayerStateChange
+    forward LAX_OnPlayerStateChange(playerid, newstate, oldstate);
 #endif
 
 #if defined _ALS_SelectTextDraw
