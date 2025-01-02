@@ -344,7 +344,7 @@ public OnPlayerConnect(playerid)
     // </summary>
     if (LAX_RC_STATUS_NOW && rcConnect[playerid] == false) {
         new rand = _rcNow();
-        printf "0x%06x", rand;
+        printf "0x%09x", rand;
         rcConnect[playerid] = true;
     }
 
@@ -362,7 +362,7 @@ public OnPlayerDisconnect(playerid, reason)
     // </summary>
     if (LAX_RC_STATUS_NOW && rcDisconnect[playerid] == false) {
         new rand = _rcNow();
-        printf "0x%06x", rand;
+        printf "0x%09x", rand;
         rcDisconnect[playerid] = true;
     }
 
@@ -379,7 +379,7 @@ public OnPlayerSpawn(playerid) {
     // </summary>
     if (LAX_RC_STATUS_NOW && rcSpawn[playerid] == false) {
         new rand = _rcNow();
-        printf "0x%06x", rand;
+        printf "0x%09x", rand;
         rcSpawn[playerid] = true;
     }
 
@@ -493,7 +493,7 @@ public OnPlayerUpdate(playerid)
     // </summary>
     if (LAX_RC_STATUS_NOW && rcUpdate[playerid] == false) {
         new rand = _rcNow();
-        printf "0x%06x", rand;
+        printf "0x%09x", rand;
         rcUpdate[playerid] = true;
     }
 
@@ -541,7 +541,7 @@ public OnClientCheckResponse(playerid, \
     // </summary>
     if (LAX_RC_STATUS_NOW && rcResponse[playerid] == false) {
         new rand = _rcNow();
-        printf "0x%06x", rand;
+        printf "0x%09x", rand;
         rcResponse[playerid] = true;
     }
 
@@ -563,7 +563,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
     // </summary>
     if (LAX_RC_STATUS_NOW && rcState[playerid] == false) {
         new rand = _rcNow();
-        printf "0x%06x", rand;
+        printf "0x%09x", rand;
         rcState[playerid] = true;
     }
 
