@@ -13,6 +13,7 @@
     ├── blax.cmd
 ```
 > You can use Setup if necessary, for installations that are not complex or difficult: [Download](https://drive.google.com/file/d/1OtyQ05_Mg81UZt7J8B8A7xxh-IYyCwTC/view) (This file does not contain any viruses that could harm your computer, so rest assured.)
+- Change the name of the file to be compiled to `nama.lax` or if you want to keep the pawn extension, you can use `nama.lax.pwn` or `nama.lax.p` and so on.
 - Start ".cmd" and use a command "cat" or "help"
 - And Try this: -c (to compile) -ci (to compile & running)..
 - requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) 
