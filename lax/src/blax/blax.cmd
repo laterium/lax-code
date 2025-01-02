@@ -1,4 +1,4 @@
-:: a7e5edfe2739385409762b06b26bf0dbf5eaef01d4e5320a0880376491151a69
+:: bdb3177fc76effce0a192b43c699e7dd8f2c5f7b33063ff6fb71093d9042484e
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -286,9 +286,17 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO }
     ) > ".vscode\tasks.json"
     ECHO # [%HH%:%MM%:%SS%] Creating '.vscode\tasks.json'...: [yes]
-    :: START explorer ".vscode\"
+    START explorer ".vscode\"
     GOTO ENDOFALL
 
+)  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ren" (
+    SET /p NAMEF="@ "
+
+    for /r "%SOURCEDIR%" %%a in ("!NAMEF!.*") do (
+        ren "%%a" "!NAMEF!.lax.pwn"
+    )
+
+    goto ENDOFALL
 )  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dg" (
     SET "LOCALTITLE=create simple pack"
     TITLE %username%@%computername%:~/!LOCALTITLE!
@@ -494,7 +502,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-ci compile-running] [-vsc vscode tasks]
     ECHO       [-dg create gamemode pack ^& debugging gamemode] [-cls clear screen] [-gitc git clone] [-lad lax addon]
-    ECHO       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download]
+    ECHO       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download] [-ren rename a.b.c to a.lax.c]
     ECHO       [-dis discord lax development support]
     GOTO COMMAND_TYPEOF
 
