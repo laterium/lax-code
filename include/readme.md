@@ -74,6 +74,11 @@ public OnPlayerMap(playerid) {
     return 1;
 }
 
+public OnPlayerOffMap(playerid) {
+    SendClientMessage(playerid, -1, "MAP Is Off.");
+    return 1;
+}
+
 public OnPlayerUpdate(playerid) {
     if (IsMouse(playerid)) {
         SendClientMessage(playerid, -1, "Mouse On!");
