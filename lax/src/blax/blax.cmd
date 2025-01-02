@@ -1,4 +1,4 @@
-:: 8fcb5e4cdc35d7e44411efc49e13d00e8e430570544324fe0ba4d6e95f43ad35
+:: 1ea19cdbf1cca64fc9d0899651bd1113e02b8768af284640589f1fe13799662d
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -177,6 +177,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     GOTO SERVERS
 
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -t" (
+    DEL "%SOURCEDIR%server_log.txt" /q >nul
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
     echo ~Loading..
     TIMEOUT /t 2 >nul
@@ -249,6 +250,24 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
                     ECHO    Failed? .. No .. False
                 ECHO.
         GOTO ENDOFALL
+
+        FINDSTR /i "error" server_log.txt >nul && CALL :lax_TRUE_NEXT || CALL :lax_FALSE_NEXT
+
+        :lax_TRUE_NEXT
+        <nul set /p=""
+                    call :COLOURTEXT 4X "~"
+                    ECHO    Error? .. Yes .. True
+                ECHO.
+        CALL :NEXT_FAIL_SERVERLOG
+        
+        GOTO :eof
+
+        :lax_FALSE_NEXT
+                <nul set /p=""
+                    call :COLOURTEXT a "~"
+                    ECHO    Error? .. No .. False
+                ECHO.
+        GOTO ENDOFALL
     )
 
 :FAIL_SERVERLOG
@@ -260,7 +279,15 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
             call :COLOURTEXT E6 "# End."
             ECHO.
     GOTO COMMAND_TYPEOF
-
+:NEXT_FAIL_SERVERLOG
+    TIMEOUT /t 2
+    ECHO.
+    FINDSTR /i "error" ^> server_log.txt
+    ECHO.
+    <nul set /p=""
+            call :COLOURTEXT E6 "# End."
+            ECHO.
+    GOTO COMMAND_TYPEOF
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -cls" (
     :CLEARS
     SET "LOCALTITLE=clear screen"
@@ -301,25 +328,23 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 )  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ren" (
     SET /p NAMEF="@ "
 
-    SET "FILEFOUND=0"
-
     for /r "%SOURCEDIR%" %%a in ("!NAMEF!.*") do (
-        echo Processing file: %%~nxa
         echo %%~nxa | findstr /i ".lax" >nul
         IF not ERRORLEVEL 1 (
             echo Error: File "%%~nxa" already contains .lax in its name. Skipping...
-            SET "FILEFOUND=1"
+            goto ENDOFALL
         ) ELSE (
-            ren "%%a" "!NAMEF!.lax.pwn"
+            echo %%~nxa | findstr /i ".amx" >nul
+            IF ERRORLEVEL 1 (
+                ren "%%a" "!NAMEF!.lax.pwn"
+            ) ELSE (
+                goto ENDOFALL
+            )
         )
     )
 
-    IF "%FILEFOUND%"=="1" (
-        goto ENDOFALL
-    )
-
     goto ENDOFALL
-)  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dg" (
+) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dg" (
     SET "LOCALTITLE=create simple pack"
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
@@ -523,7 +548,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-t test server] [-ci compile-running] 
-    ECHO       [-dg create scripts] [-cls clear screen] [-gitc git clone] [-lad lax addon]
+    ECHO       [-css create scripts] [-cls clear screen] [-gitc git clone] [-lad lax addon]
     ECHO       [-pcc pawncc release] [-mpg gamemode download] [-ren rename a.b.c to a.lax.c]
     ECHO       [-vsc vscode tasks] [-lax lax development] [-dis discord lax development support]
     GOTO COMMAND_TYPEOF
@@ -570,38 +595,41 @@ GOTO COMMAND_TYPEOF
     )
     SET "SOURCEFILE=false"
     FOR /r "%SOURCEDIR%" %%F in (*.lax*) DO (
-    IF EXIST "%%F" (
-        SET "SOURCEFILE=true"
-        
-        ECHO *^(%%F^)
-        ECHO.
-        
-        SET "AMX_O=%%~dpnF"
-        SET "AMX_O=!AMX_O:.lax=!%.amx"
+        IF EXIST "%%F" (
+            IF not "%%~xF"==".amx" (
+            
+            SET "SOURCEFILE=true"
+            
+            ECHO *^(%%F^)
+            ECHO.
+            
+            SET "AMX_O=%%~dpnF"
+            SET "AMX_O=!AMX_O:.lax=!%.amx"
 
-        "!_PAWNCC_!" "%%F" %ASM_OPTION_M%"!AMX_O!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
-        TYPE %METADAT_FILE%
+            "!_PAWNCC_!" "%%F" %ASM_OPTION_M%"!AMX_O!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
+            TYPE %METADAT_FILE%
 
-        IF EXIST "!AMX_O!" (
-            FOR %%A IN ("!AMX_O!") DO (
-                <nul set /p=""
-                call :COLOURTEXT a "[#]~"
-                ECHO Compilation finished at %time%..
-                call :COLOURTEXT a "[#]~"
-                ECHO Total Size [%%~zA / bytes] ^| "!AMX_O!" ^| "%ASM_OPTION_M% %ASM_OPTION_P%" 
-            )
-        ) ELSE (
-                setlocal DisableDelayedExpansion 
-                <nul set /p=""
-                    call :COLOURTEXT 4X "[#]~"
-                    ECHO Compilation failed!. ERR? .. Yes
-                    endlocal
-                    IF "%NULLSTATIC%"=="false" (
-                        GOTO ENDOFALL
-                    )
+            IF EXIST "!AMX_O!" (
+                FOR %%A IN ("!AMX_O!") DO (
+                    <nul set /p=""
+                    call :COLOURTEXT a "[#]~"
+                    ECHO Compilation finished at %time%..
+                    call :COLOURTEXT a "[#]~"
+                    ECHO Total Size [%%~zA / bytes] ^| "!AMX_O!" ^| "%ASM_OPTION_M% %ASM_OPTION_P%" 
+                )
+            ) ELSE (
+                    setlocal DisableDelayedExpansion 
+                    <nul set /p=""
+                        call :COLOURTEXT 4X "[#]~"
+                        ECHO Compilation failed!. ERR? .. Yes
+                        endlocal
+                        IF "%NULLSTATIC%"=="false" (
+                            GOTO ENDOFALL
+                        )
+                    ECHO.
+                )
                 ECHO.
             )
-            ECHO.
         )
     )
     IF not "%SOURCEFILE%"=="true" (
