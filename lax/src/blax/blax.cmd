@@ -1,4 +1,4 @@
-:: bdb3177fc76effce0a192b43c699e7dd8f2c5f7b33063ff6fb71093d9042484e
+:: 8fcb5e4cdc35d7e44411efc49e13d00e8e430570544324fe0ba4d6e95f43ad35
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -176,6 +176,15 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 
     GOTO SERVERS
 
+) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -t" (
+    TASKKILL /f /im "samp-server.exe" >nul 2>&1
+    echo ~Loading..
+    TIMEOUT /t 2 >nul
+    start /min "" "samp-server.exe"
+    TIMEOUT /t 2 >nul
+    type server_log.txt
+    TASKKILL /f /im "samp-server.exe" >nul 2>&1
+    goto ENDOFALL
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ci" (
     SET "LOCALTITLE=compile running"
     TITLE %username%@%computername%:~/!LOCALTITLE!
@@ -292,8 +301,21 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 )  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ren" (
     SET /p NAMEF="@ "
 
+    SET "FILEFOUND=0"
+
     for /r "%SOURCEDIR%" %%a in ("!NAMEF!.*") do (
-        ren "%%a" "!NAMEF!.lax.pwn"
+        echo Processing file: %%~nxa
+        echo %%~nxa | findstr /i ".lax" >nul
+        IF not ERRORLEVEL 1 (
+            echo Error: File "%%~nxa" already contains .lax in its name. Skipping...
+            SET "FILEFOUND=1"
+        ) ELSE (
+            ren "%%a" "!NAMEF!.lax.pwn"
+        )
+    )
+
+    IF "%FILEFOUND%"=="1" (
+        goto ENDOFALL
     )
 
     goto ENDOFALL
@@ -486,24 +508,24 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         git clone !URL!
     )
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -lax" (
-    START "" "https://github.com/laterium/lax-code"
+        START "" "https://github.com/laterium/lax-code"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -pcc" (
-    START "" "https://github.com/pawn-lang/compiler/releases"
+        START "" "https://github.com/pawn-lang/compiler/releases"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -mpg" (
-    START "" "https://sa-mp.app/"
+        START "" "https://sa-mp.app/"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -lad" (
-    START "" "https://github.com/laterium/lax-code/blob/main/include/a_addon.inc"
+        START "" "https://github.com/laterium/lax-code/blob/main/include/a_addon.inc"
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dis" (
-    START "" "https://dsc.gg/evercool/"
+        START "" "https://dsc.gg/evercool/"
 ) ELSE IF "%TYPEOF%"=="help" (
     SET "LOCALTITLE=help"
     TITLE %username%@%computername%:~/!LOCALTITLE!
     
     :_HELP
-    ECHO usage: cat [-c compile] [-r running server] [-ci compile-running] [-vsc vscode tasks]
-    ECHO       [-dg create gamemode pack ^& debugging gamemode] [-cls clear screen] [-gitc git clone] [-lad lax addon]
-    ECHO       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download] [-ren rename a.b.c to a.lax.c]
-    ECHO       [-dis discord lax development support]
+    ECHO usage: cat [-c compile] [-r running server] [-t test server] [-ci compile-running] 
+    ECHO       [-dg create scripts] [-cls clear screen] [-gitc git clone] [-lad lax addon]
+    ECHO       [-pcc pawncc release] [-mpg gamemode download] [-ren rename a.b.c to a.lax.c]
+    ECHO       [-vsc vscode tasks] [-lax lax development] [-dis discord lax development support]
     GOTO COMMAND_TYPEOF
 
 ) ELSE IF "%TYPEOF%"=="cat" (
