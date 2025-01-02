@@ -207,9 +207,10 @@ forward OnWindowsDetected(playerid);
 /// <summary>
 /// Hello, World.
 /// </summary>
-stock HelloWorld() {
+HelloWorld() {
     printf "\nHello, World!";
 }
+#pragma unused HelloWorld
 
 /// <summary>
 /// Is PC Checker
@@ -268,6 +269,9 @@ func LAX_CancelSelectTextDraw(playerid) {
 /// </summary>
 /// <param name="OnPlayerMap"></param>
 /// <param name="OnPlayerOffMap"></param>
+forward OnPlayerMap(playerid);
+forward OnPlayerOffMap(playerid, colour);
+
 func ShowPlayerMap(playerid) {
     GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
     SetPVarInt(playerid, "isPlayerMap", 1);
@@ -283,7 +287,7 @@ func HidePlayerMap(playerid, \
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
 	
-    CallLocalFunction "OnPlayerOffMap", "d", playerid;
+    CallLocalFunction "OnPlayerOffMap", "d", playerid, colour;
     return 1;
 }
 
