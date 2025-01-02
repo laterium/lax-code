@@ -14,7 +14,7 @@ main() {
 /// Example function to demonstrate printing a formatted string.
 /// </summary>
 func MyFunction() {
-    let name[] = "Lax";
+    new name[] = "Lax";
     printf("%s: %s", "My Name", name);
 }
 
@@ -45,7 +45,7 @@ public OnPlayerSpawn(playerid) {
     SetTimerEx("SendPlayerFPS", 1500, false, "d", playerid);
 
     // Hide player map if status is normal
-    if (GetPlayerMapStatus(playerid)) {
+    if (GetPlayerMap(playerid)) {
         HidePlayerMap(playerid, 0x000000FF); // Set map to full black
     }
     return 1;
