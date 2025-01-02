@@ -344,9 +344,7 @@ func @FRAMEPERSECOND_(playerid) {
     new int_drunk = 2000;
 
     if (GetPVarInt(playerid, "DrunkL") < 100)
-    {
         SetPlayerDrunkLevel(playerid, int_drunk);
-    }
     else {
         if (GetPVarInt(playerid, "Drunk_Level") != GetPVarInt(playerid, "DrunkL"))
         {
@@ -379,9 +377,8 @@ public OnPlayerUpdate(playerid)
 
     new int_drunk = 2000;
 
-    if ( PlayerDrunkNew < 100 ) {
+    if ( PlayerDrunkNew < 100 )
         SetPlayerDrunkLevel(playerid, int_drunk);
-    }
     else {
         if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
 
@@ -392,12 +389,10 @@ public OnPlayerUpdate(playerid)
                 _PlayerFrame[playerid] = wfps;
                 pfps = wfps;
             }
-            if (( wfps >= MAX_PLAYER_FPS )) {
+            if (( wfps >= MAX_PLAYER_FPS ))
                 _PlayerFrame[playerid] = pfps;
-            }
-            if (( pfps <= null )) {
+            if (( pfps <= null ))
                 pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
-            }
 
             CallLocalFunction "OnPlayerFPSUpdate", "ddd", playerid, pfps, nextTick;
 
