@@ -22,10 +22,7 @@ func MyFunction() {
 /// Called when a player spawns. Detects platform and device, sets a timer for FPS, and handles map visibility.
 /// </summary>
 public OnPlayerSpawn(playerid) {
-/// <summary>
-/// IsPlayerDeath Check
-/// </summary>
-    if (IsPlayerDeath(playerid)) {
+    if (IsDeath(playerid)) {
         SendClientMessage(playerid, -1, "Your is Death!");
     }
     if (IsAndroid(playerid)) {
