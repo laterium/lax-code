@@ -1,6 +1,6 @@
 ### PAWN/LAX VSCode Tasks
 ```
-For Shell
+Shell type
 ```
 ```json
 {
@@ -21,7 +21,7 @@ For Shell
 }
 ```
 ```
-For Process
+Process type
 ```
 ```json
 {
