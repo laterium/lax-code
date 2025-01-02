@@ -12,7 +12,7 @@ color 0F
 SET "SOURCEDIR=%~dp0"
 SET "NULLSTATIC=false"
 SET "LOCALTITLE=null"
-SET "_PAWNCC_=null"
+SET "_PAWNCC_="
 SET "LIB_INLOC=blax.cmd"
 
 :: HH/MM/SS format.
