@@ -5,6 +5,13 @@
 # Getting Started
 - Install from reposit "Download ZIP" or clone.
 - Paste ".cmd" to into gamemodes directory (not in an existing folder.).
+```
+-- project-dir
+    ├── gamemodes
+    ├── filterscripts
+    ├── server.cfg
+    ├── blax.cmd
+```
 - Start ".cmd" and use a command "cat" or "help"
 - And Try this: -c (to compile) -ci (to compile & running)..
 - requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) 
