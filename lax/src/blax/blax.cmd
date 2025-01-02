@@ -548,7 +548,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-t test server] [-ci compile-running] 
-    ECHO       [-css create scripts] [-cls clear screen] [-gitc git clone] [-lad lax addon]
+    ECHO       [-css create initialize] [-cls clear screen] [-gitc git clone] [-lad lax addon]
     ECHO       [-pcc pawncc release] [-mpg gamemode download] [-ren rename a.b.c to a.lax.c]
     ECHO       [-vsc vscode tasks] [-lax lax development] [-dis discord lax development support]
     GOTO COMMAND_TYPEOF
