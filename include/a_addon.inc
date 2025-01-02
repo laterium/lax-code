@@ -205,6 +205,13 @@ forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
 /// <summary>
+/// Hello, World.
+/// </summary>
+stock HelloWorld() {
+    printf "\nHello, World!";
+}
+
+/// <summary>
 /// Is PC Checker
 /// </summary>
 /// <param name="target">
