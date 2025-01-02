@@ -2,6 +2,8 @@
 
 #include <a_samp>
 
+// a_addon.inc build 1.2
+
 #pragma tabsize 4
 // Ignores warning 217 for properly indented PAWNO code
 // It's tab size is 4 and often uses 4 spaces instead, PAWNCC's is 8
