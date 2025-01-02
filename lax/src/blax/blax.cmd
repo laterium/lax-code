@@ -1,4 +1,4 @@
-:: 1ea19cdbf1cca64fc9d0899651bd1113e02b8768af284640589f1fe13799662d
+:: a1ad962dbbff522c42949cbbb115d259a2ad714c1263be710e5d7d86576d58fd
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -344,7 +344,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     )
 
     goto ENDOFALL
-) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dg" (
+) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -css" (
     SET "LOCALTITLE=create simple pack"
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
