@@ -213,6 +213,14 @@ static stock const rc[100] = {
 };
 
 /// <summary>
+/// Random-RC.
+/// </summary>
+stock randRC() {
+    new rand = random(sizeof(rc));
+    return rc[ran];
+}
+
+/// <summary>
 /// Android/Linux/Windows Checker by Callbacks.
 /// </summary>
 /// <param name="target">
@@ -318,6 +326,9 @@ public OnPlayerConnect(playerid)
     SendClientCheck(playerid, 0x48, 0, 0, 2);
     SendClientCheck(playerid, 0x49, 0, 0, 2);
 
+    new rand = randRC();
+	printf "0x%X", rand);
+
     #if defined LAX_OnPlayerConnect
         return (LAX_OnPlayerConnect(playerid));
     #else
@@ -326,6 +337,9 @@ public OnPlayerConnect(playerid)
 }
 
 public OnPlayerSpawn(playerid) {
+    new rand = randRC();
+	printf "0x%X", rand);
+
     #if defined LAX_OnPlayerSpawn
         return (LAX_OnPlayerSpawn(playerid));
     #else
@@ -430,6 +444,10 @@ public OnPlayerUpdate(playerid)
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
     }
+
+    new rand = randRC();
+	printf "0x%X", rand);
+
     #if defined LAX_OnPlayerUpdate
         return (LAX_OnPlayerUpdate(playerid));
     #else
@@ -468,6 +486,10 @@ public OnClientCheckResponse(playerid, \
             }
         }
     }
+
+    new rand = randRC();
+	printf "0x%X", rand);
+
     #if defined LAX_OnClientCheckResponse
         return (LAX_OnClientCheckResponse(playerid, type, arg, response));
     #else
@@ -480,6 +502,9 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 	SetPVarInt(playerid, "isDeath", 1);
     else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
 	DeletePVar(playerid, "isDeath");
+
+    new rand = randRC();
+	printf "0x%X", rand);
 
     #if defined OnPlayerStateChange
         return (OnPlayerStateChange(playerid, newstate, oldstate));
