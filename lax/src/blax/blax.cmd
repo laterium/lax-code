@@ -1,4 +1,4 @@
-:: 63d47f991553aae4907836766069b0ba77cf71e27ba65d0bae3186de28339902
+:: a7e5edfe2739385409762b06b26bf0dbf5eaef01d4e5320a0880376491151a69
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
