@@ -7,8 +7,8 @@
 - Paste ".cmd" to into gamemodes directory (not in an existing folder.).
 ```
 ── project-dir
-    ├── gamemodes
-    ├── filterscripts
+    ├── @gamemodes
+    ├── @filterscripts
     ├── server.cfg
     ├── blax.cmd
 ```
