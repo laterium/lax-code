@@ -69,6 +69,11 @@ public OnWindowsDetected(playerid) {
     return 1;
 }
 
+public OnPlayerMap(playerid) {
+    SendClientMessage(playerid, -1, "MAP Is On!");
+    return 1;
+}
+
 public OnPlayerUpdate(playerid) {
     if (IsMouse(playerid)) {
         SendClientMessage(playerid, -1, "Mouse On!");
