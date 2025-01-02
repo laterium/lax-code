@@ -78,7 +78,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// Death Checker
 /// </summary>
 /// <param name="IsDeath"></param>
+/// <param name="IsPlayerDeath"></param>
 #define IsDeath(%0)	    GetPVarInt(%0, "isDeath") == 1
+
+#if !defined IsPlayerDeath
+    #define IsPlayerDeath   IsDeath
+#endif
 
 /// <summary>
 /// Dialog alias
