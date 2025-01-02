@@ -78,10 +78,6 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// Dialog alias
 /// </summary>
 /// <param name="HidePlayerDialog"></param>
-
-/// <summary>
-/// do not using a function "func"
-/// </summary>
 #define HidePlayerDialog(%0) ShowPlayerDialog(%0, -1, DIALOG_STYLE_MSGBOX, "", "", "", "")
 
 /// <summary>
@@ -118,19 +114,19 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define float               Float:
 
 /// <summary>
-/// Boolean
+/// Boolean alias
 /// </summary>
 new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
 /// <summary>
-/// maximum income from player fps
+/// Maximum income from player fps
 /// default : 100 FPS
 /// </summary>
 #define MAX_PLAYER_FPS (MAX_FPS)
 
 /// <summary>
-/// Addon Map Status
+/// Map Status
 /// </summary>
 /// <param name="target">
 /// </param>
@@ -154,13 +150,13 @@ enum
 }
 
 /// <summary>
-/// Stop Player Sound from PlayerPlaySound.
+/// Stop Player Sound
 /// </summary>
 /// <param name="target">
 /// </param>
 /// <param name="PlayerStopSound"></param>
 func PlayerStopSound(playerid) {
-    return PlayerPlaySound(playerid,1098,0.0,0.0,0.0);
+    return PlayerPlaySound(playerid, 1098, 0.0, 0.0, 0.0);
 }
 
 static stock const rc[20] = {
@@ -172,7 +168,7 @@ static stock const rc[20] = {
 };
 
 /// <summary>
-/// Android/Linux/Windows Checker from Callbacks.
+/// Android/Linux/Windows Checker by Callbacks.
 /// </summary>
 /// <param name="target">
 /// </param>
@@ -184,7 +180,7 @@ forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
 
 /// <summary>
-/// Is PC Checker.
+/// Is PC Checker
 /// </summary>
 /// <param name="target">
 /// </param>
@@ -197,7 +193,7 @@ func IsPC(playerid) {
 }
 
 /// <summary>
-/// Is Mobile Checker.
+/// Is Mobile Checker
 /// </summary>
 /// <param name="target">
 /// </param>
@@ -210,7 +206,7 @@ func IsMobile(playerid) {
 }
 
 /// <summary>
-/// Mouse Checker.
+/// Mouse Checker
 /// </summary>
 /// <param name="OnPlayerMouse"></param>
 /// <param name="OnPlayerOffMouse"></param>
@@ -236,7 +232,7 @@ func LAX_CancelSelectTextDraw(playerid) {
 }
 
 /// <summary>
-/// Mouse Checker.
+/// Player Map Function
 /// </summary>
 /// <param name="OnPlayerMap"></param>
 /// <param name="OnPlayerOffMap"></param>
@@ -282,7 +278,7 @@ public OnPlayerSpawn(playerid) {
 }
 
 /// <summary>
-/// Frame-Per-Second (FPS) Checker.
+/// Frame-Per-Second (FPS) Checker
 /// </summary>
 /// <param name="target">
 /// </param>
@@ -347,7 +343,7 @@ func @FRAMEPERSECOND_(playerid) {
 public OnPlayerUpdate(playerid)
 {
     /// <summary>
-    /// Frame-Per-Second (FPS) reset.
+    /// Frame-Per-Second (FPS) refresh.
     /// </summary>
     new PlayerDrunkNew;
     PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
