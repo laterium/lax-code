@@ -1,7 +1,5 @@
 ### PAWN/LAX VSCode Tasks
-```
-Shell type
-```
+> Shell type: running the Lax program with Shell support.
 ```json
 {
   "version": "2.0.0",
@@ -20,9 +18,7 @@ Shell type
   ]
 }
 ```
-```
-Process type
-```
+> Process type: running Lax programs without Shell support.
 ```json
 {
   "version": "2.0.0",
