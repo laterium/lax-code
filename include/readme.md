@@ -112,7 +112,7 @@ public OnPlayerOffMap(playerid, colour) {
     SendClientMessage(playerid, -1, "Map is Off");
 
     new fmt[64];
-    format fmt, sizeof(fmt), "Map Colour: %X", colour;
+    format fmt, sizeof(fmt), "Map Colour: 0x%06x", colour & 0xFFFFFF;
     SendClientMessage(playerid, -1, fmt);
     return 1;
 }
