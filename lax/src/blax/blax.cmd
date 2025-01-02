@@ -273,7 +273,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO   "tasks": [
         ECHO     {
         ECHO       "label": "Run lax",
-        ECHO       "type": "shell",
+        ECHO       "type": "process",
         ECHO       "command": "${workspaceFolder}/%LIB_INLOC%",
         ECHO       "group": {
         ECHO           "kind": "build",
