@@ -15,8 +15,8 @@
 > You can use Setup if necessary, for installations that are not complex or difficult: [Download](https://drive.google.com/file/d/1OtyQ05_Mg81UZt7J8B8A7xxh-IYyCwTC/view) (This file does not contain any viruses that could harm your computer, so rest assured.)
 - [x] Rename the file to be compiled to `example.lax` or if you want to keep using the pawn extension, you can use `example.lax.pwn` or `example.lax.p` and others.
 > Start ".cmd" and use a command "cat" or "help"
->> example: -c (to compile) -ci (to compile & running)..
->>> requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) 
+>> Example: -c (to compile) -ci (to compile & running)..
+>>> Requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) 
 # Example
 ```pwn
 #include <a_samp>
