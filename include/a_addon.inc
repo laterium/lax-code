@@ -24,8 +24,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <param name="target">
 /// </param>
 /// <param name="IsAndroid"></param>
+/// <param name="IsPlayerAndroid"></param>
 #if !defined IsAndroid
     #define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
+#endif
+#if !defined IsPlayerAndroid
+    #define IsPlayerAndroid	IsAndroid
 #endif
 
 /// <summary>
@@ -34,8 +38,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <param name="target">
 /// </param>
 /// <param name="IsLinux"></param>
+/// <param name="IsPlayerLinux"></param>
 #if !defined IsLinux
     #define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
+#endif
+#if !defined IsPlayerLinux
+    #define IsPlayerLinux	IsLinux
 #endif
 
 /// <summary>
@@ -44,8 +52,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <param name="target">
 /// </param>
 /// <param name="IsWindows"></param>
+/// <param name="IsPlayerWindows"></param>
 #if !defined IsWindows
     #define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
+#endif
+#if !defined IsPlayerWindows
+    #define IsPlayerWindows	IsWindows
 #endif
 
 /// <summary>
@@ -55,8 +67,10 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// </param>
 /// <param name="IsMouse"></param>
 /// <param name="GetPlayerMouse"></param>
+/// <param name="IsPlayerMouse"></param>
 #define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
 #define GetPlayerMouse      IsMouse
+#define IsPlayerMouse	    IsMouse
 
 /// <summary>
 /// Connect alias Checker
