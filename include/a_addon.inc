@@ -217,7 +217,7 @@ static stock const rc[100] = {
 /// </summary>
 stock randRC() {
     new rand = random(sizeof(rc));
-    return rc[ran];
+    return rc[rand];
 }
 
 /// <summary>
@@ -327,7 +327,7 @@ public OnPlayerConnect(playerid)
     SendClientCheck(playerid, 0x49, 0, 0, 2);
 
     new rand = randRC();
-	printf "0x%X", rand);
+	printf "0x%X", rand;
 
     #if defined LAX_OnPlayerConnect
         return (LAX_OnPlayerConnect(playerid));
@@ -338,7 +338,7 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerSpawn(playerid) {
     new rand = randRC();
-	printf "0x%X", rand);
+	printf "0x%X", rand;
 
     #if defined LAX_OnPlayerSpawn
         return (LAX_OnPlayerSpawn(playerid));
@@ -446,7 +446,7 @@ public OnPlayerUpdate(playerid)
     }
 
     new rand = randRC();
-	printf "0x%X", rand);
+	printf "0x%X", rand;
 
     #if defined LAX_OnPlayerUpdate
         return (LAX_OnPlayerUpdate(playerid));
@@ -488,7 +488,7 @@ public OnClientCheckResponse(playerid, \
     }
 
     new rand = randRC();
-	printf "0x%X", rand);
+	printf "0x%X", rand;
 
     #if defined LAX_OnClientCheckResponse
         return (LAX_OnClientCheckResponse(playerid, type, arg, response));
@@ -504,7 +504,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 	DeletePVar(playerid, "isDeath");
 
     new rand = randRC();
-	printf "0x%X", rand);
+	printf "0x%X", rand;
 
     #if defined OnPlayerStateChange
         return (OnPlayerStateChange(playerid, newstate, oldstate));
