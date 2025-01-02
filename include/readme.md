@@ -87,4 +87,14 @@ public OnPlayerUpdate(playerid) {
     }
     return 1;
 }
+
+public OnPlayerMouse(playerid) {
+    SendClientMessage(playerid, -1, "Mouse Is On!");
+    return 1;
+}
+
+public OnPlayerOffMouse(playerid) {
+    SendClientMessage(playerid, -1, "Mouse Is Off.");
+    return 1;
+}
 ```
