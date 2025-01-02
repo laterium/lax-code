@@ -16,7 +16,7 @@
 - [x] Rename the file to be compiled to `example.lax` or if you want to keep using the pawn extension, you can use `example.lax.pwn` or `example.lax.p` and others.
 > Start ".cmd" and use a command "cat" or "help"
 >> Example: -c (to compile) -ci (to compile & running)..
->>> Requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) - 3.10.7 (Recommended)
+>>> Requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) - [3.10.7](https://github.com/pawn-lang/compiler/releases/tag/v3.10.7) (Recommended)
 # Example
 ```pwn
 #include <a_samp>
