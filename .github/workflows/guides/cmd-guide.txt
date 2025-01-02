@@ -1,4 +1,4 @@
-- bdb3177fc76effce0a192b43c699e7dd8f2c5f7b33063ff6fb71093d9042484e
+- 8fcb5e4cdc35d7e44411efc49e13d00e8e430570544324fe0ba4d6e95f43ad35
 usage: cat [-c compile] [-r running server] [-ci compile-running] [-vsc vscode tasks]
       [-dg create gamemode pack & debugging gamemode] [-cls clear screen] [-gitc git clone] [-lad lax addon]
       [-lax lax development] [-pcc pawncc release] [-mpg gamemode download] [-ren rename a.b.c to a.lax.c]
