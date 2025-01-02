@@ -263,9 +263,9 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     SET "LOCALTITLE=vscode tasks"
     TITLE %username%@%computername%:~/!LOCALTITLE!
     IF exist ".vscode" (
-        ECHO # [%HH%:%MM%:%SS%] A subdirectory or file .vscode already exists.
-        GOTO ENDOFALL
+        rmdir /s /q .vscode
     )
+:RENEW
     mkdir ".vscode"
     (
         ECHO {
@@ -286,7 +286,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO }
     ) > ".vscode\tasks.json"
     ECHO # [%HH%:%MM%:%SS%] Creating '.vscode\tasks.json'...: [yes]
-    START explorer ".vscode\"
+    :: START explorer ".vscode\"
     GOTO ENDOFALL
 
 )  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dg" (
