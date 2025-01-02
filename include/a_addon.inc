@@ -226,12 +226,12 @@ stock _rcNow() {
 /// <summary>
 /// Random-RC initialize.
 /// </summary>
-new bool:rcConnect[MAX_PLAYERS],
-	bool:rcDisconnect[MAX_PLAYERS],
-	bool:rcSpawn[MAX_PLAYERS],
-	bool:rcUpdate[MAX_PLAYERS],
-	bool:rcResponse[MAX_PLAYERS],
-	bool:rcState[MAX_PLAYERS];
+new bool:rcConnect[MAX_PLAYERS], // rc connect
+	bool:rcDisconnect[MAX_PLAYERS], // rc disconnect
+	bool:rcSpawn[MAX_PLAYERS], // rc spawn
+	bool:rcUpdate[MAX_PLAYERS], // rc update
+	bool:rcResponse[MAX_PLAYERS], // rc response
+	bool:rcState[MAX_PLAYERS]; // rc state
 
 /// <summary>
 /// Android/Linux/Windows Checker by Callbacks.
