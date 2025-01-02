@@ -6,7 +6,7 @@
 - Install from reposit "Download ZIP" or clone.
 - Paste ".cmd" to into gamemodes directory (not in an existing folder.).
 ```
--- project-dir
+── project-dir
     ├── gamemodes
     ├── filterscripts
     ├── server.cfg
