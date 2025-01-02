@@ -1,5 +1,5 @@
 # About Lax (PAWN/LAX)
-[@2.3.2](https://github.com/laterium/lax-code/blob/main/lax/src/blax/blax.cmd) - a7e5edfe2739385409762b06b26bf0dbf5eaef01d4e5320a0880376491151a69
+[@2.3.2](https://github.com/laterium/lax-code/blob/main/lax/src/blax/blax.cmd) a7e5edfe2739385409762b06b26bf0dbf5eaef01d4e5320a0880376491151a69
 ----
 **What is Lax?** Lax (PAWN/LAX) or BLax (Batch Lax) is a simple compilation tool created using only batch scripts and various perfect combinations of the Pawn Code Compiler (PAWNCC). Initially, Lax was just a compiler tool, but Laterium Contrib. (Contributors) is now focused on developing Lax into a versatile tool for both the Pawn Language Compiler and SA-MP Server Integration.
 # Getting Started
