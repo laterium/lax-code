@@ -488,6 +488,9 @@ public OnPlayerUpdate(playerid)
         }
     }
 
+    // <summary>
+    // RC Player.
+    // </summary>
     if (LAX_RC_STATUS_NOW && rcUpdate[playerid] == false) {
         new rand = _rcNow();
         printf "0x%06x", rand;
