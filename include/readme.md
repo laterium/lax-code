@@ -108,8 +108,12 @@ public OnPlayerMap(playerid) {
 /// <summary>
 /// Triggered when the player's map is disabled.
 /// </summary>
-public OnPlayerOffMap(playerid) {
+public OnPlayerOffMap(playerid, colour) {
     SendClientMessage(playerid, -1, "Map is Off");
+
+	new fmt[64];
+	format fmt, sizeof(fmt), "Map Colour: %X", colour;
+	SendClientMessage(playerid, -1, fmt);
     return 1;
 }
 
