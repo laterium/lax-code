@@ -341,11 +341,11 @@ new _PlayerFrame[MAX_PLAYERS];
 /// Frame-Per-Second (FPS) Checker from Callbacks.
 /// </summary>
 /// <param name="target">
-/// <param name="old">
 /// <param name="new">
+/// <param name="old">
 /// </param>
 /// <param name="OnPlayerFPSUpdate"></param>
-forward OnPlayerFPSUpdate(playerid, oldfps, newfps);
+forward OnPlayerFPSUpdate(playerid, newfps, oldfps);
 
 func @FRAMEPERSECOND_(playerid) {
     SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
@@ -405,7 +405,7 @@ public OnPlayerUpdate(playerid)
             if (( pfps <= null ))
                 pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
-            CallLocalFunction "OnPlayerFPSUpdate", "ddd", playerid, pfps, nextTick;
+            CallLocalFunction "OnPlayerFPSUpdate", "ddd", playerid, nextTick, pfps;
 
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
