@@ -66,7 +66,7 @@ func SendPlayerFPS(playerid) {
 /// <summary>
 /// Triggered when a player's FPS is updated. Displays old and new FPS values.
 /// </summary>
-public OnPlayerFPSUpdate(playerid, oldfps, newfps) {
+public OnPlayerFPSUpdate(playerid, newfps, oldfps) {
     new fmt[128];
     format(fmt, sizeof(fmt), "Old FPS: %d, New FPS: %d", oldfps, newfps);
     SendClientMessage(playerid, -1, fmt);
