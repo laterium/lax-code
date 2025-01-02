@@ -431,7 +431,7 @@ public OnClientCheckResponse(playerid, \
 }
 
 public OnPlayerStateChange(playerid, newstate, oldstate) {
-    if (newstate == PLAYER_STATE_WASTED && !IsDeath(playerid))
+    if (newstate == PLAYER_STATE_WASTED && GetPVarInt(playerid, "isDeath") != 1)
 	SetPVarInt(playerid, "isDeath", 1);
     else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
 	DeletePVar(playerid, "isDeath");
@@ -492,6 +492,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 #else
     #define _ALS_OnPlayerStateChange
 #endif
+#define OnPlayerStateChange LAX_OnPlayerStateChange
 #if defined LAX_OnPlayerStateChange
     forward LAX_OnPlayerStateChange(playerid, newstate, oldstate);
 #endif
