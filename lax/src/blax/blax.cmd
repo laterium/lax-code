@@ -1,4 +1,4 @@
-:: edbf35346d72640c1526672556d66d673a61a7761f953f558c7a1cabfb30b825
+
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -223,15 +223,30 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         IF exist "server_log.txt" (
             TIMEOUT /t 2
             TYPE server_log.txt
+            echo.
+               <nul set /p=""
+            call :COLOURTEXT A "# Auto Compile"
+            ECHO.
+            echo.
         ) ELSE (
             ECHO # server_log.txt not found.
         )
+        
+        :: auto compiler ::
+        FINDSTR /i "Please verify your server.cfg" server_log.txt >nul && CALL :COMPILERS_S || goto WITHEL
+        FINDSTR /i "Invalid" server_log.txt >nul && CALL :COMPILERS_S || goto WITHEL
+
+:COMPILERS_S
+    call :COMPILERS
+    goto SERVERS
+    
         ECHO.
         <nul set /p=""
                     call :COLOURTEXT a "# End."
                     ECHO.
         GOTO COMMAND_TYPEOF
     ) ELSE (
+        :WITHEL
         ECHO # [%HH%:%MM%:%SS%] Starting.. Done
 
         FINDSTR /i "failed" server_log.txt >nul && CALL :lax_TRUE || CALL :lax_FALSE
