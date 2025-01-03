@@ -1,1 +1,1 @@
-## SA-MP Addons PAWN/LAX.
+## SA-MP System PAWN/LAX (Optional).
