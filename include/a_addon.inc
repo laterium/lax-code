@@ -436,7 +436,7 @@ func @FRAMEPERSECOND_(playerid) {
     new int_drunk = 2000;
 
     if (GetPVarInt(playerid, "DrunkL") < 100)
-        SetPlayerDrunkLevel(playerid, int_drunk);
+        players::player_drunk(playerid, int_drunk);
     else {
         if (GetPVarInt(playerid, "Drunk_Level") != GetPVarInt(playerid, "DrunkL"))
         {
@@ -470,7 +470,7 @@ public OnPlayerUpdate(playerid)
     new int_drunk = 2000;
 
     if ( PlayerDrunkNew < 100 )
-        SetPlayerDrunkLevel(playerid, int_drunk);
+        players::player_drunk(playerid, int_drunk);
     else {
         if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
 
