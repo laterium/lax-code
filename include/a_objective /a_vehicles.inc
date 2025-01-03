@@ -10,7 +10,7 @@
 //        vehicles::vehicle_pos(............................format);
 //        vehicles::vehicle_angle(..........................format);
 //        vehicles::vehicle_velocity(.......................format);
-//        vehicles::vehicle_Angularvelocity(................format);
+//        vehicles::vehicle_angularvelocity(................format);
 //        vehicles::vehicle_interior(.......................format);
 //        vehicles::vehicle_virtualworld(...................format);
 //        vehicles::vehicle_color(..........................format);
@@ -37,7 +37,7 @@
     #define vehicle_pos(%0)                     SetVehiclePos(%0)
     #define vehicle_angle(%0)                   SetVehicleZAngle(%0)
     #define vehicle_velocity(%0)                SetVehicleVelocity(%0)
-    #define vehicle_Angularvelocity(%0)         SetVehicleAngularVelocity(%0)
+    #define vehicle_angularvelocity(%0)         SetVehicleAngularVelocity(%0)
     #define vehicle_interior(%0)                LinkVehicleToInterior(%0)
     #define vehicle_virtualworld(%0)            SetVehicleVirtualWorld(%0)
     #define vehicle_colour(%0)                  ChangeVehicleColor(%0)
