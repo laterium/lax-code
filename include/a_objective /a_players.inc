@@ -56,12 +56,12 @@
         textdraw::player_selecttextdraw(...do here);
         textdraw::player_canceltextdraw(...do here);
         // message
-        message::player_sendclientmsg(...do here);
-        message::player_sendclientmsgtoall(...do here);
-        message::player_messagetoplayer(...do here);
-        message::player_messagetoall(...do here);
-        message::player_messagedeath(...do here);
-        message::player_messagedeathplayer(...do here);
+        message::player_clientmsg@player(...do here);
+        message::player_clientmsgto@all(...do here);
+        message::player_messageto@player(...do here);
+        message::player_messageto@all(...do here);
+        message::player_messagedeath@player(...do here);
+        message::player_messagedeath@toplayer(...do here);
     }
 #endif
 
@@ -125,10 +125,10 @@
 #endif
 #if !defined message::
     #define message::
-    #define player_sendclientmsg(%0)         SendClientMessage(%0)
-    #define player_sendclientmsgtoall(%0)    SendClientMessageToAll(%0)
-    #define player_messagetoplayer(%0)       SendPlayerMessageToPlayer(%0)
-    #define player_messagetoall(%0)          SendPlayerMessageToAll(%0)
-    #define player_messagedeath(%0)          SendDeathMessage(%0)
-    #define player_messagedeathplayer(%0)    SendDeathMessageToPlayer(%0)
+    #define player_clientmsg@player(%0)      SendClientMessage(%0)
+    #define player_clientmsgto@all(%0)       SendClientMessageToAll(%0)
+    #define player_messageto@player(%0)      SendPlayerMessageToPlayer(%0)
+    #define player_messageto@all(%0)         SendPlayerMessageToAll(%0)
+    #define player_messagedeath@player(%0)   SendDeathMessage(%0)
+    #define player_messagedeath@toplayer(%0) SendDeathMessageToPlayer(%0)
 #endif
