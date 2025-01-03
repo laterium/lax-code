@@ -1,1 +1,1 @@
-## SA-MP PAWN/LAX Addon Objective+ | SA-MP C++ Style (BETA).
+## SA-MP PAWN/LAX Addon Objective+ | SA-MP C++ Style (BETA) | Alias functions.
