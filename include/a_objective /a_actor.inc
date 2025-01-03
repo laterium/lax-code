@@ -1,20 +1,17 @@
 #if defined example
-    /**
-     * example
-     */
-    #include "a_samp"
-    #include "a_addon"
+//    #include "a_samp"
+//    #include "a_addon"
     
-    main() {}
+//    main() {}
 
-    public OnGameModeInit() {
-        actor::actor_create(.........format);
-        actor::actor_destroy(........format);
-        actor::actor_pos(............format);
-        actor::actor_angle(..........format);
-        actor::actor_health(.........format);
-        actor::actor_invulnerable(...format);
-    }
+//    public OnGameModeInit() {
+//        actor::actor_create(.........format);
+//        actor::actor_destroy(........format);
+//        actor::actor_pos(............format);
+//        actor::actor_angle(..........format);
+//        actor::actor_health(.........format);
+//        actor::actor_invulnerable(...format);
+//    }
 #endif
 
 #if !defined actor::
