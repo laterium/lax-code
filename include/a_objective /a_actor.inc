@@ -1,6 +1,3 @@
-/// <summary>
-/// actor defined
-/// </summary>
 #if defined example
     /**
      * example
