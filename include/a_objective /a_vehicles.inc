@@ -20,6 +20,8 @@
         vehicles::vehicle_interior(...do here);
         vehicles::vehicle_color(...do here);
         vehicles::vehicle_paintjob(...do here);
+        vehicles::vehicle_addcomponent(...do here);
+        vehicles::vehicle_removecomponent(...do here);
         vehicles::vehicle_health(...do here);
         vehicles::vehicle_repair(...do here);
         vehicles::vehicle_plate(...do here);
@@ -37,6 +39,8 @@
     #define vehicle_interior(%0)         LinkVehicleToInterior(%0)
     #define vehicle_color(%0)            ChangeVehicleColor(%0)
     #define vehicle_paintjob(%0)         ChangeVehiclePaintjob(%0)
+    #define vehicle_addcomponent(%0)     AddVehicleComponent(%0)
+    #define vehicle_removecomponent(%0)  RemoveVehicleComponent(%0)
     #define vehicle_health(%0)           SetVehicleHealth(%0)
     #define vehicle_repair(%0)           RepairVehicle(%0)
     #define vehicle_plate(%0)            SetVehicleNumberPlate(%0)
