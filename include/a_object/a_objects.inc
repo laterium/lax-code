@@ -14,6 +14,7 @@
         object::obj_create(...do here);
         object::obj_destroy(...do here);
         object::obj_move(...do here);
+        object::obj_edit(..do here);
     }
 #endif
 
