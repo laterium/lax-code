@@ -66,7 +66,7 @@ func SendPlayerFPS(playerid) {
 /// <summary>
 /// Triggered when a player's FPS is updated. Displays old and new FPS values.
 /// </summary>
-public OnPlayerFrameUpdate playerid newfps, oldfps) {
+public OnPlayerFrameUpdate(playerid newfps, oldfps) {
     new fmt[128];
     format fmt, sizeof(fmt), "Old FPS: %d, New FPS: %d", oldfps, newfps;
     message::player_clientmsg@player playerid, -1, fmt);
@@ -108,7 +108,7 @@ public OnPlayerMap(playerid) {
 /// <summary>
 /// Triggered when the player's map is disabled.
 /// </summary>
-public OnPlayerEndMap playerid colour) {
+public OnPlayerEndMap(playerid, colour) {
     message::player_clientmsg@player playerid, -1, "Map is Off";
 
     new fmt[64];
