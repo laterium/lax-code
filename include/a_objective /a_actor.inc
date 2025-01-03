@@ -8,12 +8,12 @@
     main() {}
 
     public OnGameModeInit() {
-        actor::actor_create(...do here);
-        actor::actor_destroy(...do here);
-        actor::actor_pos(...do here);
-        actor::actor_angle(...do here);
-        actor::actor_health(...do here);
-        actor::actor_invulnerable(...do here);
+        actor::actor_create(...format);
+        actor::actor_destroy(...format);
+        actor::actor_pos(...format);
+        actor::actor_angle(...format);
+        actor::actor_health(...format);
+        actor::actor_invulnerable(...format);
     }
 #endif
 
