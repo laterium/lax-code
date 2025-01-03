@@ -1,9 +1,10 @@
 // Copyright (c) Laterium Contributors. All Rights Reserved.
 
 #include <a_samp>
+#include "a_objective\a_players.inc"
+#include "a_objective\a_vehicles.inc"
 #include "a_objective\a_objects.inc"
 #include "a_objective\a_actor.inc"
-#include "a_objective\a_vehicles.inc"
 
 // a_addon.inc build 1.2
 
