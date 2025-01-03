@@ -2,6 +2,7 @@
 
 #include <a_samp>
 #include "a_objective\a_objects.inc"
+#include "a_objective\a_actor.inc"
 
 // a_addon.inc build 1.2
 
