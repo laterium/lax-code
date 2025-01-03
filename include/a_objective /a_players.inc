@@ -33,6 +33,7 @@
         players::player_name(...do here);
         players::player_time(...do here);
         players::player_weather(...do here);
+        players::player_fightstyle(...do here);
     }
 #endif
 
@@ -60,4 +61,5 @@
     #define player_name(%0)         SetPlayerName(%0)
     #define player_time(%0)         SetPlayerTime(%0)
     #define player_weather(%0)      SetPlayerWeather(%0)
+    #define player_fightstyle(%0)   SetPlayerFightingStyle(%0)
 #endif
