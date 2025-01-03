@@ -15,6 +15,8 @@
         vehicles::vehicles_destroy(...do here);
         vehicles::vehicles_pos(...do here);
         vehicles::vehicle_angle(...do here);
+        vehicles::vehicle_velocity(...do here);
+        vehicles::vehicle_Angularvelocity(...do here);
         vehicles::vehicle_interior(...do here);
         vehicles::vehicle_color(...do here);
         vehicles::vehicle_health(...do here);
@@ -28,6 +30,8 @@
     #define vehicles_destroy(%0)         DestroyVehicle(%0)
     #define vehicles_pos(%0)             SetVehiclePos(%0)
     #define vehicle_angle(%0)            SetVehicleZAngle(%0)
+    #define vehicle_velocity(%0)         SetVehicleVelocity(%0)
+    #define vehicle_Angularvelocity(%0)  SetVehicleAngularVelocity(%0)
     #define vehicle_interior(%0)         LinkVehicleToInterior(%0)
     #define vehicle_color(%0)            ChangeVehicleColor(%0)
     #define vehicle_health(%0)           SetVehicleHealth(%0)
