@@ -22,6 +22,7 @@
 #endif
 forward OnClientCheckResponse(playerid, type, arg, response);
 
+// client.
 #if !defined example
     public OnPlayerSpawn(playerid)
     {
@@ -277,16 +278,7 @@ static stock const rc[100] = {
     0xdb92371d, 0x2126e970, 0x03249775, 0x04e8c90e
 };
 
-/// <summary>
-/// This macro or function is used to stop a sound played by a player.
-/// - `PlayerStopSound` stops any currently playing sound for the specified player.
-/// </summary>
-/// <param name="target">
-/// The player whose sound is being stopped.
-/// </param>
-/// <param name="PlayerStopSound">
-/// A function or macro that stops the sound for the specified player.
-/// </param>
+// sound.
 #if !defined example
     public OnPlayerConnect(playerid) {
         PlayerPlaySound(playerid, 1234, 0.0, 0.0, 0.0);
@@ -299,6 +291,17 @@ static stock const rc[100] = {
         return 1;
     }
 #endif
+
+/// <summary>
+/// This macro or function is used to stop a sound played by a player.
+/// - `PlayerStopSound` stops any currently playing sound for the specified player.
+/// </summary>
+/// <param name="target">
+/// The player whose sound is being stopped.
+/// </param>
+/// <param name="PlayerStopSound">
+/// A function or macro that stops the sound for the specified player.
+/// </param>
 func PlayerStopSound(playerid) {
     return PlayerPlaySound(playerid, 1098, 0.0, 0.0, 0.0);
 }
