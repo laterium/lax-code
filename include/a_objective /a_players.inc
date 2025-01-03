@@ -114,7 +114,7 @@
 #if !defined message::
     #define message::
     #define player_clientmsg@player(%0)      SendClientMessage(%0)
-    #define player_clientmsgto@all(%0)       SendClientMessageToAll(%0)
+    #define player_clientmsg@toall(%0)       SendClientMessageToAll(%0)
     #define player_messageto@player(%0)      SendPlayerMessageToPlayer(%0)
     #define player_messageto@all(%0)         SendPlayerMessageToAll(%0)
     #define player_messagedeath@player(%0)   SendDeathMessage(%0)
