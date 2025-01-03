@@ -23,39 +23,18 @@
 
 #if !defined object::
     #define object::
-#endif
-
-#if !defined obj_create
     #define obj_create(%0) \
         CreateObject(%0)
-#endif
-
-#if !defined obj_destroy
     #define obj_destroy(%0) \
         DestroyObject(%0)
-#endif
-
-#if !defined obj_move
     #define obj_move(%0) \
         MoveObject(%0)
-#endif
-
-#if !defined obj_stop
     #define obj_stop(%0) \
         StopObject(%0)
-#endif
-
-#if !defined obj_edit
     #define obj_edit(%0) \
         EditObject(%0)
-#endif
-
-#if !defined obj_cancel
     #define obj_cancel(%0) \
         CancelEdit(%0)
-#endif
-
-#if !defined obj_select
     #define obj_select(%0) \
         SelectObject(%0)
 #endif
