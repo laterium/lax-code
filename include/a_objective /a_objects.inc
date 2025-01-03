@@ -2,20 +2,20 @@
     /**
      * example
      */
-    #include "a_samp"
-    #include "a_addon"
+//    #include "a_samp"
+//    #include "a_addon"
     
-    main() {}
+//    main() {}
 
-    public OnGameModeInit() {
-        object::obj_create(....format);
-        object::obj_destroy(...format);
-        object::obj_move(......format);
-        object::obj_stop(......format);
-        object::obj_edit(......format);
-        object::obj_cancel(....format);
-        object::obj_select(....format);
-    }
+//    public OnGameModeInit() {
+//        object::obj_create(....format);
+//        object::obj_destroy(...format);
+//        object::obj_move(......format);
+//        object::obj_stop(......format);
+//        object::obj_edit(......format);
+//        object::obj_cancel(....format);
+//        object::obj_select(....format);
+//    }
 #endif
 
 #if !defined object::
