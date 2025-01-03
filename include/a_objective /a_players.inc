@@ -18,6 +18,8 @@
         players::player_virtualworld(...do here);
         players::player_health(...do here);
         players::player_armour(...do here);
+        players::player_team(...do here);
+        players::player_score(...do here);
     }
 #endif
 
@@ -30,5 +32,6 @@
     #define player_virtualworld(%0) SetPlayerVirtualWorld(%0)
     #define player_health(%0)       SetPlayerHealth(%0)
     #define player_armour(%0)       SetPlayerArmour(%0)
-
+    #define player_team(%0)         SetPlayerTeam(%0)
+    #define player_score(%0)        SetPlayerScore(%0)
 #endif
