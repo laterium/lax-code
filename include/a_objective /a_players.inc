@@ -24,6 +24,7 @@
         players::player_score(...do here);
         players::player_ammo(...do here);
         players::player_resetweapon(...do here);
+        players::player_armedweapon(...do here);
         players::player_drunk(...do here);
     }
 #endif
@@ -43,5 +44,6 @@
     #define player_score(%0)        SetPlayerScore(%0)
     #define player_ammo(%0)         SetPlayerAmmo(%0)
     #define player_resetweapon(%0)  ResetPlayerWeapons(%0)
+    #define player_armedweapon(%0)  SetPlayerArmedWeapon(%0)
     #define player_drunk(%0)        SetPlayerDrunkLevel(%0)
 #endif
