@@ -168,19 +168,15 @@ new False = false, True = true, FALSE = false, TRUE = true
 new LAX_ADDON_MAP;
 #define GetPlayerMap(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
-enum
-{
-    UNKNOWN = -1, // 0xFFFF
-    NONE = 0, // none
-    MOBILE = 0, // do not edit this.
-    WIN32 = 1, // do not edit this.
-    LINUX = 0, // do not edit this.
-    MAX_FPS = 100, // default: 100 FPS.
-    MAX_RC = 100, // default: 100 RC.
-    RC_STATUS = true, // default: true.
+enum {
+    MOBILE = 0, // 0x0
+    WIN32 = 1, // 0x1
+    LINUX = 0, // 0x0
+    MAX_FPS = 100, // 0x64
+    MAX_RC = 100, // 0x64
+    RC_STATUS = true, // 0x62656E6172
 
-    IGNORE = UNKNOWN | NONE,
-    ALL = MOBILE & WIN32 & LINUX
+    ALL = MOBILE & WIN32 & LINUX // 0x73656D7561
 }
 
 /// <summary>
