@@ -37,5 +37,5 @@
     #define player_team(%0)         SetPlayerTeam(%0)
     #define player_score(%0)        SetPlayerScore(%0)
     #define player_ammo(%0)         SetPlayerAmmo(%0)
-    #define player_drunk0)          SetPlayerDrunkLevel(%0)
+    #define player_drunk(%0)        SetPlayerDrunkLevel(%0)
 #endif
