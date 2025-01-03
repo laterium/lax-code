@@ -32,7 +32,7 @@
         players::player_wanted(...do here);
         players::player_name(...do here);
         players::player_time(...do here);
-
+        players::player_weather(...do here);
     }
 #endif
 
@@ -59,4 +59,5 @@
     #define player_wanted(%0)       SetPlayerWantedLevel(%0)
     #define player_name(%0)         SetPlayerName(%0)
     #define player_time(%0)         SetPlayerTime(%0)
+    #define player_weather(%0)      SetPlayerWeather(%0)
 #endif
