@@ -30,6 +30,7 @@
 //    }
 #endif
 
+// symbols..
 #define VEHICLES_OBJECTIVE(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
 
 #if !defined vehicles::
