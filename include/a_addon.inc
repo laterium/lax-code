@@ -498,19 +498,19 @@ new playerCurFrame[MAX_PLAYERS];
 forward OnPlayerFrameUpdate(playerid, newfps, oldfps);
 
 func @FRAMEPERSECOND(playerid) {
-    SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
+    SetPVarInt(playerid, "pDrunk_Level", GetPlayerpDrunk_Levelevel(playerid));
     
     new null = 0;
 
     new int_drunk = 2000;
 
-    if (GetPVarInt(playerid, "DrunkL") < 100)
+    if (GetPVarInt(playerid, "pDrunk_Level") < 100)
         players::player_drunk(playerid, int_drunk);
     else {
-        if (GetPVarInt(playerid, "Drunk_Level") != GetPVarInt(playerid, "DrunkL"))
+        if (GetPVarInt(playerid, "Drunk_Level") != GetPVarInt(playerid, "pDrunk_Level"))
         {
-            SetPVarInt(playerid, "FramePerSec", (GetPVarInt(playerid, "Drunk_Level") - GetPVarInt(playerid, "DrunkL")));
-            SetPVarInt(playerid, "Drunk_Level", GetPVarInt(playerid, "DrunkL"));
+            SetPVarInt(playerid, "FramePerSec", (GetPVarInt(playerid, "Drunk_Level") - GetPVarInt(playerid, "pDrunk_Level")));
+            SetPVarInt(playerid, "Drunk_Level", GetPVarInt(playerid, "pDrunk_Level"));
             
             if ((GetPVarInt(playerid, "FramePerSec") > null) && (GetPVarInt(playerid, "FramePerSec") < 256))
             {
@@ -530,7 +530,7 @@ public OnPlayerUpdate(playerid) {
     /// </summary>
 
     new PlayerDrunkNew;
-    PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
+    PlayerDrunkNew = GetPlayerpDrunk_Levelevel(playerid);
 
     new null = 0;
 
