@@ -37,6 +37,7 @@
         players::player_shopname(...do here);
         players::player_chatbubble(...do here);
         players::player_camerapos(...do here);
+        players::player_controllable(...do here);
         // money
         money::player_givemoney(...do here);
         money::player_resetmoney(...do here);
@@ -87,6 +88,7 @@
     #define player_shopname(%0)        SetPlayerShopName(%0)
     #define player_chatbubble(%0)      SetPlayerChatBubble(%0)
     #define player_camerapos(%0)       SetPlayerCameraPos(%0)
+    #define player_controllable(%0)    TogglePlayerControllable(%0)
 #endif
 #if !defined mapicon::
     #define mapicon::
