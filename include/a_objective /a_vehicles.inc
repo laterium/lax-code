@@ -18,6 +18,7 @@
         vehicles::vehicle_velocity(...do here);
         vehicles::vehicle_Angularvelocity(...do here);
         vehicles::vehicle_interior(...do here);
+        vehicles::vehicle_virtualworld(...do here);
         vehicles::vehicle_color(...do here);
         vehicles::vehicle_paintjob(...do here);
         vehicles::vehicle_addcomponent(...do here);
@@ -41,6 +42,7 @@
     #define vehicle_velocity(%0)         SetVehicleVelocity(%0)
     #define vehicle_Angularvelocity(%0)  SetVehicleAngularVelocity(%0)
     #define vehicle_interior(%0)         LinkVehicleToInterior(%0)
+    #define vehicle_virtualworld(%0)     SetVehicleVirtualWorld(%0)
     #define vehicle_color(%0)            ChangeVehicleColor(%0)
     #define vehicle_paintjob(%0)         ChangeVehiclePaintjob(%0)
     #define vehicle_addcomponent(%0)     AddVehicleComponent(%0)
