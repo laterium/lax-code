@@ -53,6 +53,8 @@
         // 
         players::player_selecttextdraw(...do here);
         players::player_canceltextdraw(...do here);
+        // scm
+        message::player_sendclientmsg(...do here);
     }
 #endif
 
@@ -96,4 +98,8 @@
     #define player_spectatevehicle(%0) PlayerSpectateVehicle(%0)
     #define player_selecttextdraw(%0)  SelectTextDraw(%0)
     #define player_canceltextdraw(%0)  CancelSelectTextDraw(%0)
+#endif
+#if !defined message::
+    #define message::
+    #define player_sendclientmsg(%0)   SendClientMessage(%0)
 #endif
