@@ -48,7 +48,7 @@
     #define vehicle_interior(%0)                LinkVehicleToInterior(%0)
     #define vehicle_virtualworld(%0)            SetVehicleVirtualWorld(%0)
     #define vehicle_colour(%0)                  ChangeVehicleColor(%0)
-#define vehicle_color            vehicle_colour
+    #define vehicle_color                       vehicle_colour
     #define vehicle_paintjob(%0)                ChangeVehiclePaintjob(%0)
     #define vehicle_addcomponent(%0)            AddVehicleComponent(%0)
     #define vehicle_removecomponent(%0)         RemoveVehicleComponent(%0)
