@@ -9,6 +9,8 @@
 
     public OnGameModeInit() {
         object::create(...do here);
+        object::destroy(...do here);
+        object::move(...do here);
     }
 #endif
 
