@@ -14,6 +14,7 @@
         object::obj_create(...do here);
         object::obj_destroy(...do here);
         object::obj_move(...do here);
+        object::obj_stop(...do here);
         object::obj_edit(...do here);
     }
 #endif
@@ -35,6 +36,11 @@
 #if !defined obj_move
     #define obj_move(%0) \
         MoveObject(%0)
+#endif
+
+#if !defined obj_stop
+    #define obj_stop(%0) \
+        StopObject(%0)
 #endif
 
 #if !defined obj_edit
