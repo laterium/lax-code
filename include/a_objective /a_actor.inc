@@ -1,7 +1,6 @@
 #if !defined example
-//    #include "a_samp"
-//    #include "a_addon"
-    
+//    #include "System"
+
 //    main() {}
 
 //    public OnGameModeInit() {
