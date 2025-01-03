@@ -11,9 +11,9 @@
     main() {}
 
     public OnGameModeInit() {
-        object::create(...do here);
-        object::destroy(...do here);
-        object::move(...do here);
+        object::obj_create(...do here);
+        object::obj_destroy(...do here);
+        object::obj_move(...do here);
     }
 #endif
 
@@ -21,17 +21,22 @@
     #define object::
 #endif
 
-#if !defined create
-    #define create(%0) \
+#if !defined obj_create
+    #define obj_create(%0) \
         CreateObject(%0)
 #endif
 
-#if !defined destroy
-    #define destroy(%0) \
+#if !defined obj_destroy
+    #define obj_destroy(%0) \
         DestroyObject(%0)
 #endif
 
-#if !defined move
-    #define move(%0) \
+#if !defined obj_move
+    #define obj_move(%0) \
         MoveObject(%0)
+#endif
+
+#if !defined obj_edit
+    #define obj_edit(%0) \
+        EditObject(%0)
 #endif
