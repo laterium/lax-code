@@ -481,7 +481,7 @@ new _PlayerFrame[MAX_PLAYERS];
 /// - `target` refers to the entity whose FPS is being checked.
 /// - `new` refers to the new FPS value during the update.
 /// - `old` refers to the previous FPS value before the update.
-/// - `OnFPSUpdate` is the callback function triggered when the FPS value changes.
+/// - `OnPlayerFrameUpdate` is the callback function triggered when the FPS value changes.
 /// </summary>
 /// <param name="target">
 /// The player, object, or entity whose FPS is being checked or updated.
@@ -492,10 +492,10 @@ new _PlayerFrame[MAX_PLAYERS];
 /// <param name="old">
 /// The previous FPS value before the update.
 /// </param>
-/// <param name="OnFPSUpdate">
+/// <param name="OnPlayerFrameUpdate">
 /// The callback function triggered when the FPS value changes or needs to be updated.
 /// </param>
-forward OnFPSUpdate(playerid, newfps, oldfps);
+forward OnPlayerFrameUpdate(playerid, newfps, oldfps);
 
 func @FRAMEPERSECOND(playerid) {
     SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
@@ -555,7 +555,7 @@ public OnPlayerUpdate(playerid) {
             if (( pfps <= null ))
                 pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
-            CallLocalFunction "OnFPSUpdate", "ddd", playerid, nextTick, pfps;
+            CallLocalFunction "OnPlayerFrameUpdate", "ddd", playerid, nextTick, pfps;
 
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
