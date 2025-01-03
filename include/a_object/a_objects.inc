@@ -1,15 +1,17 @@
 /// <summary>
 /// object defined
-/// example : 
-/**
-#include "a_samp"
-#include "a_addon"
+/// </summary>
+#if defined example
+    #include "a_samp"
+    #include "a_addon"
+    
+    main() {}
 
-main() {}
-public OnGameModeInit() {
-    object::create(...do here);
-}
-**/
+    public OnGameModeInit() {
+        object::create(...do here);
+    }
+#endif
+
 #if !defined object::
     #define object::
 #endif
