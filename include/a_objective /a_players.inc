@@ -31,10 +31,10 @@
         players::player_weather(...format);
         players::player_fightstyle(...format);
         players::player_velocity(...format);
-        players::player_shopname(...format);
         players::player_chatbubble(...format);
         players::player_camerapos(...format);
         players::player_controllable(...format);
+        players::player_shopname(...format);
         // money
         money::player_givemoney(...format);
         money::player_resetmoney(...format);
@@ -88,10 +88,10 @@
     #define player_weather(%0)               SetPlayerWeather(%0)
     #define player_fightstyle(%0)            SetPlayerFightingStyle(%0)
     #define player_velocity(%0)              SetPlayerVelocity(%0)
-    #define player_shopname(%0)              SetPlayerShopName(%0)
     #define player_chatbubble(%0)            SetPlayerChatBubble(%0)
     #define player_camerapos(%0)             SetPlayerCameraPos(%0)
     #define player_controllable(%0)          TogglePlayerControllable(%0)
+    #define player_shopname(%0)              SetPlayerShopName(%0)
 #endif
 #if !defined mapicon::
     #define mapicon::
