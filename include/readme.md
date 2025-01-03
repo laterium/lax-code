@@ -1,7 +1,6 @@
 ```pwn
 #include <a_samp>
 #include "a_addon"
-#include "a_object\a_objects.inc"
 
 /// <summary>
 /// Entry point of the script. Initializes the script and calls helper functions.
