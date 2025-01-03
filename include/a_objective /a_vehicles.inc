@@ -1,6 +1,3 @@
-/// <summary>
-/// vehicles defined
-/// </summary>
 #if defined example
     /**
      * example
@@ -30,7 +27,6 @@
         vehicles::vehicle_health(...do here);
         vehicles::vehicle_repair(...do here);
         vehicles::vehicle_plate(...do here);
-        // player
         vehicles::vehicle_putvehicle(...do here);
         vehicles::vehicle_removefromvehicle(...do here);
         vehicles::vehicle_remotevehiclecollisions(...do here);
