@@ -12,10 +12,10 @@
 // Ignores warning 217 for properly indented PAWNO code
 // It's tab size is 4 and often uses 4 spaces instead, PAWNCC's is 8
 
-#if defined _addon_included
+#if defined _SYS_included
     #endinput
 #endif
-#define _addon_included
+#define _SYS_included
 #pragma library addon
 
 #if !defined SendClientCheck
@@ -239,7 +239,7 @@ new False = false, True = true, FALSE = false, TRUE = true
 /// <param name="HidePlayerMap">
 /// A function that hides the map for the player.
 /// </param>
-new LAX_ADDON_MAP;
+new LAX_SYS_MAP;
 #define GetPlayerMap(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
 enum {
@@ -355,7 +355,7 @@ func LAX_CancelSelectTextDraw(playerid) {
 }
 
 func ShowPlayerMap(playerid) {
-    GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
+    GangZoneHideForPlayer(playerid, LAX_SYS_MAP);
     SetPVarInt(playerid, "isPlayerMap", 1);
     return 1;
 }
@@ -363,8 +363,8 @@ func ShowPlayerMap(playerid) {
 func HidePlayerMap(playerid, \
     colour)
 {
-    LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
-    GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
+    LAX_SYS_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
+    GangZoneShowForPlayer(playerid, LAX_SYS_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
     return 1;
 }
