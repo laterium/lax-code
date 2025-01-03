@@ -37,6 +37,11 @@
         players::player_fightstyle(...do here);
         players::player_velocity(...do here);
         players::player_shopname(...do here);
+        players::player_chatbubble(...do here);
+        // animation
+        players::player_clearanim(...do here);
+        players::player_animation(...do here);
+        players::player_specialanim(...do here);
     }
 #endif
 
@@ -68,4 +73,8 @@
     #define player_fightstyle(%0)   SetPlayerFightingStyle(%0)
     #define player_velocity(%0)     SetPlayerVelocity(%0)
     #define player_shopname(%0)     SetPlayerShopName(%0)
+    #define player_chatbubble(%0)   SetPlayerChatBubble(%0)
+    #define player_clearanim(%0)    ClearAnimations(%0)
+    #define player_animation(%0)    ApplyAnimation(%0)
+    #define player_specialanim(%0)  SetPlayerSpecialAction(%0)
 #endif
