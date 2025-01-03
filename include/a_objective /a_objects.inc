@@ -1,4 +1,4 @@
-#if defined example
+#if !defined example
 //    #include "a_samp"
 //    #include "a_addon"
     
