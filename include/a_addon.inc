@@ -1,12 +1,11 @@
 // Copyright (c) Laterium Contributors. All Rights Reserved.
 
 #include <a_samp>
+
 #include "a_objective\a_players.inc"
 #include "a_objective\a_vehicles.inc"
 #include "a_objective\a_objects.inc"
 #include "a_objective\a_actor.inc"
-
-// a_addon.inc build 1.2
 
 #pragma tabsize 4
 // Ignores warning 217 for properly indented PAWNO code
@@ -24,13 +23,19 @@
 forward OnClientCheckResponse(playerid, type, arg, response);
 
 /// <summary>
-/// Android Checker
-/// Original Android Checker @fairuz.
+/// This macro defines checks to determine if the target or player is using an Android device based on certain conditions.
+/// - `IsAndroid` checks if the target is not using Android by looking at the "notAndroid" variable.
+/// - `IsPlayerAndroid` is a shorthand that directly calls `IsAndroid` to check if the player is using an Android device.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for the Android status.
 /// </param>
-/// <param name="IsAndroid"></param>
-/// <param name="IsPlayerAndroid"></param>
+/// <param name="IsAndroid">
+/// A macro that checks if the target is not using Android by inspecting the "notAndroid" property.
+/// </param>
+/// <param name="IsPlayerAndroid">
+/// A macro alias for `IsAndroid` that checks if the player is using an Android device.
+/// </param>
 #if !defined IsAndroid
     #define IsAndroid(%0)       GetPVarInt(%0, "notAndroid") == 0
 #endif
@@ -39,12 +44,19 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 /// <summary>
-/// Linux Checker
+/// This macro defines checks to determine if the target or player is using a Linux-based system.
+/// - `IsLinux` checks if the target is using Linux by inspecting system-specific flags or properties.
+/// - `IsPlayerLinux` is a shorthand that directly calls `IsLinux` to check if the player is using a Linux device.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for the Linux system status.
 /// </param>
-/// <param name="IsLinux"></param>
-/// <param name="IsPlayerLinux"></param>
+/// <param name="IsLinux">
+/// A macro that checks if the target is using a Linux-based system.
+/// </param>
+/// <param name="IsPlayerLinux">
+/// A macro alias for `IsLinux` that checks if the player is using a Linux device.
+/// </param>
 #if !defined IsLinux
     #define IsLinux(%0)         GetPVarInt(%0, "notLinux") == 0
 #endif
@@ -53,12 +65,19 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 /// <summary>
-/// Windows Checker
+/// This macro defines checks to determine if the target or player is using a Windows-based system.
+/// - `IsWindows` checks if the target is using Windows by inspecting system-specific flags or properties.
+/// - `IsPlayerWindows` is a shorthand that directly calls `IsWindows` to check if the player is using a Windows device.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for the Windows system status.
 /// </param>
-/// <param name="IsWindows"></param>
-/// <param name="IsPlayerWindows"></param>
+/// <param name="IsWindows">
+/// A macro that checks if the target is using a Windows-based system.
+/// </param>
+/// <param name="IsPlayerWindows">
+/// A macro alias for `IsWindows` that checks if the player is using a Windows device.
+/// </param>
 #if !defined IsWindows
     #define IsWindows(%0)       GetPVarInt(%0, "notWin32") == 0
 #endif
@@ -67,38 +86,55 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 /// <summary>
-/// Mouse Checker
+/// This macro defines checks related to mouse presence or input for the target or player.
+/// - `IsMouse` checks if the target has mouse input enabled or if a mouse is present.
+/// - `IsPlayerMouse` is a shorthand that directly calls `IsMouse` to check if the player has mouse input enabled.
+/// - `GetPlayerMouse` retrieves information about the player's mouse state or input.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for mouse input or presence.
 /// </param>
-/// <param name="IsMouse"></param>
-/// <param name="GetPlayerMouse"></param>
-/// <param name="IsPlayerMouse"></param>
+/// <param name="IsMouse">
+/// A macro that checks if the target has mouse input enabled or a mouse is present.
+/// </param>
+/// <param name="IsPlayerMouse">
+/// A macro alias for `IsMouse` that checks if the player has mouse input enabled.
+/// </param>
+/// <param name="GetPlayerMouse">
+/// A function that retrieves the mouse state or input information for the player.
+/// </param>
 #define IsMouse(%0)         GetPVarInt(%0, "isMouse") == 1
-#define GetPlayerMouse      IsMouse
 #define IsPlayerMouse	    IsMouse
+#define GetPlayerMouse      IsMouse
 
 /// <summary>
-/// Connect alias Checker
+/// This macro defines checks related to the connection and spawn status of a player.
+/// - `IsConnect` checks if the player is connected by aliasing `IsPlayerConnected`.
+/// - `IsSpawn` checks if the player has spawned by aliasing `IsPlayerSpawned`.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for connection or spawn status.
 /// </param>
-/// <param name="IsConnect"></param>
+/// <param name="IsConnect">
+/// A macro alias for `IsPlayerConnected` that checks if the player is connected.
+/// </param>
+/// <param name="IsSpawn">
+/// A macro alias for `IsPlayerSpawned` that checks if the player has spawned.
+/// </param>
 #define IsConnect(%0)       IsPlayerConnected(%0)
-
-/// <summary>
-/// Spawn alias Checker
-/// </summary>
-/// <param name="target">
-/// </param>
-/// <param name="IsSpawn"></param>
 #define IsSpawn(%0)         IsPlayerSpawned(%0)
 
 /// <summary>
-/// Death Checker
+/// This macro defines checks related to the death status of a player.
+/// - `IsDeath` checks if the player is dead by inspecting their death status.
+/// - `IsPlayerDeath` is a shorthand that directly calls `IsDeath` to check if the player is dead.
 /// </summary>
-/// <param name="IsDeath"></param>
-/// <param name="IsPlayerDeath"></param>
+/// <param name="IsDeath">
+/// A macro that checks if the player is dead based on their death status.
+/// </param>
+/// <param name="IsPlayerDeath">
+/// A macro alias for `IsDeath` that checks if the player is dead.
+/// </param>
 #define IsDeath(%0)	    GetPVarInt(%0, "isDeath") == 1
 
 #if !defined IsPlayerDeath
@@ -106,16 +142,25 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 /// <summary>
-/// Dialog alias
+/// This macro defines an alias for hiding a player's dialog.
+/// - `HidePlayerDialog` is used to hide any currently displayed dialog for the player.
 /// </summary>
-/// <param name="HidePlayerDialog"></param>
+/// <param name="HidePlayerDialog">
+/// A macro that hides the player's active dialog.
+/// </param>
 #define HidePlayerDialog(%0) ShowPlayerDialog(%0, -1, DIALOG_STYLE_MSGBOX, "", "", "", "")
 
 /// <summary>
-/// function forward & public alias
+/// This macro defines aliases for function forwarding and public function declarations.
+/// - `func` is used as a general alias for forwarding function calls.
+/// - `function` is an alias for declaring functions publicly.
 /// </summary>
-/// <param name="func"></param>
-/// <param name="function"></param>
+/// <param name="func">
+/// A macro alias for forwarding function calls to other parts of the code.
+/// </param>
+/// <param name="function">
+/// A macro alias for declaring public functions that are accessible from other modules.
+/// </param>
 #define func%0(%1)          forward %0(%1); public %0(%1)
 
 #if !defined function
@@ -123,47 +168,71 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 /// <summary>
-/// looping alias
+/// This macro defines an alias for looping operations.
+/// - `loop` is used as a shorthand for iterating over a set of elements or performing repeated actions.
 /// </summary>
-/// <param name="loop"></param>
+/// <param name="loop">
+/// A macro alias used to simplify the process of looping through elements or executing repeated tasks.
+/// </param>
 #define loop(%0,%1,%2)      for(new %0 = %1; %0 < %2; %0++)
 
 /// <summary>
-/// player & vehicle count alias
+/// This macro defines aliases for getting the player and vehicle count.
+/// - `GetPlayerCounts` is used to retrieve the total number of players.
+/// - `GetVehicleCounts` is used to retrieve the total number of vehicles.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for count-related operations.
 /// </param>
-/// <param name="GetPlayerCounts"></param>
-/// <param name="GetVehiclCounts"></param>
+/// <param name="GetPlayerCounts">
+/// A macro that retrieves the total number of players currently in the game.
+/// </param>
+/// <param name="GetVehicleCounts">
+/// A macro that retrieves the total number of vehicles currently in the game.
+/// </param>
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
 #define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
 
 /// <summary>
-/// Float tags alias
+/// This defines aliases for float tags, simplifying the handling of float values in code.
+/// - It can be used to reference or manipulate float values with a predefined alias.
 /// </summary>
-/// <param name="float"></param
+/// <param name="float">
+/// A variable or value of type float that is referenced using the alias.
+/// </param>
 #define float               Float:
 
 /// <summary>
-/// Boolean alias
+/// This defines a boolean alias for simplified boolean checks.
+/// - It provides an easier way to check boolean conditions or values.
 /// </summary>
 new False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
 /// <summary>
-/// Maximum income from player fps
-/// default : 100 FPS
+/// This defines the maximum income or reward a player can earn based on their FPS (frames per second).
+/// - The default value is set to 100 FPS, meaning the maximum income is calculated for a player who is running at 100 FPS.
 /// </summary>
 #define MAX_PLAYER_FPS (MAX_FPS)
 
 /// <summary>
-/// Map Status
+/// This macro defines functions related to the player's map status.
+/// - `GetPlayerMapStatus` retrieves the current map status for the player (whether the map is visible or hidden).
+/// - `ShowPlayerMap` displays the map for the player.
+/// - `HidePlayerMap` hides the map for the player.
 /// </summary>
 /// <param name="target">
+/// The player whose map status is being checked or modified.
 /// </param>
-/// <param name="GetPlayerMapStatus"></param>
-/// <param name="ShowPlayerMap"></param>
-/// <param name="HidePlayerMap"></param>
+/// <param name="GetPlayerMapStatus">
+/// A function that retrieves the current map visibility status for the player.
+/// </param>
+/// <param name="ShowPlayerMap">
+/// A function that displays the map for the player.
+/// </param>
+/// <param name="HidePlayerMap">
+/// A function that hides the map for the player.
+/// </param>
 new LAX_ADDON_MAP;
 #define GetPlayerMap(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
@@ -203,23 +272,37 @@ static stock const rc[100] = {
 };
 
 /// <summary>
-/// Stop Player Sound
+/// This macro or function is used to stop a sound played by a player.
+/// - `PlayerStopSound` stops any currently playing sound for the specified player.
 /// </summary>
 /// <param name="target">
+/// The player whose sound is being stopped.
 /// </param>
-/// <param name="PlayerStopSound"></param>
+/// <param name="PlayerStopSound">
+/// A function or macro that stops the sound for the specified player.
+/// </param>
 func PlayerStopSound(playerid) {
     return PlayerPlaySound(playerid, 1098, 0.0, 0.0, 0.0);
 }
 
 /// <summary>
-/// Android/Linux/Windows Checker by Callbacks.
+/// This macro defines callbacks for detecting the platform (Android, Linux, or Windows) of a player.
+/// - `OnAndroidDetected` is triggered when the player is detected using an Android device.
+/// - `OnLinuxDetected` is triggered when the player is detected using a Linux system.
+/// - `OnWindowsDetected` is triggered when the player is detected using a Windows system.
 /// </summary>
 /// <param name="target">
+/// The player or entity whose platform is being checked.
 /// </param>
-/// <param name="OnAndroidDetected"></param>
-/// <param name="OnLinuxDetected"></param>
-/// <param name="OnWindowsDetected"></param>
+/// <param name="OnAndroidDetected">
+/// A callback function that is executed when the player is detected to be using an Android device.
+/// </param>
+/// <param name="OnLinuxDetected">
+/// A callback function that is executed when the player is detected to be using a Linux system.
+/// </param>
+/// <param name="OnWindowsDetected">
+/// A callback function that is executed when the player is detected to be using a Windows system.
+/// </param>
 forward OnAndroidDetected(playerid);
 forward OnLinuxDetected(playerid);
 forward OnWindowsDetected(playerid);
@@ -233,24 +316,25 @@ HelloWorld() {
 #pragma unused HelloWorld
 
 /// <summary>
-/// Is PC Checker
+/// This function checks if the player is using a PC or mobile device.
+/// - `IsPC` returns `1` if the player is on a PC (Linux or Windows), otherwise returns `0`.
+/// - `IsMobile` returns `1` if the player is using an Android device, otherwise returns `0`.
 /// </summary>
 /// <param name="target">
+/// The player whose platform is being checked.
 /// </param>
-/// <param name="IsPC"></param>
+/// <param name="IsPC">
+/// A function that checks if the player is on a PC (Linux or Windows).
+/// </param>
+/// <param name="IsMobile">
+/// A function that checks if the player is using a mobile device (Android).
+/// </param>
 func IsPC(playerid) {
     if (IsLinux(playerid) || IsWindows(playerid)) {
         return 1;
     }
     return 0;
 }
-
-/// <summary>
-/// Is Mobile Checker
-/// </summary>
-/// <param name="target">
-/// </param>
-/// <param name="IsMobile"></param>
 func IsMobile(playerid) {
     if (IsAndroid(playerid)) {
         return 1;
@@ -259,12 +343,18 @@ func IsMobile(playerid) {
 }
 
 /// <summary>
-/// Mouse Checker
+/// This macro defines functions related to mouse input or presence for players.
+/// - `OnPlayerMouse` is triggered when the player interacts with or uses the mouse.
+/// - `OnPlayerEndMouse` is triggered when the player is not interacting with the mouse or the mouse is disabled.
 /// </summary>
-/// <param name="OnPlayerMouse"></param>
-/// <param name="OnPlayerOffMouse"></param>
+/// <param name="OnPlayerMouse">
+/// A function or callback that is executed when the player interacts with the mouse or uses mouse input.
+/// </param>
+/// <param name="OnPlayerEndMouse">
+/// A function or callback that is executed when the player is not using the mouse or mouse input is disabled.
+/// </param>
 forward OnPlayerMouse(playerid);
-forward OnPlayerOffMouse(playerid);
+forward OnPlayerEndMouse(playerid);
 
 func LAX_SelectTextDraw(playerid, \
     colour)
@@ -285,12 +375,18 @@ func LAX_CancelSelectTextDraw(playerid) {
 }
 
 /// <summary>
-/// Player Map Function
+/// This macro defines functions related to player map interactions.
+/// - `OnPlayerMap` is triggered when a player enters or is on the map.
+/// - `OnPlayerEndMap` is triggered when a player leaves or is off the map.
 /// </summary>
-/// <param name="OnPlayerMap"></param>
-/// <param name="OnPlayerOffMap"></param>
+/// <param name="OnPlayerMap">
+/// A function or callback that is executed when the player enters or is within the map area.
+/// </param>
+/// <param name="OnPlayerEndMap">
+/// A function or callback that is executed when the player exits or is outside the map area.
+/// </param>
 forward OnPlayerMap(playerid);
-forward OnPlayerOffMap(playerid, colour);
+forward OnPlayerEndMap(playerid, colour);
 
 func ShowPlayerMap(playerid) {
     GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
@@ -343,18 +439,32 @@ public OnPlayerSpawn(playerid) {
 }
 
 /// <summary>
-/// Frame-Per-Second (FPS) Checker
+/// This macro defines checks related to the Frame-Per-Second (FPS) for players.
+/// - `GetPlayerFPS` retrieves the FPS value for the specified player.
+/// - `GetPlayerFps` is an alias for `GetPlayerFPS`, providing a shorthand for FPS retrieval.
+/// - `GetPlayerFrame` retrieves the current frame number or frame data associated with the player.
+/// - `GetCurrentFPS` retrieves the current frame number or frame data associated with the player.
 /// </summary>
 /// <param name="target">
+/// The player or entity to check for FPS-related information.
 /// </param>
-/// <param name="GetPlayerFPS"></param>
-/// <param name="GetPlayerFps"></param>
-/// <param name="GetPlayerFrame"></param>
+/// <param name="GetPlayerFPS">
+/// A macro that retrieves the FPS value for the specified player.
+/// </param>
+/// <param name="GetPlayerFps">
+/// A shorthand alias for `GetPlayerFPS` to retrieve the player's FPS value.
+/// </param>
+/// <param name="GetPlayerFrame">
+/// A macro that retrieves the current frame number or frame-related data for the player.
+/// </param>
+/// <param name="GetCurrentFPS">
+/// A macro that retrieves the current frame number or frame-related data for the player.
+/// </param>
 new _PlayerDrunk[MAX_PLAYERS];
 new _PlayerFrame[MAX_PLAYERS];
 
 #if !defined GetPlayerFPS
-    #define GetPlayerFPS @FRAMEPERSECOND_
+    #define GetPlayerFPS @FRAMEPERSECOND
 #endif
 #if !defined GetPlayerFps
     #define GetPlayerFps GetPlayerFPS
@@ -367,16 +477,27 @@ new _PlayerFrame[MAX_PLAYERS];
 #endif
 
 /// <summary>
-/// Frame-Per-Second (FPS) Checker from Callbacks.
+/// This macro or function checks the Frame-Per-Second (FPS) using callbacks to track updates.
+/// - `target` refers to the entity whose FPS is being checked.
+/// - `new` refers to the new FPS value during the update.
+/// - `old` refers to the previous FPS value before the update.
+/// - `OnFPSUpdate` is the callback function triggered when the FPS value changes.
 /// </summary>
 /// <param name="target">
-/// <param name="new">
-/// <param name="old">
+/// The player, object, or entity whose FPS is being checked or updated.
 /// </param>
-/// <param name="OnPlayerFPSUpdate"></param>
-forward OnPlayerFPSUpdate(playerid, newfps, oldfps);
+/// <param name="new">
+/// The new FPS value received during the update.
+/// </param>
+/// <param name="old">
+/// The previous FPS value before the update.
+/// </param>
+/// <param name="OnFPSUpdate">
+/// The callback function triggered when the FPS value changes or needs to be updated.
+/// </param>
+forward OnFPSUpdate(playerid, newfps, oldfps);
 
-func @FRAMEPERSECOND_(playerid) {
+func @FRAMEPERSECOND(playerid) {
     SetPVarInt(playerid, "DrunkL", GetPlayerDrunkLevel(playerid));
     
     new null = 0;
@@ -398,16 +519,16 @@ func @FRAMEPERSECOND_(playerid) {
         }
     }
     /// <summary>
-    /// Frame-Per-Second (FPS) reset.
+    /// This macro or function resets the Frame-Per-Second (FPS) count, typically used to restart or initialize FPS tracking.
     /// </summary>
     return GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 }
 
-public OnPlayerUpdate(playerid)
-{
+public OnPlayerUpdate(playerid) {
     /// <summary>
-    /// Frame-Per-Second (FPS) refresh.
+    /// This macro or function handles the refresh of the Frame-Per-Second (FPS) to ensure smooth gameplay or application performance.
     /// </summary>
+
     new PlayerDrunkNew;
     PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
@@ -434,7 +555,7 @@ public OnPlayerUpdate(playerid)
             if (( pfps <= null ))
                 pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
-            CallLocalFunction "OnPlayerFPSUpdate", "ddd", playerid, nextTick, pfps;
+            CallLocalFunction "OnFPSUpdate", "ddd", playerid, nextTick, pfps;
 
             _PlayerDrunk[playerid] = PlayerDrunkNew;
         }
@@ -500,8 +621,9 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 }
 
 /// <summary>
-/// ALS Hook.
-/// please see https://sampforum.blast.hk/showthread.php?tid=574534
+/// This macro defines the ALS (Advanced Login System) hook.
+/// For more information and implementation details, please refer to the following forum thread: 
+/// https://sampforum.blast.hk/showthread.php?tid=574534
 /// </summary>
 #if defined _ALS_OnPlayerConnect
     #undef OnPlayerConnect
