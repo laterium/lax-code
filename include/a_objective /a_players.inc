@@ -39,9 +39,9 @@
         players::player_shopname(...do here);
         players::player_chatbubble(...do here);
         // animation
-        players::player_clearanim(...do here);
-        players::player_animation(...do here);
-        players::player_specialanim(...do here);
+        animation::player_clearanim(...do here);
+        animation::player_animation(...do here);
+        animation::player_specialanim(...do here);
         //
         players::player_mapicon(...do here);
         players::player_removemapicon(...do here);
@@ -87,9 +87,6 @@
     #define player_velocity(%0)        SetPlayerVelocity(%0)
     #define player_shopname(%0)        SetPlayerShopName(%0)
     #define player_chatbubble(%0)      SetPlayerChatBubble(%0)
-    #define player_clearanim(%0)       ClearAnimations(%0)
-    #define player_animation(%0)       ApplyAnimation(%0)
-    #define player_specialanim(%0)     SetPlayerSpecialAction(%0)
     #define player_mapicon(%0)         SetPlayerSpecialAction(%0)
     #define player_removemapicon(%0)   RemovePlayerMapIcon(%0)
     #define player_camerapos(%0)       SetPlayerCameraPos(%0)
@@ -98,6 +95,12 @@
     #define player_spectatevehicle(%0) PlayerSpectateVehicle(%0)
     #define player_selecttextdraw(%0)  SelectTextDraw(%0)
     #define player_canceltextdraw(%0)  CancelSelectTextDraw(%0)
+#endif
+#if !defined animation::
+    #define animation::
+    #define player_clearanim(%0)       ClearAnimations(%0)
+    #define player_animation(%0)       ApplyAnimation(%0)
+    #define player_specialanim(%0)     SetPlayerSpecialAction(%0)
 #endif
 #if !defined message::
     #define message::
