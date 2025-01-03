@@ -2,6 +2,8 @@
 
 #include <a_samp>
 
+#define a_addons(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
+
 // objective.
 #include "a_objective\a_players.inc"
 #include "a_objective\a_vehicles.inc"
