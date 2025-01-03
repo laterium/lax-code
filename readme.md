@@ -14,7 +14,7 @@
 ```
 > You can use Setup if necessary, for installations that are not complex or difficult: [Download](https://drive.google.com/file/d/1bwjnROuUw3HL0prMLByLnD2XmFicxCUW/view?usp=drive_link)
 - [x] Rename the file to be compiled to `example.lax` or if you want to keep using the pawn extension, you can use `example.lax.pwn` or `example.lax.p` and others.
-> You can use command: `cat -ren` for easy rename.
+> You can use command: `cat -ren` for easy rename. or just use "./filename"
 
 > Start ".cmd" and use a command "cat" or "help"
 >> Example: -c (to compile) -ci (to compile & running)..
