@@ -286,7 +286,7 @@ static stock const rc[100] = {
         return 1;
     }
     public OnPlayerSpawn(playerid) {
-        PlayerStopSound(playerid)
+        PlayerStopSound(playerid);
 
         return 1;
     }
