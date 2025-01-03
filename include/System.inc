@@ -16,7 +16,7 @@
     #endinput
 #endif
 #define _SYS_included
-#pragma library addon
+#pragma library Systems
 
 #if !defined SendClientCheck
     native SendClientCheck(playerid, type, arg, offset, size);
