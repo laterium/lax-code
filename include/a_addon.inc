@@ -460,8 +460,8 @@ public OnPlayerSpawn(playerid) {
 /// <param name="GetCurrentFPS">
 /// A macro that retrieves the current frame number or frame-related data for the player.
 /// </param>
-new _PlayerDrunk[MAX_PLAYERS];
-new _PlayerFrame[MAX_PLAYERS];
+new playerCurDrunk[MAX_PLAYERS];
+new playerCurFrame[MAX_PLAYERS];
 
 #if !defined GetPlayerFPS
     #define GetPlayerFPS @FRAMEPERSECOND
@@ -541,23 +541,23 @@ public OnPlayerUpdate(playerid) {
     if ( PlayerDrunkNew < 100 )
         players::player_drunk(playerid, int_drunk);
     else {
-        if (_PlayerDrunk[playerid] != PlayerDrunkNew) {
+        if (playerCurDrunk[playerid] != PlayerDrunkNew) {
 
-            new wfps = _PlayerDrunk[playerid] - PlayerDrunkNew;
+            new wfps = playerCurDrunk[playerid] - PlayerDrunkNew;
             new pfps;
 
             if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
-                _PlayerFrame[playerid] = wfps;
+                playerCurFrame[playerid] = wfps;
                 pfps = wfps;
             }
             if (( wfps >= MAX_PLAYER_FPS ))
-                _PlayerFrame[playerid] = pfps;
+                playerCurFrame[playerid] = pfps;
             if (( pfps <= null ))
                 pfps = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
             CallLocalFunction "OnPlayerFrameUpdate", "ddd", playerid, nextTick, pfps;
 
-            _PlayerDrunk[playerid] = PlayerDrunkNew;
+            playerCurDrunk[playerid] = PlayerDrunkNew;
         }
     }
 
