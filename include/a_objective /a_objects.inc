@@ -15,6 +15,8 @@
 //    }
 #endif
 
+#define OBJECT_OBJECTIVE(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
+
 #if !defined object::
     #define object::
     #define obj_create(%0)     CreateObject(%0)
