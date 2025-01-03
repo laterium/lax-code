@@ -153,15 +153,6 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #endif
 
 /// <summary>
-/// This macro defines an alias for hiding a player's dialog.
-/// - `HidePlayerDialog` is used to hide any currently displayed dialog for the player.
-/// </summary>
-/// <param name="HidePlayerDialog">
-/// A macro that hides the player's active dialog.
-/// </param>
-#define HidePlayerDialog(%0) ShowPlayerDialog(%0, -1, DIALOG_STYLE_MSGBOX, "", "", "", "")
-
-/// <summary>
 /// This macro defines aliases for function forwarding and public function declarations.
 /// - `func` is used as a general alias for forwarding function calls.
 /// - `function` is an alias for declaring functions publicly.
@@ -297,28 +288,6 @@ func PlayerStopSound(playerid) {
 }
 
 /// <summary>
-/// This macro defines callbacks for detecting the platform (Android, Linux, or Windows) of a player.
-/// - `OnAndroidDetected` is triggered when the player is detected using an Android device.
-/// - `OnLinuxDetected` is triggered when the player is detected using a Linux system.
-/// - `OnWindowsDetected` is triggered when the player is detected using a Windows system.
-/// </summary>
-/// <param name="target">
-/// The player or entity whose platform is being checked.
-/// </param>
-/// <param name="OnAndroidDetected">
-/// A callback function that is executed when the player is detected to be using an Android device.
-/// </param>
-/// <param name="OnLinuxDetected">
-/// A callback function that is executed when the player is detected to be using a Linux system.
-/// </param>
-/// <param name="OnWindowsDetected">
-/// A callback function that is executed when the player is detected to be using a Windows system.
-/// </param>
-forward OnAndroidDetected(playerid);
-forward OnLinuxDetected(playerid);
-forward OnWindowsDetected(playerid);
-
-/// <summary>
 /// Hello, World.
 /// </summary>
 HelloWorld() {
@@ -353,57 +322,23 @@ func IsMobile(playerid) {
     return 0;
 }
 
-/// <summary>
-/// This macro defines functions related to mouse input or presence for players.
-/// - `OnPlayerMouse` is triggered when the player interacts with or uses the mouse.
-/// - `OnPlayerEndMouse` is triggered when the player is not interacting with the mouse or the mouse is disabled.
-/// </summary>
-/// <param name="OnPlayerMouse">
-/// A function or callback that is executed when the player interacts with the mouse or uses mouse input.
-/// </param>
-/// <param name="OnPlayerEndMouse">
-/// A function or callback that is executed when the player is not using the mouse or mouse input is disabled.
-/// </param>
-forward OnPlayerMouse(playerid);
-forward OnPlayerEndMouse(playerid);
-
 func LAX_SelectTextDraw(playerid, \
     colour)
 {
     SelectTextDraw playerid, colour;
     SetPVarInt(playerid, "isMouse", 1);
-	
-    CallLocalFunction "OnPlayerMouse", "d", playerid;
     return 1;
 }
 
 func LAX_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
     SetPVarInt(playerid, "isMouse", 0);
-	
-    CallLocalFunction "OnPlayerEndMouse", "d", playerid;
     return 1;
 }
-
-/// <summary>
-/// This macro defines functions related to player map interactions.
-/// - `OnPlayerMap` is triggered when a player enters or is on the map.
-/// - `OnPlayerEndMap` is triggered when a player leaves or is off the map.
-/// </summary>
-/// <param name="OnPlayerMap">
-/// A function or callback that is executed when the player enters or is within the map area.
-/// </param>
-/// <param name="OnPlayerEndMap">
-/// A function or callback that is executed when the player exits or is outside the map area.
-/// </param>
-forward OnPlayerMap(playerid);
-forward OnPlayerEndMap(playerid, colour);
 
 func ShowPlayerMap(playerid) {
     GangZoneHideForPlayer(playerid, LAX_ADDON_MAP);
     SetPVarInt(playerid, "isPlayerMap", 1);
-	
-    CallLocalFunction "OnPlayerMap", "d", playerid;
     return 1;
 }
 
@@ -413,8 +348,6 @@ func HidePlayerMap(playerid, \
     LAX_ADDON_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
-	
-    CallLocalFunction "OnPlayerEndMap", "d", playerid, colour;
     return 1;
 }
 
@@ -598,15 +531,11 @@ public OnClientCheckResponse(playerid, \
                 SetPVarInt(playerid, "notAndroid", 1);
                 SetPVarInt(playerid, "notLinux", 1);
                 SetPVarInt(playerid, "notWin32", 0);
-
-                CallLocalFunction "OnWindowsDetected", "d", playerid;
             }
             if ( response == LINUX ) {
                 SetPVarInt(playerid, "notAndroid", 1);
                 SetPVarInt(playerid, "notLinux", 0);
                 SetPVarInt(playerid, "notWin32", 1);
-
-                CallLocalFunction "OnLinuxDetected", "d", playerid;
             }
         }
     }
