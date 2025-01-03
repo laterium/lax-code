@@ -11,9 +11,9 @@
     main() {}
 
     public OnGameModeInit() {
-        vehicles::vehicles_create(...do here);
-        vehicles::vehicles_destroy(...do here);
-        vehicles::vehicles_pos(...do here);
+        vehicles::vehicle_create(...do here);
+        vehicles::vehicle_destroy(...do here);
+        vehicles::vehicle_pos(...do here);
         vehicles::vehicle_angle(...do here);
         vehicles::vehicle_velocity(...do here);
         vehicles::vehicle_Angularvelocity(...do here);
@@ -35,9 +35,9 @@
 
 #if !defined vehicles::
     #define vehicles::
-    #define vehicles_create(%0)          CreateVehicle(%0)
-    #define vehicles_destroy(%0)         DestroyVehicle(%0)
-    #define vehicles_pos(%0)             SetVehiclePos(%0)
+    #define vehicle_create(%0)          CreateVehicle(%0)
+    #define vehicle_destroy(%0)         DestroyVehicle(%0)
+    #define vehicle_pos(%0)             SetVehiclePos(%0)
     #define vehicle_angle(%0)            SetVehicleZAngle(%0)
     #define vehicle_velocity(%0)         SetVehicleVelocity(%0)
     #define vehicle_Angularvelocity(%0)  SetVehicleAngularVelocity(%0)
