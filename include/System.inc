@@ -182,7 +182,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 /// <param name="loop">
 /// A macro alias used to simplify the process of looping through elements or executing repeated tasks.
 /// </param>
-#define loop(%0,%1,%2)      for(new %0 = %1; %0 < %2; %0++)
+#define loop(%0,%1,%2)      for(var %0 = %1; %0 < %2; %0++)
 
 /// <summary>
 /// This macro defines aliases for getting the player and vehicle count.
@@ -205,14 +205,14 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define Symbols(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
 
 #define println	            printf // print alias.
-#define var		    new    // variable new alias.
+#define var		    new    // variable var alias.
 #define float               Float: // float tags alias.
 
 /// <summary>
 /// This defines a boolean alias for simplified boolean checks.
 /// - It provides an easier way to check boolean conditions or values.
 /// </summary>
-new False = false, True = true, FALSE = false, TRUE = true
+var False = false, True = true, FALSE = false, TRUE = true
 #pragma unused False, True, FALSE, TRUE
 
 /// <summary>
@@ -239,7 +239,7 @@ new False = false, True = true, FALSE = false, TRUE = true
 /// <param name="HidePlayerMap">
 /// A function that hides the map for the player.
 /// </param>
-new LAX_SYS_MAP;
+var LAX_SYS_MAP;
 #define GetPlayerMap(%0) GetPVarInt(%0, "isPlayerMap") == 1
 
 enum {
@@ -309,7 +309,7 @@ func PlayerStopSound(playerid) {
 /// Hello, World.
 /// </summary>
 HelloWorld() {
-    printf "\nHello, World!";
+    println "\nHello, World!";
 }
 #pragma unused HelloWorld
 
@@ -422,8 +422,8 @@ public OnPlayerSpawn(playerid) {
 /// <param name="GetCurrentFPS">
 /// A macro that retrieves the current frame number or frame-related data for the player.
 /// </param>
-new playerCurDrunk[MAX_PLAYERS];
-new playerCurFrame[MAX_PLAYERS];
+var playerCurDrunk[MAX_PLAYERS];
+var playerCurFrame[MAX_PLAYERS];
 
 #if !defined GetPlayerFPS
     #define GetPlayerFPS @FRAMEPERSECOND
@@ -441,15 +441,15 @@ new playerCurFrame[MAX_PLAYERS];
 /// <summary>
 /// This macro or function checks the Frame-Per-Second (FPS) using callbacks to track updates.
 /// - `target` refers to the entity whose FPS is being checked.
-/// - `new` refers to the new FPS value during the update.
+/// - `var` refers to the var FPS value during the update.
 /// - `old` refers to the previous FPS value before the update.
 /// - `OnPlayerFrameUpdate` is the callback function triggered when the FPS value changes.
 /// </summary>
 /// <param name="target">
 /// The player, object, or entity whose FPS is being checked or updated.
 /// </param>
-/// <param name="new">
-/// The new FPS value received during the update.
+/// <param name="var">
+/// The var FPS value received during the update.
 /// </param>
 /// <param name="old">
 /// The previous FPS value before the update.
@@ -457,14 +457,14 @@ new playerCurFrame[MAX_PLAYERS];
 /// <param name="OnPlayerFrameUpdate">
 /// The callback function triggered when the FPS value changes or needs to be updated.
 /// </param>
-forward OnPlayerFrameUpdate(playerid, newfps, oldfps);
+forward OnPlayerFrameUpdate(playerid, varfps, oldfps);
 
 func @FRAMEPERSECOND(playerid) {
     SetPVarInt(playerid, "pDrunk_Level", GetPlayerDrunkLevel(playerid));
     
-    new null = 0;
+    var null = 0;
 
-    new int_drunk = 2000;
+    var int_drunk = 2000;
 
     if (GetPVarInt(playerid, "pDrunk_Level") < 100)
         players::player_drunk(playerid, int_drunk);
@@ -491,22 +491,22 @@ public OnPlayerUpdate(playerid) {
     /// This macro or function handles the refresh of the Frame-Per-Second (FPS) to ensure smooth gameplay or application performance.
     /// </summary>
 
-    new PlayerDrunkNew;
-    PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
+    var PlayerDrunkvar;
+    PlayerDrunkvar = GetPlayerDrunkLevel(playerid);
 
-    new null = 0;
+    var null = 0;
 
-    new nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
+    var nextTick = GetPVarInt(playerid, "FramePerSec") > null ? GetPVarInt(playerid, "FramePerSec") - 1 : random(60) + 29;
 
-    new int_drunk = 2000;
+    var int_drunk = 2000;
 
-    if ( PlayerDrunkNew < 100 )
+    if ( PlayerDrunkvar < 100 )
         players::player_drunk(playerid, int_drunk);
     else {
-        if (playerCurDrunk[playerid] != PlayerDrunkNew) {
+        if (playerCurDrunk[playerid] != PlayerDrunkvar) {
 
-            new wfps = playerCurDrunk[playerid] - PlayerDrunkNew;
-            new pfps;
+            var wfps = playerCurDrunk[playerid] - PlayerDrunkvar;
+            var pfps;
 
             if (( wfps > null) && (wfps < MAX_PLAYER_FPS )) {
                 playerCurFrame[playerid] = wfps;
@@ -519,7 +519,7 @@ public OnPlayerUpdate(playerid) {
 
             CallLocalFunction "OnPlayerFrameUpdate", "ddd", playerid, nextTick, pfps;
 
-            playerCurDrunk[playerid] = PlayerDrunkNew;
+            playerCurDrunk[playerid] = PlayerDrunkvar;
         }
     }
 
@@ -565,14 +565,14 @@ public OnClientCheckResponse(playerid, \
     #endif
 }
 
-public OnPlayerStateChange(playerid, newstate, oldstate) {
-    if (newstate == PLAYER_STATE_WASTED && GetPVarInt(playerid, "isDeath") != 1)
+public OnPlayerStateChange(playerid, varstate, oldstate) {
+    if (varstate == PLAYER_STATE_WASTED && GetPVarInt(playerid, "isDeath") != 1)
 	SetPVarInt(playerid, "isDeath", 1);
-    else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
+    else if (oldstate == PLAYER_STATE_WASTED && varstate != PLAYER_STATE_WASTED)
 	DeletePVar(playerid, "isDeath");
 
     #if defined OnPlayerStateChange
-        return (OnPlayerStateChange(playerid, newstate, oldstate));
+        return (OnPlayerStateChange(playerid, varstate, oldstate));
     #else
         return (1);
     #endif
@@ -640,7 +640,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 #endif
 #define OnPlayerStateChange LAX_OnPlayerStateChange
 #if defined LAX_OnPlayerStateChange
-    forward LAX_OnPlayerStateChange(playerid, newstate, oldstate);
+    forward LAX_OnPlayerStateChange(playerid, varstate, oldstate);
 #endif
 
 #if defined _ALS_SelectTextDraw
