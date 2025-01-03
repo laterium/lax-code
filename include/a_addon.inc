@@ -22,6 +22,17 @@
 #endif
 forward OnClientCheckResponse(playerid, type, arg, response);
 
+#if defined example
+	public OnPlayerSpawn(playerid)
+	{
+	    if (IsWindows(playerid)) {
+	        SendClientMessage(playerid, -1, "Win!");
+	    } else if (IsLinux(playerid)) {
+	        SendClientMessage(playerid, -1, "Linux!");
+	    } else SendClientMessage(playerid, -1, "Android!");
+	    return 1;
+	}
+#endif
 /// <summary>
 /// This macro defines checks to determine if the target or player is using an Android device based on certain conditions.
 /// - `IsAndroid` checks if the target is not using Android by looking at the "notAndroid" variable.
