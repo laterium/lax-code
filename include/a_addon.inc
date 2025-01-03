@@ -409,7 +409,7 @@ func HidePlayerMap(playerid, \
 
 public OnPlayerConnect(playerid)
 {
-    SetPVarInt(playerid, "isPlayerMap", 1);
+    ShowPlayerMap(playerid);
 
     SendClientCheck(playerid, 0x48, 0, 0, 2);
     SendClientCheck(playerid, 0x49, 0, 0, 2);
