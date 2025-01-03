@@ -9,7 +9,7 @@ main() {}
 public OnGameModeInit() {
     object::create(...do here);
 }
-```
+**/
 #if !defined object::
     #define object::
 #endif
