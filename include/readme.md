@@ -23,7 +23,7 @@ func MyFunction() {
 /// </summary>
 public OnPlayerSpawn(playerid) {
     if (IsDeath(playerid)) {
-        message::player_clientmsg@player(playerid, -1, "Your is Death!");
+        message::player_clientmsg@player(playerid, -1, "You are Dead!");
     }
     if (IsAndroid(playerid)) {
         message::player_clientmsg@player(playerid, -1, "Platform: Android");
@@ -66,7 +66,7 @@ func SendPlayerFPS(playerid) {
 /// <summary>
 /// Triggered when a player's FPS is updated. Displays old and new FPS values.
 /// </summary>
-public OnPlayerFPSUpdate(playerid, newfps, oldfps) {
+public OnPlayerFrameUpdate(playerid, newfps, oldfps) {
     new fmt[128];
     format(fmt, sizeof(fmt), "Old FPS: %d, New FPS: %d", oldfps, newfps);
     message::player_clientmsg@player(playerid, -1, fmt);
@@ -112,7 +112,7 @@ public OnPlayerEndMap(playerid, colour) {
     message::player_clientmsg@player(playerid, -1, "Map is Off");
 
     new fmt[64];
-    format fmt, sizeof(fmt), "Map Colour: 0x%06x", colour & 0xFFFFFF;
+    format(fmt, sizeof(fmt), "Map Colour: 0x%06x", colour & 0xFFFFFF);
     message::player_clientmsg@player(playerid, -1, fmt);
     return 1;
 }
