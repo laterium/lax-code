@@ -21,6 +21,7 @@
         vehicles::vehicle_color(...do here);
         vehicles::vehicle_health(...do here);
         vehicles::vehicle_repair(...do here);
+        vehicles::vehicle_plate(...do here);
     }
 #endif
 
@@ -36,4 +37,5 @@
     #define vehicle_color(%0)            ChangeVehicleColor(%0)
     #define vehicle_health(%0)           SetVehicleHealth(%0)
     #define vehicle_repair(%0)           RepairVehicle(%0)
+    #define vehicle_plate(%0)            SetVehicleNumberPlate(%0)
 #endif
