@@ -8,28 +8,28 @@
     main() {}
 
     public OnGameModeInit() {
-        vehicles::vehicle_create(...do here);
-        vehicles::vehicle_destroy(...do here);
-        vehicles::vehicle_pos(...do here);
-        vehicles::vehicle_angle(...do here);
-        vehicles::vehicle_velocity(...do here);
-        vehicles::vehicle_Angularvelocity(...do here);
-        vehicles::vehicle_interior(...do here);
-        vehicles::vehicle_virtualworld(...do here);
-        vehicles::vehicle_color(...do here);
-        vehicles::vehicle_paintjob(...do here);
-        vehicles::vehicle_addcomponent(...do here);
-        vehicles::vehicle_removecomponent(...do here);
-        vehicles::vehicle_params(...do here);
-        vehicles::vehicle_cardoors(...do here);
-        vehicles::vehicle_carwindows(...do here);
-        vehicles::vehicle_respawn(...do here);
-        vehicles::vehicle_health(...do here);
-        vehicles::vehicle_repair(...do here);
-        vehicles::vehicle_plate(...do here);
-        vehicles::vehicle_putvehicle(...do here);
-        vehicles::vehicle_removefromvehicle(...do here);
-        vehicles::vehicle_remotevehiclecollisions(...do here);
+        vehicles::vehicle_create(...format);
+        vehicles::vehicle_destroy(...format);
+        vehicles::vehicle_pos(...format);
+        vehicles::vehicle_angle(...format);
+        vehicles::vehicle_velocity(...format);
+        vehicles::vehicle_Angularvelocity(...format);
+        vehicles::vehicle_interior(...format);
+        vehicles::vehicle_virtualworld(...format);
+        vehicles::vehicle_color(...format);
+        vehicles::vehicle_paintjob(...format);
+        vehicles::vehicle_addcomponent(...format);
+        vehicles::vehicle_removecomponent(...format);
+        vehicles::vehicle_params(...format);
+        vehicles::vehicle_cardoors(...format);
+        vehicles::vehicle_carwindows(...format);
+        vehicles::vehicle_respawn(...format);
+        vehicles::vehicle_health(...format);
+        vehicles::vehicle_repair(...format);
+        vehicles::vehicle_plate(...format);
+        vehicles::vehicle_putvehicle(...format);
+        vehicles::vehicle_removefromvehicle(...format);
+        vehicles::vehicle_remotevehiclecollisions(...format);
     }
 #endif
 
