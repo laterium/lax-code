@@ -344,6 +344,25 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     START explorer ".vscode\"
     GOTO ENDOFALL
 
+) else if "%TYPEOF:~0,2%"=="./" (
+    set NEWTYPEOF=%TYPEOF:~2%
+
+   for /r "%SOURCEDIR%" %%a in ("!NEWTYPEOF!.*") do (
+        ECHO %%~nxa | findstr /i ".lax" >nul
+        IF not ERRORLEVEL 1 (
+            ECHO Error: File "%%~nxa" already contains .lax in its name. Skipping...
+            GOTO ENDOFALL
+        ) ELSE (
+            ECHO %%~nxa | findstr /i ".amx" >nul
+            IF ERRORLEVEL 1 (
+                ren "%%a" "!NEWTYPEOF!.lax.pwn"
+            ) ELSE (
+                GOTO ENDOFALL
+            )
+        )
+    )
+    
+    GOTO ENDOFALL
 )  ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ren" (
     SET /p NAMEF="@ "
 
