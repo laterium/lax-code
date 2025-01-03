@@ -18,6 +18,7 @@
         vehicles::vehicle_interior(...do here);
         vehicles::vehicle_color(...do here);
         vehicles::vehicle_health(...do here);
+        vehicles::vehicle_repair(...do here);
     }
 #endif
 
@@ -30,4 +31,5 @@
     #define vehicle_interior(%0)         LinkVehicleToInterior(%0)
     #define vehicle_color(%0)            ChangeVehicleColor(%0)
     #define vehicle_health(%0)           SetVehicleHealth(%0)
+    #define vehicle_repair(%0)           RepairVehicle(%0)
 #endif
