@@ -35,15 +35,16 @@
 
 #if !defined vehicles::
     #define vehicles::
-    #define vehicle_create(%0)          CreateVehicle(%0)
-    #define vehicle_destroy(%0)         DestroyVehicle(%0)
-    #define vehicle_pos(%0)             SetVehiclePos(%0)
+    #define vehicle_create(%0)           CreateVehicle(%0)
+    #define vehicle_destroy(%0)          DestroyVehicle(%0)
+    #define vehicle_pos(%0)              SetVehiclePos(%0)
     #define vehicle_angle(%0)            SetVehicleZAngle(%0)
     #define vehicle_velocity(%0)         SetVehicleVelocity(%0)
     #define vehicle_Angularvelocity(%0)  SetVehicleAngularVelocity(%0)
     #define vehicle_interior(%0)         LinkVehicleToInterior(%0)
     #define vehicle_virtualworld(%0)     SetVehicleVirtualWorld(%0)
-    #define vehicle_color(%0)            ChangeVehicleColor(%0)
+    #define vehicle_colour(%0)           ChangeVehicleColor(%0)
+        #define vehicle_color            vehicle_colour
     #define vehicle_paintjob(%0)         ChangeVehiclePaintjob(%0)
     #define vehicle_addcomponent(%0)     AddVehicleComponent(%0)
     #define vehicle_removecomponent(%0)  RemoveVehicleComponent(%0)
