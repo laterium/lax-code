@@ -205,7 +205,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define Symbols(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
 
 #define println	            printf // print alias.
-#define var		    new // variable new alias.
+#define var		    new    // variable new alias.
 #define float               Float: // float tags alias.
 
 /// <summary>
