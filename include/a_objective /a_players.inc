@@ -27,7 +27,12 @@
         players::player_armedweapon(...do here);
         players::player_giveweapon(...do here);
         players::player_givemoney(...do here);
+        players::player_resetmoney(...do here);
         players::player_drunk(...do here);
+        players::player_wanted(...do here);
+        players::player_name(...do here);
+        players::player_time(...do here);
+
     }
 #endif
 
@@ -49,5 +54,9 @@
     #define player_armedweapon(%0)  SetPlayerArmedWeapon(%0)
     #define player_giveweapon(%0)   GivePlayerWeapon(%0)
     #define player_givemoney(%0)    GivePlayerMoney(%0)
+    #define player_resetmoney(%0)   ResetPlayerMoney(%0)
     #define player_drunk(%0)        SetPlayerDrunkLevel(%0)
+    #define player_wanted(%0)       SetPlayerWantedLevel(%0)
+    #define player_name(%0)         SetPlayerName(%0)
+    #define player_time(%0)         SetPlayerTime(%0)
 #endif
