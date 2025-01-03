@@ -340,6 +340,20 @@ func IsMobile(playerid) {
     return 0;
 }
 
+/********* example
+public OnPlayerCommandText(playerid, cmdtext[]) {
+    if (strcmp(cmdtext, "/mouse", true) == 0) {
+        if (GetPlayerMouse(playerid)) {
+            CancelSelectTextDraw(playerid);
+        }
+        else {
+            SelectTextDraw(playerid, 0xffffffff);
+        }
+        return 1;
+    }
+    return 0;
+}
+*********/
 func LAX_SelectTextDraw(playerid, \
     colour)
 {
