@@ -46,7 +46,7 @@ public OnPlayerSpawn(playerid) {
 
     // Hide player map if status is normal
     if (GetPlayerMap(playerid)) {
-        HidePlayerMap playerid 0x000000FF); // Set map to full black
+        HidePlayerMap playerid 0x000000FF; // Set map to full black
     }
     return 1;
 }
@@ -58,7 +58,7 @@ func SendPlayerFPS(playerid) {
     if (IsConnect(playerid)) {
         new fmt[64];
         format fmt, sizeof(fmt), "FPS: %d", GetPlayerFrame(playerid);
-        message::player_clientmsg@player playerid, -1, fmt);
+        message::player_clientmsg@player playerid, -1, fmt;
     }
     return 1;
 }
@@ -69,7 +69,7 @@ func SendPlayerFPS(playerid) {
 public OnPlayerFrameUpdate(playerid, newfps, oldfps) {
     new fmt[128];
     format fmt, sizeof(fmt), "Old FPS: %d, New FPS: %d", oldfps, newfps;
-    message::player_clientmsg@player playerid, -1, fmt);
+    message::player_clientmsg@player playerid, -1, fmt;
     return 1;
 }
 
@@ -113,7 +113,7 @@ public OnPlayerEndMap(playerid, colour) {
 
     new fmt[64];
     format fmt, sizeof(fmt), "Map Colour: 0x%06x", colour & 0xFFFFFF;
-    message::player_clientmsg@player playerid, -1, fmt);
+    message::player_clientmsg@player playerid, -1, fmt;
     return 1;
 }
 
