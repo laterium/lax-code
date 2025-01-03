@@ -20,9 +20,9 @@
         players::player_team(...format);
         players::player_score(...format);
         players::player_ammo(...format);
-        players::player_resetweapon(...format);
-        players::player_armedweapon(...format);
         players::player_giveweapon(...format);
+        players::player_armedweapon(...format);
+        players::player_resetweapon(...format);
         players::player_drunk(...format);
         players::player_wanted(...format);
         players::player_skill(...format);
@@ -77,9 +77,9 @@
     #define player_team(%0)                  SetPlayerTeam(%0)
     #define player_score(%0)                 SetPlayerScore(%0)
     #define player_ammo(%0)                  SetPlayerAmmo(%0)
-    #define player_resetweapon(%0)           ResetPlayerWeapons(%0)
-    #define player_armedweapon(%0)           SetPlayerArmedWeapon(%0)
     #define player_giveweapon(%0)            GivePlayerWeapon(%0)
+    #define player_armedweapon(%0)           SetPlayerArmedWeapon(%0)
+    #define player_resetweapon(%0)           ResetPlayerWeapons(%0)
     #define player_drunk(%0)                 SetPlayerDrunkLevel(%0)
     #define player_wanted(%0)                SetPlayerWantedLevel(%0)
     #define player_skill(%0)                 SetPlayerSkillLevel(%0)
