@@ -257,7 +257,7 @@ func LAX_CancelSelectTextDraw(playerid) {
     CancelSelectTextDraw playerid;
     SetPVarInt(playerid, "isMouse", 0);
 	
-    CallLocalFunction "OnPlayerOffMouse", "d", playerid;
+    CallLocalFunction "OnPlayerEndMouse", "d", playerid;
     return 1;
 }
 
@@ -284,7 +284,7 @@ func HidePlayerMap(playerid, \
     GangZoneShowForPlayer(playerid, LAX_ADDON_MAP, colour);
     SetPVarInt(playerid, "isPlayerMap", 0);
 	
-    CallLocalFunction "OnPlayerOffMap", "d", playerid, colour;
+    CallLocalFunction "OnPlayerEndMap", "d", playerid, colour;
     return 1;
 }
 
