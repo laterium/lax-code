@@ -161,6 +161,9 @@ GOTO :eof
 SET "OPTIONTYPEOF=cat"
 
 IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
+    
+    TASKKILL /f /im "samp-server.exe" >nul 2>&1
+
     SET "LOCALTITLE=compilers"
     TITLE %username%@%computername%:~/!LOCALTITLE!
     ECHO.
@@ -171,8 +174,6 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -r" (
     SET "LOCALTITLE=running"
     TITLE %username%@%computername%:~/!LOCALTITLE!
-
-    TASKKILL /f /im "samp-server.exe" >nul 2>&1
 
     GOTO SERVERS
 
@@ -187,6 +188,9 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
     goto ENDOFALL
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -ci" (
+    
+    TASKKILL /f /im "samp-server.exe" >nul 2>&1
+
     SET "LOCALTITLE=compile running"
     TITLE %username%@%computername%:~/!LOCALTITLE!
 
@@ -194,9 +198,6 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 
     DEL "%SOURCEDIR%server_log.txt" /q >nul
     
-    :: do not edit .. !fix the warning ::
-    TASKKILL /f /im "samp-server.exe" >nul 2>&1
-
     CALL :COMPILERS
     FINDSTR /i "error" %METADAT_FILE% >nul && ECHO. || CALL :GO_START
 
