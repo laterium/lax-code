@@ -108,7 +108,7 @@ public OnPlayerMap(playerid) {
 /// <summary>
 /// Triggered when the player's map is disabled.
 /// </summary>
-public OnPlayerOffMap(playerid, colour) {
+public OnPlayerEndMap(playerid, colour) {
     message::player_clientmsg@player(playerid, -1, "Map is Off");
 
     new fmt[64];
@@ -140,7 +140,7 @@ public OnPlayerMouse(playerid) {
 /// <summary>
 /// Triggered when the player disables mouse input.
 /// </summary>
-public OnPlayerOffMouse(playerid) {
+public OnPlayerEndMouse(playerid) {
     message::player_clientmsg@player(playerid, -1, "Mouse is Off");
     return 1;
 }
