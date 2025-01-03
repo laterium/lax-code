@@ -1,5 +1,15 @@
-#include "a_addon.inc"
+/// <summary>
+/// object defined
+/// example : 
+/**
+#include "a_samp"
+#include "a_addon"
 
+main() {}
+public OnGameModeInit() {
+    object::create(...do here);
+}
+```
 #if !defined object::
     #define object::
 #endif
