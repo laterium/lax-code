@@ -1,6 +1,3 @@
-/// <summary>
-/// object defined
-/// </summary>
 #if defined example
     /**
      * example
