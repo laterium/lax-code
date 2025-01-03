@@ -498,7 +498,7 @@ new playerCurFrame[MAX_PLAYERS];
 forward OnPlayerFrameUpdate(playerid, newfps, oldfps);
 
 func @FRAMEPERSECOND(playerid) {
-    SetPVarInt(playerid, "pDrunk_Level", GetPlayerpDrunk_Levelevel(playerid));
+    SetPVarInt(playerid, "pDrunk_Level", GetPlayerDrunkLevel(playerid));
     
     new null = 0;
 
@@ -530,7 +530,7 @@ public OnPlayerUpdate(playerid) {
     /// </summary>
 
     new PlayerDrunkNew;
-    PlayerDrunkNew = GetPlayerpDrunk_Levelevel(playerid);
+    PlayerDrunkNew = GetPlayerDrunkLevel(playerid);
 
     new null = 0;
 
