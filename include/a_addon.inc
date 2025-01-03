@@ -27,9 +27,13 @@ forward OnClientCheckResponse(playerid, type, arg, response);
     {
         if (IsWindows(playerid)) {
             SendClientMessage(playerid, -1, "Win!");
-        } else if (IsLinux(playerid)) {
-        SendClientMessage(playerid, -1, "Linux!");
-        } else SendClientMessage(playerid, -1, "Android!");
+        }
+	else if (IsLinux(playerid)) {
+            SendClientMessage(playerid, -1, "Linux!");
+        }
+	else if (IsAndroid(playerid)) {
+            SendClientMessage(playerid, -1, "Android!");
+	}
         return 1;
     }
 #endif
