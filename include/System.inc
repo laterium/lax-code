@@ -343,13 +343,13 @@ func IsMobile(playerid) {
 func LAX_SelectTextDraw(playerid, \
     colour)
 {
-    SelectTextDraw playerid, colour;
+    textdraw::mouse(playerid, colour);
     SetPVarInt(playerid, "isMouse", 1);
     return 1;
 }
 
 func LAX_CancelSelectTextDraw(playerid) {
-    CancelSelectTextDraw playerid;
+    textdraw::unmouse(playerid);
     SetPVarInt(playerid, "isMouse", 0);
     return 1;
 }
