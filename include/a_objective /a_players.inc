@@ -1,6 +1,3 @@
-/// <summary>
-/// players defined
-/// </summary>
 #if defined example
     /**
      * example
