@@ -1,6 +1,7 @@
 // Copyright (c) Laterium Contributors. All Rights Reserved.
 
 #include <a_samp>
+#include "a_objective\a_console.inc"
 #include "a_objective\a_players.inc"
 #include "a_objective\a_vehicles.inc"
 #include "a_objective\a_objects.inc"
