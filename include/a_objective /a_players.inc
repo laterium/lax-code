@@ -8,57 +8,57 @@
     main() {}
 
     public OnPlayerConnect(playerid) {
-        players::player_pos(...do here);
-        players::player_findz(...do here);
-        players::player_angle(...do here);
-        players::player_interior(...do here);
-        players::player_virtualworld(...do here);
-        players::player_color(...do here);
-        players::player_skin(...do here);
-        players::player_health(...do here);
-        players::player_armour(...do here);
-        players::player_team(...do here);
-        players::player_score(...do here);
-        players::player_ammo(...do here);
-        players::player_resetweapon(...do here);
-        players::player_armedweapon(...do here);
-        players::player_giveweapon(...do here);
-        players::player_drunk(...do here);
-        players::player_wanted(...do here);
-        players::player_skill(...do here);
-        players::player_name(...do here);
-        players::player_time(...do here);
-        players::player_weather(...do here);
-        players::player_fightstyle(...do here);
-        players::player_velocity(...do here);
-        players::player_shopname(...do here);
-        players::player_chatbubble(...do here);
-        players::player_camerapos(...do here);
-        players::player_controllable(...do here);
+        players::player_pos(...format);
+        players::player_findz(...format);
+        players::player_angle(...format);
+        players::player_interior(...format);
+        players::player_virtualworld(...format);
+        players::player_color(...format);
+        players::player_skin(...format);
+        players::player_health(...format);
+        players::player_armour(...format);
+        players::player_team(...format);
+        players::player_score(...format);
+        players::player_ammo(...format);
+        players::player_resetweapon(...format);
+        players::player_armedweapon(...format);
+        players::player_giveweapon(...format);
+        players::player_drunk(...format);
+        players::player_wanted(...format);
+        players::player_skill(...format);
+        players::player_name(...format);
+        players::player_time(...format);
+        players::player_weather(...format);
+        players::player_fightstyle(...format);
+        players::player_velocity(...format);
+        players::player_shopname(...format);
+        players::player_chatbubble(...format);
+        players::player_camerapos(...format);
+        players::player_controllable(...format);
         // money
-        money::player_givemoney(...do here);
-        money::player_resetmoney(...do here);
+        money::player_givemoney(...format);
+        money::player_resetmoney(...format);
         // animation
-        animation::player_clearanim(...do here);
-        animation::player_animation(...do here);
-        animation::player_specialanim(...do here);
+        animation::player_clearanim(...format);
+        animation::player_animation(...format);
+        animation::player_specialanim(...format);
         // mapicon
-        mapicon::player_mapicon(...do here);
-        mapicon::player_removemapicon(...do here);
+        mapicon::player_mapicon(...format);
+        mapicon::player_removemapicon(...format);
         // spectate
-        spectate::player_togglespectate(...do here);
-        spectate::player_spectateplayer(...do here);
-        spectate::player_spectatevehicle(...do here);
+        spectate::player_togglespectate(...format);
+        spectate::player_spectateplayer(...format);
+        spectate::player_spectatevehicle(...format);
         // textdraw
-        textdraw::player_selecttextdraw(...do here);
-        textdraw::player_canceltextdraw(...do here);
+        textdraw::player_selecttextdraw(...format);
+        textdraw::player_canceltextdraw(...format);
         // message
-        message::player_clientmsg@player(...do here);
-        message::player_clientmsgto@all(...do here);
-        message::player_messageto@player(...do here);
-        message::player_messageto@all(...do here);
-        message::player_messagedeath@player(...do here);
-        message::player_messagedeath@toplayer(...do here);
+        message::player_clientmsg@player(...format);
+        message::player_clientmsgto@all(...format);
+        message::player_messageto@player(...format);
+        message::player_messageto@all(...format);
+        message::player_messagedeath@player(...format);
+        message::player_messagedeath@toplayer(...format);
     }
 #endif
 
