@@ -23,7 +23,7 @@
 forward OnClientCheckResponse(playerid, type, arg, response);
 
 // client.
-#if !defined example
+/********* example
     public OnPlayerSpawn(playerid)
     {
         if (IsWindows(playerid)) {
@@ -37,7 +37,7 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 	}
         return 1;
     }
-#endif
+*********/
 /// <summary>
 /// This macro defines checks to determine if the target or player is using an Android device based on certain conditions.
 /// - `IsAndroid` checks if the target is not using Android by looking at the "notAndroid" variable.
@@ -279,7 +279,7 @@ static stock const rc[100] = {
 };
 
 // sound.
-#if !defined example
+/********* example
     public OnPlayerConnect(playerid) {
         PlayerPlaySound(playerid, 1234, 0.0, 0.0, 0.0);
 
@@ -290,7 +290,7 @@ static stock const rc[100] = {
 
         return 1;
     }
-#endif
+*********/
 
 /// <summary>
 /// This macro or function is used to stop a sound played by a player.
