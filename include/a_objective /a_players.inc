@@ -70,6 +70,7 @@
     #define player_interior(%0)              SetPlayerInterior(%0)
     #define player_virtualworld(%0)          SetPlayerVirtualWorld(%0)
     #define player_color(%0)                 SetPlayerColor(%0)
+    #define player_colour                    player_color
     #define player_skin(%0)                  SetPlayerSkin(%0)
     #define player_health(%0)                SetPlayerHealth(%0)
     #define player_armour(%0)                SetPlayerArmour(%0)
