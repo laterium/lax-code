@@ -23,22 +23,22 @@ func MyFunction() {
 /// </summary>
 public OnPlayerSpawn(playerid) {
     if (IsDeath(playerid)) {
-        SendClientMessage(playerid, -1, "Your is Death!");
+        message::player_sendclientmsg(playerid, -1, "Your is Death!");
     }
     if (IsAndroid(playerid)) {
-        SendClientMessage(playerid, -1, "Platform: Android");
+        message::player_sendclientmsg(playerid, -1, "Platform: Android");
     }
     if (IsLinux(playerid)) {
-        SendClientMessage(playerid, -1, "Platform: Linux");
+        message::player_sendclientmsg(playerid, -1, "Platform: Linux");
     }
     if (IsWindows(playerid)) {
-        SendClientMessage(playerid, -1, "Platform: Windows");
+        message::player_sendclientmsg(playerid, -1, "Platform: Windows");
     }
     if (IsPC(playerid)) {
-        SendClientMessage(playerid, -1, "Device: PC");
+        message::player_sendclientmsg(playerid, -1, "Device: PC");
     }
     if (IsMobile(playerid)) {
-        SendClientMessage(playerid, -1, "Device: Mobile");
+        message::player_sendclientmsg(playerid, -1, "Device: Mobile");
     }
 
     // Set a timer to send FPS info
@@ -58,7 +58,7 @@ func SendPlayerFPS(playerid) {
     if (IsConnect(playerid)) {
         new fmt[64];
         format(fmt, sizeof(fmt), "FPS: %d", GetPlayerFrame(playerid));
-        SendClientMessage(playerid, -1, fmt);
+        message::player_sendclientmsg(playerid, -1, fmt);
     }
     return 1;
 }
@@ -69,7 +69,7 @@ func SendPlayerFPS(playerid) {
 public OnPlayerFPSUpdate(playerid, newfps, oldfps) {
     new fmt[128];
     format(fmt, sizeof(fmt), "Old FPS: %d, New FPS: %d", oldfps, newfps);
-    SendClientMessage(playerid, -1, fmt);
+    message::player_sendclientmsg(playerid, -1, fmt);
     return 1;
 }
 
@@ -77,7 +77,7 @@ public OnPlayerFPSUpdate(playerid, newfps, oldfps) {
 /// Called when an Android platform is detected for a player.
 /// </summary>
 public OnAndroidDetected(playerid) {
-    SendClientMessage(playerid, -1, "Platform: Android Detected");
+    message::player_sendclientmsg(playerid, -1, "Platform: Android Detected");
     return 1;
 }
 
@@ -85,7 +85,7 @@ public OnAndroidDetected(playerid) {
 /// Called when a Linux platform is detected for a player.
 /// </summary>
 public OnLinuxDetected(playerid) {
-    SendClientMessage(playerid, -1, "Platform: Linux Detected");
+    message::player_sendclientmsg(playerid, -1, "Platform: Linux Detected");
     return 1;
 }
 
@@ -93,7 +93,7 @@ public OnLinuxDetected(playerid) {
 /// Called when a Windows platform is detected for a player.
 /// </summary>
 public OnWindowsDetected(playerid) {
-    SendClientMessage(playerid, -1, "Platform: Windows Detected");
+    message::player_sendclientmsg(playerid, -1, "Platform: Windows Detected");
     return 1;
 }
 
@@ -101,7 +101,7 @@ public OnWindowsDetected(playerid) {
 /// Triggered when the player's map is enabled.
 /// </summary>
 public OnPlayerMap(playerid) {
-    SendClientMessage(playerid, -1, "Map is On");
+    message::player_sendclientmsg(playerid, -1, "Map is On");
     return 1;
 }
 
@@ -109,11 +109,11 @@ public OnPlayerMap(playerid) {
 /// Triggered when the player's map is disabled.
 /// </summary>
 public OnPlayerOffMap(playerid, colour) {
-    SendClientMessage(playerid, -1, "Map is Off");
+    message::player_sendclientmsg(playerid, -1, "Map is Off");
 
     new fmt[64];
     format fmt, sizeof(fmt), "Map Colour: 0x%06x", colour & 0xFFFFFF;
-    SendClientMessage(playerid, -1, fmt);
+    message::player_sendclientmsg(playerid, -1, fmt);
     return 1;
 }
 
@@ -122,9 +122,9 @@ public OnPlayerOffMap(playerid, colour) {
 /// </summary>
 public OnPlayerUpdate(playerid) {
     if (IsMouse(playerid)) {
-        SendClientMessage(playerid, -1, "Mouse: On");
+        message::player_sendclientmsg(playerid, -1, "Mouse: On");
     } else {
-        SendClientMessage(playerid, -1, "Mouse: Off");
+        message::player_sendclientmsg(playerid, -1, "Mouse: Off");
     }
     return 1;
 }
@@ -133,7 +133,7 @@ public OnPlayerUpdate(playerid) {
 /// Triggered when the player enables mouse input.
 /// </summary>
 public OnPlayerMouse(playerid) {
-    SendClientMessage(playerid, -1, "Mouse is On");
+    message::player_sendclientmsg(playerid, -1, "Mouse is On");
     return 1;
 }
 
@@ -141,7 +141,7 @@ public OnPlayerMouse(playerid) {
 /// Triggered when the player disables mouse input.
 /// </summary>
 public OnPlayerOffMouse(playerid) {
-    SendClientMessage(playerid, -1, "Mouse is Off");
+    message::player_sendclientmsg(playerid, -1, "Mouse is Off");
     return 1;
 }
 ```
