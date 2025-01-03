@@ -42,14 +42,14 @@
 //        spectate::player_togglespectate(..........format);
 //        spectate::player_spectateplayer(..........format);
 //        spectate::player_spectatevehicle(.........format);
-//        textdraw::player_selecttextdraw(..........format);
-//        textdraw::player_canceltextdraw(..........format);
-//        message::player_clientmsg@player(.........format);
-//        message::player_clientmsg@toall(..........format);
-//        message::player_messageto@player(.........format);
-//        message::player_messageto@all(............format);
-//        message::player_messagedeath@player(......format);
-//        message::player_messagedeath@toplayer(....format);
+//        textdraw::mouse(..........................format);
+//        textdraw::unmouse(........................format);
+//        message::client@player(...................format);
+//        message::client@toall(....................format);
+//        message::player@player(...................format);
+//        message::player@toall(....................format);
+//        message::death@player(....................format);
+//        message::death@toplayer(..................format);
 //    }
 #endif
 
@@ -84,6 +84,19 @@
     #define player_controllable(%0)          TogglePlayerControllable(%0)
     #define player_shopname(%0)              SetPlayerShopName(%0)
 #endif
+
+
+#if !defined money::
+    #define money::
+    #define player_givemoney(%0)             GivePlayerMoney(%0)
+    #define player_resetmoney(%0)            ResetPlayerMoney(%0)
+#endif
+#if !defined animation::
+    #define animation::
+    #define player_clearanim(%0)             ClearAnimations(%0)
+    #define player_animation(%0)             ApplyAnimation(%0)
+    #define player_specialanim(%0)           SetPlayerSpecialAction(%0)
+#endif
 #if !defined mapicon::
     #define mapicon::
     #define player_mapicon(%0)               SetPlayerSpecialAction(%0)
@@ -95,28 +108,17 @@
     #define player_spectateplayer(%0)        PlayerSpectatePlayer(%0)
     #define player_spectatevehicle(%0)       PlayerSpectateVehicle(%0)
 #endif
-#if !defined money::
-    #define money::
-    #define player_givemoney(%0)             GivePlayerMoney(%0)
-    #define player_resetmoney(%0)            ResetPlayerMoney(%0)
-#endif
 #if !defined textdraw::
     #define textdraw::
-    #define player_selecttextdraw(%0)        SelectTextDraw(%0)
-    #define player_canceltextdraw(%0)        CancelSelectTextDraw(%0)
-#endif
-#if !defined animation::
-    #define animation::
-    #define player_clearanim(%0)             ClearAnimations(%0)
-    #define player_animation(%0)             ApplyAnimation(%0)
-    #define player_specialanim(%0)           SetPlayerSpecialAction(%0)
+    #define mouse(%0)                        SelectTextDraw(%0)
+    #define unmouse(%0)                      CancelSelectTextDraw(%0)
 #endif
 #if !defined message::
     #define message::
-    #define player_clientmsg@player(%0)      SendClientMessage(%0)
-    #define player_clientmsg@toall(%0)       SendClientMessageToAll(%0)
-    #define player_messageto@player(%0)      SendPlayerMessageToPlayer(%0)
-    #define player_messageto@all(%0)         SendPlayerMessageToAll(%0)
-    #define player_messagedeath@player(%0)   SendDeathMessage(%0)
-    #define player_messagedeath@toplayer(%0) SendDeathMessageToPlayer(%0)
+    #define client@player(%0)                SendClientMessage(%0)
+    #define client@toall(%0)                 SendClientMessageToAll(%0)
+    #define player@player(%0)                SendPlayerMessageToPlayer(%0)
+    #define player@toall(%0)                 SendPlayerMessageToAll(%0)
+    #define death@player(%0)                 SendDeathMessage(%0)
+    #define death@toplayer(%0)               SendDeathMessageToPlayer(%0)
 #endif
