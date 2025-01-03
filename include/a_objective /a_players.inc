@@ -45,7 +45,7 @@
 //        textdraw::player_selecttextdraw(..........format);
 //        textdraw::player_canceltextdraw(..........format);
 //        message::player_clientmsg@player(.........format);
-//        message::player_clientmsgto@all(..........format);
+//        message::player_clientmsg@toall(..........format);
 //        message::player_messageto@player(.........format);
 //        message::player_messageto@all(............format);
 //        message::player_messagedeath@player(......format);
