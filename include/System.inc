@@ -565,14 +565,14 @@ public OnClientCheckResponse(playerid, \
     #endif
 }
 
-public OnPlayerStateChange(playerid, varstate, oldstate) {
-    if (varstate == PLAYER_STATE_WASTED && GetPVarInt(playerid, "isDeath") != 1)
+public OnPlayerStateChange(playerid, newstate, oldstate) {
+    if (newstate == PLAYER_STATE_WASTED && GetPVarInt(playerid, "isDeath") != 1)
 	SetPVarInt(playerid, "isDeath", 1);
-    else if (oldstate == PLAYER_STATE_WASTED && varstate != PLAYER_STATE_WASTED)
+    else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
 	DeletePVar(playerid, "isDeath");
 
     #if defined OnPlayerStateChange
-        return (OnPlayerStateChange(playerid, varstate, oldstate));
+        return (OnPlayerStateChange(playerid, newstate, oldstate));
     #else
         return (1);
     #endif
@@ -640,7 +640,7 @@ public OnPlayerStateChange(playerid, varstate, oldstate) {
 #endif
 #define OnPlayerStateChange LAX_OnPlayerStateChange
 #if defined LAX_OnPlayerStateChange
-    forward LAX_OnPlayerStateChange(playerid, varstate, oldstate);
+    forward LAX_OnPlayerStateChange(playerid, newstate, oldstate);
 #endif
 
 #if defined _ALS_SelectTextDraw
