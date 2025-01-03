@@ -16,6 +16,7 @@
         players::player_angle(...do here);
         players::player_interior(...do here);
         players::player_virtualworld(...do here);
+        players::player_color(...do here);
         players::player_health(...do here);
         players::player_armour(...do here);
         players::player_team(...do here);
@@ -32,6 +33,7 @@
     #define player_angle(%0)        SetPlayerFacingAngle(%0)
     #define player_interior(%0)     SetPlayerInterior(%0)
     #define player_virtualworld(%0) SetPlayerVirtualWorld(%0)
+    #define player_color(%0)        SetPlayerColor(%0)
     #define player_health(%0)       SetPlayerHealth(%0)
     #define player_armour(%0)       SetPlayerArmour(%0)
     #define player_team(%0)         SetPlayerTeam(%0)
