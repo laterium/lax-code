@@ -1,7 +1,20 @@
 #include "a_addon.inc"
 
-#define object::
-#define create(%0) \
-    CreateObject(%0)
-#define destroy(%0) \
-    DestroyObject(%0)
+#if !defined object::
+    #define object::
+#endif
+
+#if !defined create
+    #define create(%0) \
+        CreateObject(%0)
+#endif
+
+#if !defined destroy
+    #define destroy(%0) \
+        DestroyObject(%0)
+#endif
+
+#if !defined move
+    #define move(%0) \
+        MoveObject(%0)
+#endif
