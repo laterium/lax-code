@@ -1,7 +1,7 @@
 // Copyright (c) Laterium Contributors. All Rights Reserved.
 
 #include <a_samp>
-#include "a_objective\a_object.inc"
+#include "a_objective\a_objects.inc"
 
 // a_addon.inc build 1.2
 
