@@ -2,6 +2,9 @@
 /// object defined
 /// </summary>
 #if defined example
+    //
+    // example
+    //
     #include "a_samp"
     #include "a_addon"
     
