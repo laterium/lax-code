@@ -2,12 +2,6 @@
 
 #include <a_samp>
 
-// symbols..
-#define Symbols(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
-
-// println << printf
-#define println		printf
-
 // objective.
 #include "a_objective\a_players.inc"
 #include "a_objective\a_vehicles.inc"
@@ -207,14 +201,12 @@ forward OnClientCheckResponse(playerid, type, arg, response);
 #define GetPlayerCounts(%0) loop(%0, 0, MAX_PLAYERS)
 #define GetVehiclCounts(%0) loop(%0, 0, MAX_VEHICLES)
 
-/// <summary>
-/// This defines aliases for float tags, simplifying the handling of float values in code.
-/// - It can be used to reference or manipulate float values with a predefined alias.
-/// </summary>
-/// <param name="float">
-/// A variable or value of type float that is referenced using the alias.
-/// </param>
-#define float               Float:
+// symbols..
+#define Symbols(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
+
+#define println	            printf // print alias.
+#define var		    new // variable new alias.
+#define float               Float: // float tags alias.
 
 /// <summary>
 /// This defines a boolean alias for simplified boolean checks.
