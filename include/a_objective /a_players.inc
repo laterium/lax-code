@@ -20,6 +20,8 @@
         players::player_armour(...do here);
         players::player_team(...do here);
         players::player_score(...do here);
+        players::player_ammo(...do here);
+        players::player_drunk(...do here);
     }
 #endif
 
@@ -34,4 +36,6 @@
     #define player_armour(%0)       SetPlayerArmour(%0)
     #define player_team(%0)         SetPlayerTeam(%0)
     #define player_score(%0)        SetPlayerScore(%0)
+    #define player_ammo(%0)         SetPlayerAmmo(%0)
+    #define player_drunk0)          SetPlayerDrunkLevel(%0)
 #endif
