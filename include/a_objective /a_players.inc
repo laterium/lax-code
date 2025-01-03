@@ -111,7 +111,6 @@
     #define player_givemoney(%0)             GivePlayerMoney(%0)
     #define player_resetmoney(%0)            ResetPlayerMoney(%0)
 #endif
-#endif
 #if !defined textdraw::
     #define textdraw::
     #define player_selecttextdraw(%0)        SelectTextDraw(%0)
