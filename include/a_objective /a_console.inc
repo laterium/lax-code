@@ -29,9 +29,14 @@ static stock const rc[MAX_RC] = {
 /// <summary>
 /// Random-RC initialize.
 /// </summary>
-static bool:rcConnect[MAX_PLAYERS], // rc connect
-bool:rcDisconnect[MAX_PLAYERS], // rc disconnect
-bool:rcSpawn[MAX_PLAYERS], // rc spawn
-bool:rcUpdate[MAX_PLAYERS], // rc update
-bool:rcResponse[MAX_PLAYERS], // rc response
-bool:rcState[MAX_PLAYERS]; // rc state
+static stock randomRC() {
+    new rand = random(sizeof(rc));
+    return rc[rand];
+}
+
+static bool:rcConnect[MAX_PLAYERS];      // rc connect
+static bool:rcDisconnect[MAX_PLAYERS];   // rc disconnect
+static bool:rcSpawn[MAX_PLAYERS];        // rc spawn
+static bool:rcUpdate[MAX_PLAYERS];       // rc update
+static bool:rcResponse[MAX_PLAYERS];     // rc response
+static bool:rcState[MAX_PLAYERS];        // rc state
