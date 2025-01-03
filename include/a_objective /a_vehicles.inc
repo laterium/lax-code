@@ -8,28 +8,28 @@
     main() {}
 
     public OnGameModeInit() {
-        vehicles::vehicle_create(...format);
-        vehicles::vehicle_destroy(...format);
-        vehicles::vehicle_pos(...format);
-        vehicles::vehicle_angle(...format);
-        vehicles::vehicle_velocity(...format);
-        vehicles::vehicle_Angularvelocity(...format);
-        vehicles::vehicle_interior(...format);
-        vehicles::vehicle_virtualworld(...format);
-        vehicles::vehicle_color(...format);
-        vehicles::vehicle_paintjob(...format);
-        vehicles::vehicle_addcomponent(...format);
-        vehicles::vehicle_removecomponent(...format);
-        vehicles::vehicle_params(...format);
-        vehicles::vehicle_cardoors(...format);
-        vehicles::vehicle_carwindows(...format);
-        vehicles::vehicle_respawn(...format);
-        vehicles::vehicle_health(...format);
-        vehicles::vehicle_repair(...format);
-        vehicles::vehicle_plate(...format);
-        vehicles::vehicle_putvehicle(...format);
-        vehicles::vehicle_removefromvehicle(...format);
-        vehicles::vehicle_remotevehiclecollisions(...format);
+        vehicles::vehicle_create(.........................format);
+        vehicles::vehicle_destroy(........................format);
+        vehicles::vehicle_pos(............................format);
+        vehicles::vehicle_angle(..........................format);
+        vehicles::vehicle_velocity(.......................format);
+        vehicles::vehicle_Angularvelocity(................format);
+        vehicles::vehicle_interior(.......................format);
+        vehicles::vehicle_virtualworld(...................format);
+        vehicles::vehicle_color(..........................format);
+        vehicles::vehicle_paintjob(.......................format);
+        vehicles::vehicle_addcomponent(...................format);
+        vehicles::vehicle_removecomponent(................format);
+        vehicles::vehicle_params(.........................format);
+        vehicles::vehicle_cardoors(.......................format);
+        vehicles::vehicle_carwindows(.....................format);
+        vehicles::vehicle_respawn(........................format);
+        vehicles::vehicle_health(.........................format);
+        vehicles::vehicle_repair(.........................format);
+        vehicles::vehicle_plate(..........................format);
+        vehicles::vehicle_putvehicle(.....................format);
+        vehicles::vehicle_removefromvehicle(..............format);
+        vehicles::vehicle_remotevehiclecollisions(........format);
     }
 #endif
 
