@@ -3,7 +3,7 @@
 #include <a_samp>
 
 // symbols..
-#define a_addons(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
+#define Symbols(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
 
 // println << printf
 #define println		printf
