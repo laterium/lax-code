@@ -8,13 +8,13 @@
     main() {}
 
     public OnGameModeInit() {
-        object::obj_create(...do here);
-        object::obj_destroy(...do here);
-        object::obj_move(...do here);
-        object::obj_stop(...do here);
-        object::obj_edit(...do here);
-        object::obj_cancel(...do here);
-        object::obj_select(...do here);
+        object::obj_create(...format);
+        object::obj_destroy(...format);
+        object::obj_move(...format);
+        object::obj_stop(...format);
+        object::obj_edit(...format);
+        object::obj_cancel(...format);
+        object::obj_select(...format);
     }
 #endif
 
