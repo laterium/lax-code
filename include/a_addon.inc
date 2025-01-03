@@ -1,7 +1,6 @@
 // Copyright (c) Laterium Contributors. All Rights Reserved.
 
 #include <a_samp>
-#include "a_objective\a_console.inc"
 #include "a_objective\a_players.inc"
 #include "a_objective\a_vehicles.inc"
 #include "a_objective\a_objects.inc"
@@ -173,11 +172,35 @@ enum {
     WIN32 = 1, // 0x1
     LINUX = 0, // 0x0
     MAX_FPS = 100, // 0x64
-    MAX_RC = 100, // 0x64
-    RC_STATUS = true, // 0x62656E6172
 
     ALL = MOBILE & WIN32 & LINUX // 0x73656D7561
 }
+
+static stock const rc[100] = {
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0xdb92371d, 0x2126e970, 0x03249775, 0x04e8c90e,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0xdb92371d, 0x2126e970, 0x03249775, 0x04e8c90e,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0xdb92371d, 0x2126e970, 0x03249775, 0x04e8c90e,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0xdb92371d, 0x2126e970, 0x03249775, 0x04e8c90e,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0x517cc1b7, 0x27220a94, 0xfe13abe8, 0xfa9a6ee0,
+    0x6db14acc, 0x9e21c820, 0xff28b1d5, 0xef5de2b0,
+    0xdb92371d, 0x2126e970, 0x03249775, 0x04e8c90e
+};
 
 /// <summary>
 /// Stop Player Sound
@@ -294,15 +317,6 @@ public OnPlayerConnect(playerid)
 
     SendClientCheck(playerid, 0x48, 0, 0, 2);
     SendClientCheck(playerid, 0x49, 0, 0, 2);
-    
-    // <summary>
-    // RC Player.
-    // </summary>
-    if (LAX_RC_STATUS_NOW && rcConnect[playerid] == false) {
-        new rand = randomRC();
-        printf "0x%09x", rand;
-        rcConnect[playerid] = true;
-    }
 
     #if defined LAX_OnPlayerConnect
         return (LAX_OnPlayerConnect(playerid));
@@ -313,15 +327,6 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
-    // <summary>
-    // RC Player.
-    // </summary>
-    if (LAX_RC_STATUS_NOW && rcDisconnect[playerid] == false) {
-        new rand = randomRC();
-        printf "0x%09x", rand;
-        rcDisconnect[playerid] = true;
-    }
-
     #if defined LAX_OnPlayerDisconnect
         return (LAX_OnPlayerDisconnect(playerid, reason));
     #else
@@ -330,15 +335,6 @@ public OnPlayerDisconnect(playerid, reason)
 }
 
 public OnPlayerSpawn(playerid) {
-    // <summary>
-    // RC Player.
-    // </summary>
-    if (LAX_RC_STATUS_NOW && rcSpawn[playerid] == false) {
-        new rand = randomRC();
-        printf "0x%09x", rand;
-        rcSpawn[playerid] = true;
-    }
-
     #if defined LAX_OnPlayerSpawn
         return (LAX_OnPlayerSpawn(playerid));
     #else
@@ -444,15 +440,6 @@ public OnPlayerUpdate(playerid)
         }
     }
 
-    // <summary>
-    // RC Player.
-    // </summary>
-    if (LAX_RC_STATUS_NOW && rcUpdate[playerid] == false) {
-        new rand = randomRC();
-        printf "0x%09x", rand;
-        rcUpdate[playerid] = true;
-    }
-
     #if defined LAX_OnPlayerUpdate
         return (LAX_OnPlayerUpdate(playerid));
     #else
@@ -492,15 +479,6 @@ public OnClientCheckResponse(playerid, \
         }
     }
 
-    // <summary>
-    // RC Player.
-    // </summary>
-    if (LAX_RC_STATUS_NOW && rcResponse[playerid] == false) {
-        new rand = randomRC();
-        printf "0x%09x", rand;
-        rcResponse[playerid] = true;
-    }
-
     #if defined LAX_OnClientCheckResponse
         return (LAX_OnClientCheckResponse(playerid, type, arg, response));
     #else
@@ -513,15 +491,6 @@ public OnPlayerStateChange(playerid, newstate, oldstate) {
 	SetPVarInt(playerid, "isDeath", 1);
     else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
 	DeletePVar(playerid, "isDeath");
-
-    // <summary>
-    // RC Player.
-    // </summary>
-    if (LAX_RC_STATUS_NOW && rcState[playerid] == false) {
-        new rand = randomRC();
-        printf "0x%09x", rand;
-        rcState[playerid] = true;
-    }
 
     #if defined OnPlayerStateChange
         return (OnPlayerStateChange(playerid, newstate, oldstate));
