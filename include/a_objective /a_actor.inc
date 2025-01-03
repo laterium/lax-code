@@ -14,6 +14,7 @@
         actor::actor_create(...do here);
         actor::actor_destroy(...do here);
         actor::actor_pos(...do here);
+        actor::actor_angle(...do here);
         actor::actor_health(...do here);
         actor::actor_invulnerable(...do here);
     }
@@ -24,6 +25,7 @@
     #define actor_create(%0)          CreateActor(%0)
     #define actor_destroy(%0)         DestroyActor(%0)
     #define actor_pos(%0)             SetActorPos(%0)
+    #define actor_angle(%0)           SetActorFacingAngle(%0)
     #define actor_health(%0)          SetActorHealth(%0)
     #define actor_invulnerable(%0)    SetActorInvulnerable(%0)
 #endif
