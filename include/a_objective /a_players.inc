@@ -53,9 +53,6 @@
 //    }
 #endif
 
-// symbols..
-#define PLAYERS_OBJECTIVE(%0,%1,%2) (((%0) << 16) | ((%1) << 8) | (%2))
-
 #if !defined players::
     #define players::
     #define player_pos(%0)                   SetPlayerPos(%0)
