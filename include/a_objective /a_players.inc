@@ -36,6 +36,7 @@
         players::player_velocity(...do here);
         players::player_shopname(...do here);
         players::player_chatbubble(...do here);
+        players::player_camerapos(...do here);
         // money
         money::player_givemoney(...do here);
         money::player_resetmoney(...do here);
@@ -43,18 +44,17 @@
         animation::player_clearanim(...do here);
         animation::player_animation(...do here);
         animation::player_specialanim(...do here);
-        //
-        players::player_mapicon(...do here);
-        players::player_removemapicon(...do here);
-        players::player_camerapos(...do here);
-        //
-        players::player_togglespectate(...do here);
-        players::player_spectateplayer(...do here);
-        players::player_spectatevehicle(...do here);
+        // mapicon
+        mapicon::player_mapicon(...do here);
+        mapicon::player_removemapicon(...do here);
+        // spectate
+        spectate::player_togglespectate(...do here);
+        spectate::player_spectateplayer(...do here);
+        spectate::player_spectatevehicle(...do here);
         // textdraw
         textdraw::player_selecttextdraw(...do here);
         textdraw::player_canceltextdraw(...do here);
-        // scm
+        // message
         message::player_sendclientmsg(...do here);
     }
 #endif
@@ -86,9 +86,15 @@
     #define player_velocity(%0)        SetPlayerVelocity(%0)
     #define player_shopname(%0)        SetPlayerShopName(%0)
     #define player_chatbubble(%0)      SetPlayerChatBubble(%0)
+    #define player_camerapos(%0)       SetPlayerCameraPos(%0)
+#endif
+#if !defined mapicon::
+    #define mapicon::
     #define player_mapicon(%0)         SetPlayerSpecialAction(%0)
     #define player_removemapicon(%0)   RemovePlayerMapIcon(%0)
-    #define player_camerapos(%0)       SetPlayerCameraPos(%0)
+#endif
+#if !defined spectate::
+    #define spectate::
     #define player_togglespectate(%0)  TogglePlayerSpectating(%0)
     #define player_spectateplayer(%0)  PlayerSpectatePlayer(%0)
     #define player_spectatevehicle(%0) PlayerSpectateVehicle(%0)
