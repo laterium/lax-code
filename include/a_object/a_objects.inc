@@ -16,6 +16,8 @@
         object::obj_move(...do here);
         object::obj_stop(...do here);
         object::obj_edit(...do here);
+        object::obj_cancel(...do here);
+        object::obj_select(...do here);
     }
 #endif
 
@@ -46,4 +48,14 @@
 #if !defined obj_edit
     #define obj_edit(%0) \
         EditObject(%0)
+#endif
+
+#if !defined obj_cancel
+    #define obj_cancel(%0) \
+        CancelEdit(%0)
+#endif
+
+#if !defined obj_select
+    #define obj_select(%0) \
+        SelectObject(%0)
 #endif
