@@ -22,7 +22,7 @@
 #endif
 forward OnClientCheckResponse(playerid, type, arg, response);
 
-#if defined example
+#if !defined example
     public OnPlayerSpawn(playerid)
     {
         if (IsWindows(playerid)) {
@@ -287,6 +287,18 @@ static stock const rc[100] = {
 /// <param name="PlayerStopSound">
 /// A function or macro that stops the sound for the specified player.
 /// </param>
+#if !defined example
+    public OnPlayerConnect(playerid) {
+        PlayerPlaySound(playerid, 1234, 0.0, 0.0, 0.0);
+
+        return 1;
+    }
+    public OnPlayerSpawn(playerid) {
+        PlayerStopSound(playerid)
+
+        return 1;
+    }
+#endif
 func PlayerStopSound(playerid) {
     return PlayerPlaySound(playerid, 1098, 0.0, 0.0, 0.0);
 }
