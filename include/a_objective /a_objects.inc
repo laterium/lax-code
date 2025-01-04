@@ -4,18 +4,19 @@
 //    main() {}
 
 //    public OnGameModeInit() {
-//        object::obj_create(....format);
-//        object::obj_destroy(...format);
-//        object::obj_move(......format);
-//        object::obj_stop(......format);
-//        object::obj_edit(......format);
-//        object::obj_cancel(....format);
-//        object::obj_select(....format);
+//        objects::obj_create(....format);
+//        objects::obj_destroy(...format);
+//        objects::obj_move(......format);
+//        objects::obj_stop(......format);
+//        objects::obj_edit(......format);
+//        objects::obj_cancel(....format);
+//        objects::obj_select(....format);
 //    }
 #endif
 
 #if !defined object::
-    #define object::
+    #define object->
+    #define objects::
     #define obj_create(%0)     CreateObject(%0)
     #define obj_destroy(%0)    DestroyObject(%0)
     #define obj_move(%0)       MoveObject(%0)
