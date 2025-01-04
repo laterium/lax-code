@@ -1,7 +1,7 @@
 /// <summary>
 /// This section defines a set of macros for managing player-related actions and attributes in the game. 
 /// Each macro is a simplified version of the corresponding function that deals with player properties and actions.
-/// 
+///
 /// Player Macros:
 /// - player_pos(%0)               : Sets the position of the player.
 /// - player_findz(%0)             : Sets the player's position and automatically finds the Z coordinate.
@@ -9,6 +9,7 @@
 /// - player_interior(%0)          : Sets the player's interior ID.
 /// - player_virtualworld(%0)      : Sets the player's virtual world ID.
 /// - player_colour(%0)            : Sets the player's color (used for skins and other aspects).
+/// - player_color                 : Alias for `player_colour`, sets the player's color.
 /// - player_skin(%0)              : Sets the player's skin (model).
 /// - player_health(%0)            : Sets the player's health value.
 /// - player_armour(%0)            : Sets the player's armor value.
@@ -30,6 +31,60 @@
 /// - player_camerapos(%0)         : Sets the player's camera position.
 /// - player_controllable(%0)      : Toggles whether the player can control their character.
 /// - player_shopname(%0)          : Sets the name of the shop the player is interacting with.
+/// </summary>
+
+/// <summary>
+/// Money-related macros for managing player money actions.
+///
+/// Money Macros:
+/// - player_givemoney(%0)         : Gives the player a specific amount of money.
+/// - player_resetmoney(%0)        : Resets the player's money balance to zero.
+/// </summary>
+
+/// <summary>
+/// Animation-related macros for controlling player animations.
+///
+/// Animation Macros:
+/// - player_clearanim(%0)         : Clears the player's current animations.
+/// - player_animation(%0)         : Applies a specified animation to the player.
+/// - player_specialanim(%0)       : Sets a special animation for the player.
+/// </summary>
+
+/// <summary>
+/// Map icon-related macros for managing map icons related to players.
+///
+/// Map Icon Macros:
+/// - player_mapicon(%0)           : Sets a special map icon for the player.
+/// - player_removemapicon(%0)     : Removes the specified map icon from the player.
+/// </summary>
+
+/// <summary>
+/// Spectating-related macros for managing player spectating actions.
+///
+/// Spectating Macros:
+/// - player_togglespectate(%0)    : Toggles the player's spectating mode on or off.
+/// - player_spectateplayer(%0)    : Makes the player spectate another player.
+/// - player_spectatevehicle(%0)   : Makes the player spectate a vehicle.
+/// </summary>
+
+/// <summary>
+/// Text drawing macros for selecting and deselecting text draws for players.
+///
+/// Text Draw Macros:
+/// - mouse(%0)                    : Selects the specified text draw for the player.
+/// - unmouse(%0)                  : Cancels the selection of the text draw for the player.
+/// </summary>
+
+/// <summary>
+/// Message-related macros for sending messages to players or all players.
+///
+/// Message Macros:
+/// - client@player(%0)            : Sends a message to a specific player.
+/// - client@toall(%0)             : Sends a message to all players.
+/// - player@player(%0)            : Sends a private message to another player.
+/// - player@toall(%0)             : Sends a message to all players (similar to `client@toall`).
+/// - death@player(%0)             : Sends a death message to a specific player.
+/// - death@toplayer(%0)           : Sends a death message to a player when they kill someone else.
 /// </summary>
 #if !defined players::
     #define player->
