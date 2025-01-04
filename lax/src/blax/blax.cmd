@@ -1,4 +1,3 @@
-:: 0059E938F056F6A962D95B5D2829C9ADE7F5FC57DCB713C5090881081857E37D
 @ECHO OFF
 
 :: << Compiler Tool intended for Pawn Code.
@@ -10,10 +9,10 @@ color 0F
 
 :: ~ variables ~
 SET "SOURCEDIR=%~dp0"
-SET "NULLSTATIC=false"
-SET "LOCALTITLE=null"
-SET "_PAWNCC_="
-SET "LIB_INLOC=blax.cmd"
+SET "STATICSTS=false"
+SET "TITLESTS=null"
+SET "PAWNCCSTS="
+SET "LIBLOCATION=blax.cmd"
 
 :: HH/MM/SS format.
 FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
@@ -164,17 +163,17 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
 
-    SET "LOCALTITLE=compilers"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=compilers"
+    TITLE %username%@%computername%:~/!TITLESTS!
     ECHO.
 
-    SET "NULLSTATIC=true"
+    SET "STATICSTS=true"
     GOTO COMPILERS
 
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -r" (
 
-    SET "LOCALTITLE=running"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=running"
+    TITLE %username%@%computername%:~/!TITLESTS!
 
     GOTO SERVERS
 
@@ -195,10 +194,10 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     
     TASKKILL /f /im "samp-server.exe" >nul 2>&1
 
-    SET "LOCALTITLE=compile running"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=compile running"
+    TITLE %username%@%computername%:~/!TITLESTS!
 
-    SET "NULLSTATIC=false"
+    SET "STATICSTS=false"
 
     DEL "%SOURCEDIR%server_log.txt" /q >nul
     
@@ -309,14 +308,14 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     GOTO COMMAND_TYPEOF
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -cls" (
     :CLEARS
-    SET "LOCALTITLE=clear screen"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=clear screen"
+    TITLE %username%@%computername%:~/!TITLESTS!
     CLS
     GOTO COMMAND_TYPEOF
 
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -vsc" (
-    SET "LOCALTITLE=vscode tasks"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=vscode tasks"
+    TITLE %username%@%computername%:~/!TITLESTS!
     IF EXIST ".vscode" (
         rmdir /s /q .vscode
     )
@@ -329,7 +328,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO     {
         ECHO       "label": "Run lax",
         ECHO       "type": "process",
-        ECHO       "command": "${workspaceFolder}/%LIB_INLOC%",
+        ECHO       "command": "${workspaceFolder}/%LIBLOCATION%",
         ECHO       "group": {
         ECHO           "kind": "build",
         ECHO           "isDefault": true
@@ -383,8 +382,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 
     GOTO ENDOFALL
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -css" (
-    SET "LOCALTITLE=debugging"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=debugging"
+    TITLE %username%@%computername%:~/!TITLESTS!
 
     IF EXIST filterscripts (
         ECHO.
@@ -484,8 +483,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 ) ELSE IF "%TYPEOF%"=="%OPTIONTYPEOF% -dis" (
         START "" "https://dsc.gg/evercool/"
 ) ELSE IF "%TYPEOF%"=="help" (
-    SET "LOCALTITLE=help"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=help"
+    TITLE %username%@%computername%:~/!TITLESTS!
     
     :_HELP
     ECHO usage: cat [-c compile] [-r running server] [-t test server] [-ci compile-running] 
@@ -495,8 +494,8 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
     GOTO COMMAND_TYPEOF
 
 ) ELSE IF "%TYPEOF%"=="cat" (
-    SET "LOCALTITLE=cat"
-    TITLE %username%@%computername%:~/!LOCALTITLE!
+    SET "TITLESTS=cat"
+    TITLE %username%@%computername%:~/!TITLESTS!
     GOTO _HELP
 ) ELSE IF "%TYPEOF%"=="" (
     GOTO COMMAND_TYPEOF
@@ -521,12 +520,12 @@ GOTO COMMAND_TYPEOF
     ECHO # STARTING at %time% ...
     FOR /r "%SOURCEDIR%" %%P in (pawncc.exe) DO (
         IF EXIST "%%P" (
-            SET "_PAWNCC_=%%P"
+            SET "PAWNCCSTS=%%P"
             GOTO PAWNCC
         )
     )
     :PAWNCC
-    IF not DEFINED _PAWNCC_ (
+    IF not DEFINED PAWNCCSTS (
         ECHO.
             ECHO # [%HH%:%MM%:%SS%] pawncc not found in any subdirectories.
         ECHO.
@@ -548,7 +547,7 @@ GOTO COMMAND_TYPEOF
             SET "AMX_O=%%~dpnF"
             SET "AMX_O=!AMX_O:.lax=!%.amx"
 
-            "!_PAWNCC_!" "%%F" %ASM_OPTION_M%"!AMX_O!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
+            "!PAWNCCSTS!" "%%F" %ASM_OPTION_M%"!AMX_O!" %ASM_OPTION_P% > %METADAT_FILE% 2>&1
             TYPE %METADAT_FILE%
 
             IF EXIST "!AMX_O!" (
@@ -565,7 +564,7 @@ GOTO COMMAND_TYPEOF
                             call :COLOURTEXT 4X "[#]~"
                             ECHO Compilation failed!. ERR? .. Yes
                     endlocal
-                        IF "%NULLSTATIC%"=="false" (
+                        IF "%STATICSTS%"=="false" (
                             GOTO ENDOFALL
                         )
                     ECHO.
@@ -582,6 +581,6 @@ GOTO COMMAND_TYPEOF
         endlocal
         ECHO    ~ "!SOURCEDIR!.lax" no files found.
     )
-    IF "%NULLSTATIC%"=="true" (
+    IF "%STATICSTS%"=="true" (
         GOTO ENDOFALL
     )
