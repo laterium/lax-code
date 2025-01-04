@@ -4,21 +4,6 @@
 
 #include "System"
 
-#if defined FILTERSCRIPT
-	public OnFilterScriptInit()
-	{
-		print("\n--------------------------------------");
-		print(" Blank Filterscript by your name here");
-		print("--------------------------------------\n");
-		return 1;
-	}
-	
-	public OnFilterScriptExit()
-	{
-		return 1;
-	}
-#else
-
 main()
 	HelloWorld();
 
