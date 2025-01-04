@@ -15,10 +15,10 @@
 #if !defined actors::
     #define actor->
     #define actors::
-    #define actor_create(%0)          CreateActor(%0)         // Creates an actor at the specified position and properties.
-    #define actor_destroy(%0)         DestroyActor(%0)        // Destroys the actor based on the given identifier.
-    #define actor_pos(%0)             SetActorPos(%0)         // Sets the actor's position using the given coordinates.
-    #define actor_angle(%0)           SetActorFacingAngle(%0) // Sets the actor's facing angle (rotation) in degrees.
-    #define actor_health(%0)          SetActorHealth(%0)      // Sets the health of the actor. Accepts a value between 0 and the maximum health.
-    #define actor_invulnerable(%0)    SetActorInvulnerable(%0) // Sets whether the actor is invulnerable to damage (1 for true, 0 for false).
+    #define actor_create(%0)          CreateActor(%0)
+    #define actor_destroy(%0)         DestroyActor(%0)
+    #define actor_pos(%0)             SetActorPos(%0)
+    #define actor_angle(%0)           SetActorFacingAngle(%0)
+    #define actor_health(%0)          SetActorHealth(%0)
+    #define actor_invulnerable(%0)    SetActorInvulnerable(%0)
 #endif
