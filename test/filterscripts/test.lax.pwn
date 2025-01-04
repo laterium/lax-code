@@ -4,8 +4,6 @@
 
 #include "System"
 
-#if defined FILTERSCRIPT
-
 public OnFilterScriptInit()
 {
 	print("\n--------------------------------------");
@@ -15,30 +13,6 @@ public OnFilterScriptInit()
 }
 
 public OnFilterScriptExit()
-{
-	return 1;
-}
-
-#else
-
-main()
-{
-	print("\n----------------------------------");
-	print(" Blank Gamemode by your name here");
-	print("----------------------------------\n");
-}
-
-#endif
-
-public OnGameModeInit()
-{
-	// Don't use these lines if it's a filterscript
-	SetGameModeText("Blank Script");
-	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
-	return 1;
-}
-
-public OnGameModeExit()
 {
 	return 1;
 }
