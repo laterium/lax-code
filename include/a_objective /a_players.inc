@@ -53,6 +53,7 @@
 #endif
 
 #if !defined players::
+    #define player->
     #define players::
     #define player_pos(%0)                   SetPlayerPos(%0)
     #define player_findz(%0)                 SetPlayerPosFindZ(%0)
