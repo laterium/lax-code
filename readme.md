@@ -19,8 +19,8 @@
 >>> Requirement: [pawncc](https://github.com/laterium/lax-code/tree/main/lax/src/bin) - [3.10.7](https://github.com/pawn-lang/compiler/releases/tag/v3.10.7) (Recommended)
 # Example
 ```pwn
-#include <a_samp>
+#include "System"
 
 main()
-    print "Hello, World!";
+    HelloWorld();
 ```
