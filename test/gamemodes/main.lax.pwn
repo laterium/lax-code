@@ -43,6 +43,7 @@ public OnPlayerDisconnect(playerid, reason)
 public OnPlayerSpawn(playerid)
 {
 	message::client@player(playerid, -1, "Welcome!");
+	player->player_health(playerid, 100.0);
 	return 1;
 }
 
