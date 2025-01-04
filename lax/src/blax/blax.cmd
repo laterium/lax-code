@@ -227,7 +227,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
 
     IF ERRORLEVEL 1 (
         ECHO.
-        ECHO # [%HH%:%MM%:%SS%] STARTING.. no
+        ECHO # [%HH%:%MM%:%SS%] Starting.. no
         IF EXIST "server_log.txt" (
             TIMEOUT /t 2
                 TYPE server_log.txt
@@ -254,7 +254,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         GOTO COMMAND_TYPEOF
     ) ELSE (
         :WITHEL
-        ECHO # [%HH%:%MM%:%SS%] STARTING.. Done
+        ECHO # [%HH%:%MM%:%SS%] Starting.. Done
 
         FINDSTR /i "failed" server_log.txt >nul && CALL :lax_TRUE || CALL :lax_FALSE
 
@@ -522,7 +522,7 @@ PAUSE >nul
 GOTO COMMAND_TYPEOF
 
 :COMPILERS
-    ECHO # STARTING at %time% ...
+    ECHO # Starting at %time% ...
     FOR /r "%SOURCEDIR%" %%P in (pawncc.exe) DO (
         IF EXIST "%%P" (
             SET "PAWNCCSTS=%%P"
