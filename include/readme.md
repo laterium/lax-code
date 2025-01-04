@@ -1,1 +1,1 @@
-## SA-MP System PAWN/LAX (Optional).
+## SA-MP System PAWN/LAX (Recommended).
