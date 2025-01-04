@@ -1,57 +1,36 @@
-#if !defined example
-//    #include "System"
-
-//    main() {}
-
-//    public OnPlayerConnect(playerid) {
-//        players::player_pos(......................format);
-//        players::player_findz(....................format);
-//        players::player_angle(....................format);
-//        players::player_interior(.................format);
-//        players::player_virtualworld(.............format);
-//        players::player_color(....................format);
-//        players::player_skin(.....................format);
-//        players::player_health(...................format);
-//        players::player_armour(...................format);
-//        players::player_team(.....................format);
-//        players::player_score(....................format);
-//        players::player_ammo(.....................format);
-//        players::player_giveweapon(...............format);
-//        players::player_armedweapon(..............format);
-//        players::player_resetweapon(..............format);
-//        players::player_drunk(....................format);
-//        players::player_wanted(...................format);
-//        players::player_skill(....................format);
-//        players::player_name(.....................format);
-//        players::player_time(.....................format);
-//        players::player_weather(..................format);
-//        players::player_fightstyle(...............format);
-//        players::player_velocity(.................format);
-//        players::player_chatbubble(...............format);
-//        players::player_camerapos(................format);
-//        players::player_controllable(.............format);
-//        players::player_shopname(.................format);
-//        money::player_givemoney(..................format);
-//        money::player_resetmoney(.................format);
-//        animation::player_clearanim(..............format);
-//        animation::player_animation(..............format);
-//        animation::player_specialanim(............format);
-//        mapicon::player_mapicon(..................format);
-//        mapicon::player_removemapicon(............format);
-//        spectate::player_togglespectate(..........format);
-//        spectate::player_spectateplayer(..........format);
-//        spectate::player_spectatevehicle(.........format);
-//        textdraw::mouse(..........................format);
-//        textdraw::unmouse(........................format);
-//        message::client@player(...................format);
-//        message::client@toall(....................format);
-//        message::player@player(...................format);
-//        message::player@toall(....................format);
-//        message::death@player(....................format);
-//        message::death@toplayer(..................format);
-//    }
-#endif
-
+/// <summary>
+/// This section defines a set of macros for managing player-related actions and attributes in the game. 
+/// Each macro is a simplified version of the corresponding function that deals with player properties and actions.
+/// 
+/// Player Macros:
+/// - player_pos(%0)               : Sets the position of the player.
+/// - player_findz(%0)             : Sets the player's position and automatically finds the Z coordinate.
+/// - player_angle(%0)             : Sets the player's facing angle (rotation).
+/// - player_interior(%0)          : Sets the player's interior ID.
+/// - player_virtualworld(%0)      : Sets the player's virtual world ID.
+/// - player_colour(%0)            : Sets the player's color (used for skins and other aspects).
+/// - player_skin(%0)              : Sets the player's skin (model).
+/// - player_health(%0)            : Sets the player's health value.
+/// - player_armour(%0)            : Sets the player's armor value.
+/// - player_team(%0)              : Sets the player's team ID.
+/// - player_score(%0)             : Sets the player's score.
+/// - player_ammo(%0)              : Sets the player's ammo count.
+/// - player_giveweapon(%0)        : Gives the player a weapon with specified properties.
+/// - player_armedweapon(%0)       : Sets the player's armed weapon.
+/// - player_resetweapon(%0)       : Resets the player's weapons (removes all weapons).
+/// - player_drunk(%0)             : Sets the player's drunk level.
+/// - player_wanted(%0)            : Sets the player's wanted level (police attention).
+/// - player_skill(%0)             : Sets the player's skill level in various attributes.
+/// - player_name(%0)              : Sets the player's name.
+/// - player_time(%0)              : Sets the time for the player (day/night cycle).
+/// - player_weather(%0)           : Sets the weather for the player.
+/// - player_fightstyle(%0)        : Sets the player's fighting style.
+/// - player_velocity(%0)          : Sets the player's velocity (movement speed).
+/// - player_chatbubble(%0)        : Sets the player's chat bubble (for messages).
+/// - player_camerapos(%0)         : Sets the player's camera position.
+/// - player_controllable(%0)      : Toggles whether the player can control their character.
+/// - player_shopname(%0)          : Sets the name of the shop the player is interacting with.
+/// </summary>
 #if !defined players::
     #define player->
     #define players::
