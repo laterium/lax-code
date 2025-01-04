@@ -16,11 +16,11 @@
 #if !defined objects::
     #define object->
     #define objects::
-    #define obj_create(%0)     CreateObject(%0)     // Creates an object at the specified coordinates and with the given properties.
-    #define obj_destroy(%0)    DestroyObject(%0)    // Destroys the object with the specified identifier.
-    #define obj_move(%0)       MoveObject(%0)       // Moves the object to the specified coordinates or location.
-    #define obj_stop(%0)       StopObject(%0)       // Stops the current motion or movement of the object.
-    #define obj_edit(%0)       EditObject(%0)       // Edits the properties of the object (e.g., size, color, etc.).
-    #define obj_cancel(%0)     CancelEdit(%0)       // Cancels any ongoing editing process on the object.
-    #define obj_select(%0)     SelectObject(%0)     // Selects the object for further actions (e.g., editing, interacting).
+    #define obj_create(%0)     CreateObject(%0)
+    #define obj_destroy(%0)    DestroyObject(%0)
+    #define obj_move(%0)       MoveObject(%0)
+    #define obj_stop(%0)       StopObject(%0)
+    #define obj_edit(%0)       EditObject(%0)
+    #define obj_cancel(%0)     CancelEdit(%0)
+    #define obj_select(%0)     SelectObject(%0)
 #endif
