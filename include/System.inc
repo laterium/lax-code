@@ -340,8 +340,8 @@ func IsMobile(playerid) {
     return 0;
 }
 
-func LAX_SelectTextDraw(playerid, \
-    colour)
+func LAX_SelectTextDraw( \
+	playerid, colour)
 {
     textdraw::mouse(playerid, colour);
     SetPVarInt(playerid, "isMouse", 1);
@@ -360,7 +360,7 @@ func ShowPlayerMap(playerid) {
     return 1;
 }
 
-func HidePlayerMap(
+func HidePlayerMap( \
 	playerid, colour)
 {
     LAX_SYS_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
