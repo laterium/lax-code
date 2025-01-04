@@ -83,8 +83,6 @@
     #define player_controllable(%0)          TogglePlayerControllable(%0)
     #define player_shopname(%0)              SetPlayerShopName(%0)
 #endif
-
-
 #if !defined money::
     #define money::
     #define player_givemoney(%0)             GivePlayerMoney(%0)
