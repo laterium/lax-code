@@ -86,6 +86,7 @@
 /// - death@player(%0)             : Sends a death message to a specific player.
 /// - death@toplayer(%0)           : Sends a death message to a player when they kill someone else.
 /// </summary>
+
 #if !defined players::
     #define player->
     #define players::
