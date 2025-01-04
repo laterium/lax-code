@@ -3,12 +3,10 @@
 #include <a_samp>
 
 // objective.
-#include "a_objective\a_save.inc"
 #include "a_objective\a_players.inc"
 #include "a_objective\a_vehicles.inc"
 #include "a_objective\a_objects.inc"
 #include "a_objective\a_actor.inc"
-#include "a_objective\a_dini.inc"
 
 #pragma tabsize 4
 // Ignores warning 217 for properly indented PAWNO code
