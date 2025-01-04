@@ -12,6 +12,7 @@
 /// - obj_cancel(%0)     : Cancels the editing mode for the object.
 /// - obj_select(%0)     : Selects the specified object for interaction.
 /// </summary>
+
 #if !defined objects::
     #define object->
     #define objects::
