@@ -14,7 +14,7 @@
 //    }
 #endif
 
-#if !defined object::
+#if !defined objects::
     #define object->
     #define objects::
     #define obj_create(%0)     CreateObject(%0)
