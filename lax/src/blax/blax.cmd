@@ -9,10 +9,14 @@ color 0F
 
 :: ~ variables ~
 SET "SOURCEDIR=%~dp0"
+:: compilers method status
 SET "STATICSTS=false"
-SET "TITLESTS=null"
+:: title terminal
+SET "TITLESTS="
+:: do not edit this
 SET "PAWNCCSTS="
-SET "LIBLOCATION=blax.cmd"
+:: Lib BLAX Name.
+SET "LIBNAME=blax.cmd"
 
 :: HH/MM/SS format.
 FOR /f "tokens=1-4 delims=:. " %%A in ('ECHO %time%') DO (
@@ -328,7 +332,7 @@ IF "%TYPEOF%"=="%OPTIONTYPEOF% -c" (
         ECHO     {
         ECHO       "label": "Run lax",
         ECHO       "type": "process",
-        ECHO       "command": "${workspaceFolder}/%LIBLOCATION%",
+        ECHO       "command": "${workspaceFolder}/%LIBNAME%",
         ECHO       "group": {
         ECHO           "kind": "build",
         ECHO           "isDefault": true
