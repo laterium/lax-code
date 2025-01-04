@@ -30,6 +30,7 @@
 #endif
 
 #if !defined vehicles::
+    #define vehicle->
     #define vehicles::
     #define vehicle_create(%0)                  CreateVehicle(%0)
     #define vehicle_destroy(%0)                 DestroyVehicle(%0)
