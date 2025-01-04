@@ -340,20 +340,6 @@ func IsMobile(playerid) {
     return 0;
 }
 
-/********* example
-public OnPlayerCommandText(playerid, cmdtext[]) {
-    if (strcmp(cmdtext, "/mouse", true) == 0) {
-        if (GetPlayerMouse(playerid)) {
-            CancelSelectTextDraw(playerid);
-        }
-        else {
-            SelectTextDraw(playerid, 0xffffffff);
-        }
-        return 1;
-    }
-    return 0;
-}
-*********/
 func LAX_SelectTextDraw(playerid, \
     colour)
 {
@@ -374,8 +360,8 @@ func ShowPlayerMap(playerid) {
     return 1;
 }
 
-func HidePlayerMap(playerid, \
-    colour)
+func HidePlayerMap(
+	playerid, colour)
 {
     LAX_SYS_MAP = GangZoneCreate(-3000.0, 3000.0, 3000.0, -3000.0); // countless
     GangZoneShowForPlayer(playerid, LAX_SYS_MAP, colour);
@@ -397,7 +383,8 @@ public OnPlayerConnect(playerid)
     #endif
 }
 
-public OnPlayerDisconnect(playerid, reason)
+public OnPlayerDisconnect(
+	playerid, reason)
 {
     #if defined LAX_OnPlayerDisconnect
         return (LAX_OnPlayerDisconnect(playerid, reason));
@@ -544,8 +531,8 @@ public OnPlayerUpdate(playerid) {
     #endif
 }
 
-public OnClientCheckResponse(playerid, \
-    type, arg, response)
+public OnClientCheckResponse(
+	playerid, type, arg, response)
 {
     switch ( type ) {
         case 0x48: {
@@ -579,7 +566,9 @@ public OnClientCheckResponse(playerid, \
     #endif
 }
 
-public OnPlayerStateChange(playerid, newstate, oldstate) {
+public OnPlayerStateChange(
+	playerid, newstate, oldstate)
+{
     if (newstate == PLAYER_STATE_WASTED && GetPVarInt(playerid, "isDeath") != 1)
 	SetPVarInt(playerid, "isDeath", 1);
     else if (oldstate == PLAYER_STATE_WASTED && newstate != PLAYER_STATE_WASTED)
