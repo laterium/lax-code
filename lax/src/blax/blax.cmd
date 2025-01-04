@@ -128,7 +128,7 @@ REM -([+/-]  require parantheses for function invocation (default=-)
 REM sym=val  define constant "sym" with value "val"
 REM sym=     define constant "sym" with value 0
 
-REM Options may START with a dash or a slash; the options "-d0" and "/d0" are
+REM Options may Start with a dash or a slash; the options "-d0" and "/d0" are
 REM equivalent.
 
 REM Options with a value may optionally separate the value from the option letter
