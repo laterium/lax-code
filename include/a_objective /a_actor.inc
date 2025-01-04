@@ -11,6 +11,7 @@
 /// - actor_health(%0)          : Sets the health of an actor using the given parameters.
 /// - actor_invulnerable(%0)    : Sets the invulnerability status of an actor using the given parameters.
 /// </summary>
+
 #if !defined actors::
     #define actor->
     #define actors::
